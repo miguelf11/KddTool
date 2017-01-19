@@ -1,0 +1,8 @@
+<template name='Header'>
+	<header>
+		<h1>UCV KDD Tool</h1>
+		{{#if currentUser}}
+			{{> UserDataProfile}}
+		{{/if}}	
+	</header>
+</template>
