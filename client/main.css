@@ -1,0 +1,487 @@
+/* CSS declarations go here */
+.display-in-blocks {
+	display: block;
+}
+
+.no-display {
+	display: none;
+}
+
+.no-padding {
+    padding: 0px !important;
+}
+
+.no-padding-left {
+    padding-left: 0px !important;
+}
+
+.no-padding-right {
+    padding-right: 0px !important;
+}
+
+.no-padding-bottom {
+    padding-bottom: 0px !important;
+}
+
+.no-padding-top {
+    padding-top: 0px !important;
+}
+
+.padding-complete {
+    padding: 12px !important;
+}
+
+.padding-left-half {
+    padding-left: 4px !important;
+}
+
+.padding-left-complete {
+    padding-left: 12px !important;
+}
+
+.padding-right-half {
+    padding-right: 4px !important;
+}
+
+.padding-right-half-plus {
+    padding-right: 5px !important;
+}
+
+.padding-right-complete {
+    padding-right: 12px !important;
+}
+
+.padding-right-double {
+    padding-right: 24px !important;
+}
+
+.padding-right-super {
+    padding-right: 40px !important;
+}
+
+.padding-left-super {
+    padding-left: 40px !important;
+}
+
+.padding-left-double {
+    padding-left: 24px !important;
+}
+
+.padding-left-double-bootstrap {
+    padding-left: 30px !important;
+}
+
+.padding-left-double-max {
+    padding-left: 32px !important;
+}
+
+.padding-bottom-mini {
+    padding-bottom: 5px !important;
+}
+
+.padding-bottom-half {
+    padding-bottom: 8px !important;
+}
+
+.padding-bottom-complete {
+    padding-bottom: 12px !important;
+}
+
+.padding-bottom-double {
+    padding-bottom: 24px !important;
+}
+
+.padding-top-mini {
+    padding-top: 5px !important;
+}
+
+.padding-top-half {
+    padding-top: 8px !important;
+}
+
+.padding-top-title {
+    padding-top: 10px !important;
+}
+
+.padding-top-complete {
+    padding-top: 12px !important;
+}
+
+.padding-top-double {
+    padding-top: 24px !important;
+}
+
+.padding-top-container {
+    padding-top: 70px !important;
+}
+.no-margin {
+    margin: 0px !important;
+}
+
+.no-margin-top {
+    margin-top: 0px !important;
+}
+
+.no-margin-right {
+    margin-right: 0px !important;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0px !important;
+}
+
+.no-margin-left {
+    margin-left: 0px !important;
+}
+
+.margin-bottom-mini {
+    margin-bottom: 4px !important;
+}
+
+.margin-bottom-half {
+    margin-bottom: 8px !important;
+}
+
+.margin-bottom-complete {
+    margin-bottom: 12px !important;
+}
+
+.margin-bottom-double {
+    margin-bottom: 24px !important;
+}
+
+.margin-top-mini {
+    margin-top: 4px !important;
+}
+
+.margin-top-medium {
+    margin-top: 5px !important;
+}
+
+.margin-top-half {
+    margin-top: 8px !important;
+}
+
+.margin-top-complete {
+    margin-top: 12px !important;
+}
+
+.margin-top-double {
+    margin-top: 24px !important;
+}
+
+.margin-top-triple {
+    margin-top: 100px !important;
+}
+
+.margin-left-complete {
+    margin-left: 12px !important;
+}
+
+.margin-left-half {
+    margin-left: 8px !important;
+}
+
+.margin-left-complete {
+    margin-left: 12px !important;
+}
+
+.margin-left-bootstrap {
+    margin-left: 15px !important;
+}
+
+.margin-left-double {
+    margin-left: 24px !important;
+}
+
+.margin-left-mini {
+    margin-left: 4px !important;
+}
+
+.margin-right-half {
+    margin-right: 8px !important;
+}
+
+.margin-right-mini {
+    margin-right: 4px !important;
+}
+
+.margin-right-complete {
+    margin-right: 12px !important;
+}
+
+.margin-right-double {
+    margin-right: 24px !important;
+}
+
+.margin-right-bootstrap {
+    margin-right: 15px !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+div.div-hidden {
+    display: none;
+}
+
+.no-border-left {
+    border-left:none;
+}
+
+.text-bold{
+    font-weight: bold;
+}
+
+.capitalize {
+    text-transform: capitalize !important;
+}
+
+.uppercase {
+    text-transform: uppercase !important;
+}
+
+
+header{
+    color: #FFF; 
+    background: #44a2d6;
+    position: fixed;
+    width: 100%;
+    height: 70px;
+    z-index: 100;
+    top: 0;  
+}
+
+header > h1{
+    float: left;
+    padding-left: 20px;
+    font-weight: 600;
+}
+
+header > div{
+    float: right;
+    padding-top: 24px;
+    padding-right: 20px;
+}
+
+header > div > a{
+    color: #FFF;
+    text-decoration: none !important;
+    text-transform: capitalize !important;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.dropdown-menu{
+    min-width: 100px !important;
+    border-radius: 0px !important;
+}
+
+#navBar{
+    padding-top: 40px;
+}
+
+.main-of-home{ 
+    padding-top: 90px;
+}
+
+.main-of-kdd{ 
+    padding-top: 20px;
+}
+
+.login-section{
+    position: relative;
+    background: #FFF;
+    padding: 20px; 
+    padding-top: 10px !important;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    width: 100%; 
+}
+
+.login-section > h3{
+    font-size: 3em;
+    opacity: 0.5;
+    font-weight: 600;
+    border-bottom: rgba(0,0,0, 0.4) solid 3px;
+    margin-top: 0px;
+    margin-bottom: 10px; 
+    padding-bottom: 5px;
+}
+
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+.login-form > input{
+    background: #FFF;
+    border: solid 2px #EEE;
+    border-radius: 0px;
+    font-weight: 800;
+    width: 100%; 
+    padding: 6px 10px;
+    margin-bottom: 10px; 
+}
+
+.btn-login{
+    background-color: #86d040 !important;
+}
+
+.btn-login-to-register{
+    background-color: #82d8d8 !important;
+}
+
+.btn-login-back{
+    background-color: #ff7673 !important;
+}
+
+/*wizard*/
+
+.wizard {
+    margin: 20px auto;
+    background: #fff;
+}
+
+.wizard .nav-tabs {
+    position: relative;
+    margin: 40px auto;
+    margin-bottom: 0;
+    border-bottom-color: #e0e0e0;
+}
+
+.wizard > div.wizard-inner {
+    position: relative;
+}
+
+.connecting-line {
+    height: 2px;
+    background: #e0e0e0;
+    position: absolute;
+    width: 80%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 1;
+}
+
+.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+    color: #555555;
+    cursor: default;
+    border: 0;
+    border-bottom-color: transparent;
+}
+
+span.round-tab {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
+}
+span.round-tab i{
+    color:#555555;
+}
+.wizard li.active span.round-tab {
+    background: #fff;
+    border: 2px solid #5bc0de;
+    
+}
+.wizard li.active span.round-tab i{
+    color: #5bc0de;
+}
+
+span.round-tab:hover {
+    color: #333;
+    border: 2px solid #333;
+}
+
+.wizard .nav-tabs > li {
+    width: 25%;
+}
+
+.wizard li:after {
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 0;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 5px solid transparent;
+    border-bottom-color: #5bc0de;
+    transition: 0.1s ease-in-out;
+}
+
+.wizard li.active:after {
+    content: " ";
+    position: absolute;
+    left: 46%;
+    opacity: 1;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 10px solid transparent;
+    border-bottom-color: #5bc0de;
+}
+
+.wizard .nav-tabs > li a {
+    width: 70px;
+    height: 70px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
+}
+
+    .wizard .nav-tabs > li a:hover {
+        background: transparent;
+    }
+
+.wizard .tab-pane {
+    position: relative;
+    padding-top: 50px;
+}
+
+.wizard h3 {
+    margin-top: 0;
+}
+
+@media( max-width : 585px ) {
+
+    .wizard {
+        width: 90%;
+        height: auto !important;
+    }
+
+    span.round-tab {
+        font-size: 16px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .wizard .nav-tabs > li a {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .wizard li.active:after {
+        content: " ";
+        position: absolute;
+        left: 35%;
+    }
+}
