@@ -373,7 +373,9 @@ header > div > a{
     z-index: 1;
 }
 
-.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+.wizard .nav-tabs > li.active > a, 
+.wizard .nav-tabs > li.active > a:hover, 
+.wizard .nav-tabs > li.active > a:focus {
     color: #555555;
     cursor: default;
     border: 0;
@@ -446,9 +448,9 @@ span.round-tab:hover {
     padding: 0;
 }
 
-    .wizard .nav-tabs > li a:hover {
-        background: transparent;
-    }
+.wizard .nav-tabs > li a:hover {
+    background: transparent;
+}
 
 .wizard .tab-pane {
     position: relative;
