@@ -310,6 +310,21 @@ header > div > a{
     padding-bottom: 5px;
 }
 
+.each-project-section{
+    background: #FFF;
+    padding: 20px; 
+    border: rgba(0,0,0, 0.2) solid 3px;
+    max-height: 146px;
+}
+
+div.each-project-section:hover{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.each-project-section > h4{
+    opacity: 0.5;
+    font-weight: 800;
+}
 .row-centered {
     text-align:center;
 }
