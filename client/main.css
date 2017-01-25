@@ -516,7 +516,11 @@ span.round-tab:hover {
     opacity: 0.5;
 }
 
-/*.nav-tabs > li > a > h3{
+.main-route{
+    font-weight: 800 !important;
+}
+
+.nav-tabs-projects > li > a > h3{
     margin-top: 0px;
     margin-bottom: 0px;
     opacity: 0.5;
@@ -531,7 +535,7 @@ span.round-tab:hover {
     border-radius: 0px !important;
 }
 
-.active > a{
+.nav-tabs-projects > .active > a{
     border: 3px solid #ddd !important;
     border-bottom: 0px !important;
-}*/
+}
