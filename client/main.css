@@ -539,3 +539,7 @@ span.round-tab:hover {
     border: 3px solid #ddd !important;
     border-bottom: 0px !important;
 }
+
+.btn-inicio-form:hover{
+    opacity: 0.9;
+}
