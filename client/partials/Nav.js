@@ -41,3 +41,21 @@ Template.Nav.onCreated(function() {
     console.log('creada nav');
     $('.nav-tabs > li a[title]').tooltip();
 });
+
+Template.Nav.events({
+  'click .preparacion'(event, template) {
+    event.preventDefault();
+    console.log('a preparacion');
+    FlowRouter.go('preparacion');
+  },
+  'click .modelado'(event, template) {
+    event.preventDefault();
+    console.log('a modelado');
+    FlowRouter.go('modelado');
+  },
+  'click .visualizacion'(event, template) {
+    event.preventDefault();
+    console.log('a visualizacion');
+    FlowRouter.go('visualizacion');
+  },
+});

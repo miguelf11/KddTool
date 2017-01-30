@@ -370,17 +370,24 @@ div.each-project-section:hover{
     margin: 40px auto;
     margin-bottom: 0;
     border-bottom-color: #e0e0e0;
+    text-align:center;
+    height: 110px;
 }
 
 .wizard > div.wizard-inner {
     position: relative;
 }
 
+.nav-tabs > li{
+    float:none;
+    display:inline-block;
+}
+
 .connecting-line {
     height: 2px;
     background: #e0e0e0;
     position: absolute;
-    width: 80%;
+    width: 50%;
     margin: 0 auto;
     left: 0;
     right: 0;
@@ -435,7 +442,7 @@ span.round-tab:hover {
 .wizard li:after {
     content: " ";
     position: absolute;
-    left: 46%;
+    left: 47%;
     opacity: 0;
     margin: 0 auto;
     bottom: 0px;
@@ -447,7 +454,7 @@ span.round-tab:hover {
 .wizard li.active:after {
     content: " ";
     position: absolute;
-    left: 46%;
+    left: 47%;
     opacity: 1;
     margin: 0 auto;
     bottom: 0px;
@@ -499,11 +506,21 @@ span.round-tab:hover {
     .wizard li.active:after {
         content: " ";
         position: absolute;
-        left: 35%;
+        left: 15%;
     }
 }
 
-.nav-tabs > li > a > h3{
+.name-section > h4{
+    font-weight: 900;
+    /*color: #44a2d6;*/
+    opacity: 0.5;
+}
+
+.main-route{
+    font-weight: 800 !important;
+}
+
+.nav-tabs-projects > li > a > h3{
     margin-top: 0px;
     margin-bottom: 0px;
     opacity: 0.5;
@@ -518,7 +535,11 @@ span.round-tab:hover {
     border-radius: 0px !important;
 }
 
-.active > a{
+.nav-tabs-projects > .active > a{
     border: 3px solid #ddd !important;
     border-bottom: 0px !important;
+}
+
+.btn-inicio-form:hover{
+    opacity: 0.9;
 }

@@ -1,12 +1,12 @@
 <template name='Nav'>
 	<div class="row nav-bar" id="navBar">
-        <div class="wizard">
+        <div class="wizard no-margin-bottom">
             <div class="wizard-inner">
                 <div class="connecting-line"></div>
                 <ul class="nav nav-tabs" role="tablist">
 
                     <li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Preparación">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Preparación" class="preparacion">
                             <span class="round-tab">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </span>
@@ -14,25 +14,16 @@
                     </li>
 
                     <li role="presentation" class="disabled">
-                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Modelado">
+                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Modelado" class="modelado">
                             <span class="round-tab">
                                 <i class="fa fa-tasks" aria-hidden="true"></i>
                             </span>
                         </a>
                     </li>
                     <li role="presentation" class="disabled">
-                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Visualización">
+                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Visualización" class="visualizacion">
                             <span class="round-tab">
-                                <!-- <i class="glyphicon glyphicon-picture"></i> -->
                                 <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li role="presentation" class="disabled">
-                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-ok"></i>
                             </span>
                         </a>
                     </li>
@@ -40,4 +31,23 @@
             </div>
         </div>
 	</div>
+    <div class="row text-center">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 name-section preparacion-name-section">
+            <h4>Preparación</h4>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 name-section modelado-name-section">
+            <h4>Modelado</h4>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 name-section visualizacion-name-section">
+            <h4>Visualización</h4>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        </div>
+    </div>
 </template>
