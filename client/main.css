@@ -346,7 +346,7 @@ div.each-project-section:hover{
     margin-bottom: 10px; 
 }
 
-.btn-login{
+.btn-login, .btn-edit{
     background-color: #86d040 !important;
 }
 
@@ -354,7 +354,7 @@ div.each-project-section:hover{
     background-color: #82d8d8 !important;
 }
 
-.btn-login-back{
+.btn-login-back, .btn-back{
     background-color: #ff7673 !important;
 }
 
@@ -542,4 +542,10 @@ span.round-tab:hover {
 
 .btn-inicio-form:hover{
     opacity: 0.9;
+}
+
+.no-match {
+    color: red;
+    font-weight: bold;
+    text-align: center;
 }

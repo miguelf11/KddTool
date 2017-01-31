@@ -8,9 +8,11 @@ Template.NavProjectDatasets.events({
     console.log('to projects');
     FlowRouter.go('proyectos');
   },
+
   'click #datasetsTab'(event, template) {
     event.preventDefault();
     console.log('to datasets');
     FlowRouter.go('datasets');
   },
+  
 });

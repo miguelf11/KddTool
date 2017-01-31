@@ -15,10 +15,24 @@ Template.Registrer.events({
     });
     console.log('user created');
   },
+
   'click .btn-login-back'(event, template) {
     // increment the counter when button is clicked
     event.preventDefault();
     FlowRouter.go('login');
     console.log('to login');
+  },
+
+  'keyup #passwordRep'(event, template) {
+    var passwordVar = template.find('#password').value;
+    var passwordVarRep = template.find('#passwordRep').value;
+    if(passwordVarRep != passwordVar) {
+        $('.no-match').text("NO COINCIDEN LAS CONTRASEÑAS");
+        $('.btn-login').prop('disabled', true);
+    } else {
+        $('.no-match').text("");
+        $('.btn-login').prop('disabled', false);
+    }
+    
   },
 });

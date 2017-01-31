@@ -1,19 +1,19 @@
-<template name="Registrer">
+<template name="myProfile">
 	<div class="row center-block row-centered">
-		<div class="col-xs-10 col-sm-6 col-md-5 col-lg-4 col-centered">
+		<div class="col-xs-10 col-sm-6 col-md-7 col-lg-7 col-centered">
 			<div class='login-section'>
-				<h3>Registro</h3>
+				<h3>Mi Perfil</h3>
 				<form class='login-form'>
 					<input type="text" id="name" placeholder="Nombre">
 					<input type="text" id="lastName" placeholder="Apellido">
-					<input type="email" id="email" placeholder="Correo">
+					<input type="email" id="email" placeholder="Correo" disabled value="{{getEmail}}">
 					<input type="password" id="password" placeholder="Contraseña">
 					<input type="password" id="passwordRep" placeholder="Repita contraseña">
 					<div class="no-match">
 						<span></span>
 					</div>
-					<input type="submit" class="btn-login btn-inicio-form" value="Registrar">
-					<input type="button" class="btn-login-back btn-inicio-form" value="Atrás">
+					<input type="submit" class="btn-edit btn-inicio-form" value="Editar">
+					<input type="button" class="btn-back btn-inicio-form" value="Atrás">
 				</form>
 			</div>
 		</div>
