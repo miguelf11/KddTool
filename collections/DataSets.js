@@ -56,6 +56,9 @@ DataSetsSchema = new SimpleSchema({
 });
 
 Meteor.methods({
+	insertDataset: function(doc){
+		DataSets.insert(doc);
+	}
 	// toogleMenuItem: function(id, currentState){
 	// 	Recipes.update(id, {
 	// 		$set: {
@@ -67,5 +70,6 @@ Meteor.methods({
 	// 	Recipes.remove(id);
 	// }
 });
+
 
 DataSets.attachSchema( DataSetsSchema );
