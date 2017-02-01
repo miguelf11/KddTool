@@ -549,3 +549,7 @@ span.round-tab:hover {
     font-weight: bold;
     text-align: center;
 }
+
+.author{
+    text-transform: capitalize;
+}
