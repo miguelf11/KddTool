@@ -13,4 +13,5 @@ Template.UserDataProfile.events({
 
     console.log('logout');
   },
+
 });
