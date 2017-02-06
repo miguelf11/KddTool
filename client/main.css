@@ -198,6 +198,10 @@
     margin-left: 4px !important;
 }
 
+.margin-left-ultra-mini {
+    margin-left: 3px !important;
+}
+
 .margin-right-half {
     margin-right: 8px !important;
 }
@@ -287,7 +291,7 @@ header > div > a{
 }
 
 .main-of-kdd{ 
-    padding-top: 20px;
+    padding-top: 70px;
 }
 
 .login-section{
@@ -340,18 +344,39 @@ div.each-project-section:hover{
     background: #FFF;
     border: solid 2px #EEE;
     border-radius: 0px;
-    font-weight: 800;
     width: 100%; 
     padding: 6px 10px;
     margin-bottom: 10px; 
 }
 
-.btn-login, .btn-edit{
+.btn-edit{
     background-color: #86d040 !important;
+}
+
+.btn-login{
+    background-color: #86d040 !important;
+    border: solid 2px #EEE;
+    border-radius: 0px;
+    color: #000;
+    font-weight: 600;
+    width: 49%;
+}
+
+.btn-login:hover{
+    opacity: 0.9;
 }
 
 .btn-login-to-register{
     background-color: #82d8d8 !important;
+    border: solid 2px #EEE;
+    border-radius: 0px;
+    color: #000;
+    font-weight: 600;
+    width: 49%;
+}
+
+.btn-login-to-register:hover{
+    opacity: 0.9;
 }
 
 .btn-login-back, .btn-back{
@@ -516,10 +541,6 @@ span.round-tab:hover {
     opacity: 0.5;
 }
 
-.main-route{
-    font-weight: 800 !important;
-}
-
 .nav-tabs-projects > li > a > h3{
     margin-top: 0px;
     margin-bottom: 0px;
@@ -540,10 +561,6 @@ span.round-tab:hover {
     border-bottom: 0px !important;
 }
 
-.btn-inicio-form:hover{
-    opacity: 0.9;
-}
-
 .no-match {
     color: red;
     font-weight: bold;
@@ -552,4 +569,9 @@ span.round-tab:hover {
 
 .author{
     text-transform: capitalize;
+}
+
+.nav-kdd-content{
+    height: 100vh;
+    background-color: #31708f;
 }
