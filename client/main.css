@@ -282,10 +282,6 @@ header > div > a{
     border-radius: 0px !important;
 }
 
-#navBar{
-    padding-top: 40px;
-}
-
 .main-of-home{ 
     padding-top: 90px;
 }
@@ -386,29 +382,37 @@ div.each-project-section:hover{
 /*wizard*/
 
 .wizard {
-    margin: 20px auto;
-    background: #fff;
+    margin: 0px auto;
+    /*background: #fff;*/
 }
 
 .wizard .nav-tabs {
-    position: relative;
-    margin: 40px auto;
+    /*margin: 40px auto;*/
     margin-bottom: 0;
     border-bottom-color: #e0e0e0;
     text-align:center;
-    height: 110px;
+    /*height: 110px;*/
+    /*height: 100vh;*/
+}
+
+.nav-tabs{
+    border-bottom: 0px !important;
+    /*list-style-type: none;*/
+    height: 100%; /* Full height */
+    position: fixed !important; /* Make it stick, even on scroll */
 }
 
 .wizard > div.wizard-inner {
-    position: relative;
+    /*position: relative;*/
+    /*height: 100vh;*/
 }
 
 .nav-tabs > li{
     float:none;
-    display:inline-block;
+    /*display:inline-block;*/
 }
 
-.connecting-line {
+/*.connecting-line {
     height: 2px;
     background: #e0e0e0;
     position: absolute;
@@ -418,7 +422,7 @@ div.each-project-section:hover{
     right: 0;
     top: 50%;
     z-index: 1;
-}
+}*/
 
 .wizard .nav-tabs > li.active > a, 
 .wizard .nav-tabs > li.active > a:hover, 
@@ -430,9 +434,9 @@ div.each-project-section:hover{
 }
 
 span.round-tab {
-    width: 70px;
-    height: 70px;
-    line-height: 70px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
     display: inline-block;
     border-radius: 100px;
     background: #fff;
@@ -456,12 +460,12 @@ span.round-tab i{
 }
 
 span.round-tab:hover {
-    color: #333;
+    /*color: #333;*/
     border: 2px solid #333;
 }
 
 .wizard .nav-tabs > li {
-    width: 25%;
+    width: 100%;
 }
 
 .wizard li:after {
@@ -472,8 +476,8 @@ span.round-tab:hover {
     margin: 0 auto;
     bottom: 0px;
     border: 5px solid transparent;
-    border-bottom-color: #5bc0de;
-    transition: 0.1s ease-in-out;
+/*    border-bottom-color: #5bc0de;
+    transition: 0.1s ease-in-out;*/
 }
 
 .wizard li.active:after {
@@ -483,13 +487,13 @@ span.round-tab:hover {
     opacity: 1;
     margin: 0 auto;
     bottom: 0px;
-    border: 10px solid transparent;
-    border-bottom-color: #5bc0de;
+    border: 5px solid transparent;
+    /*border-bottom-color: #5bc0de;*/
 }
 
 .wizard .nav-tabs > li a {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     margin: 20px auto;
     border-radius: 100%;
     padding: 0;
@@ -508,7 +512,7 @@ span.round-tab:hover {
     margin-top: 0;
 }
 
-@media( max-width : 585px ) {
+/*@media( max-width : 585px ) {
 
     .wizard {
         width: 90%;
@@ -533,7 +537,7 @@ span.round-tab:hover {
         position: absolute;
         left: 15%;
     }
-}
+}*/
 
 .name-section > h4{
     font-weight: 900;
@@ -574,4 +578,5 @@ span.round-tab:hover {
 .nav-kdd-content{
     height: 100vh;
     background-color: #31708f;
+    padding-left: 23%;
 }
