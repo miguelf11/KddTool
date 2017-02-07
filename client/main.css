@@ -580,3 +580,24 @@ span.round-tab:hover {
     background-color: #31708f;
     padding-left: 23%;
 }
+
+.buttons-progress{
+    position:fixed; 
+    bottom:0;
+}
+
+.buttons-progress-span{
+    font-size: 30px;
+}
+
+.buttons-progress-span > i{
+    color: #44a2d6;
+}
+
+.buttons-progress-span > i:hover{
+    color: #fff;
+}
+
+.capitalize{
+    text-transform:capitalize;
+}

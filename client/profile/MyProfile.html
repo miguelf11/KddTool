@@ -1,19 +1,31 @@
 <template name="myProfile">
 	<div class="row center-block row-centered">
-		<div class="col-xs-10 col-sm-6 col-md-7 col-lg-7 col-centered">
+		<div class="col-xs-10 col-sm-6 col-md-5 col-lg-5 col-centered">
 			<div class='login-section'>
 				<h3>Mi Perfil</h3>
-				<form class='login-form'>
-					<input type="text" id="name" placeholder="Nombre">
-					<input type="text" id="lastName" placeholder="Apellido">
+				<form class='login-form' id="profileForm">
+					<input type="text" id="name" placeholder="Nombre" value="{{getName}}">
+					<input type="text" id="lastName" placeholder="Apellido" value="{{getLastName}}">
 					<input type="email" id="email" placeholder="Correo" disabled value="{{getEmail}}">
-					<input type="password" id="password" placeholder="Contraseña">
-					<input type="password" id="passwordRep" placeholder="Repita contraseña">
+					<div class="text-right padding-top-mini">
+						<button type="submit" class="btn btn-primary btn-login btn-inicio-form btn-edit">Editar Datos</button>
+						<button type="button" class="btn btn-primary btn-login-to-register btn-inicio-form btn-back btn-back-profile margin-left-ultra-mini">Atrás</button>
+					</div>
+					<div class="text-right padding-top-half">
+						<a href="#" class="text-right change-password">Cambiar contraseña</a>
+					</div>
+				</form>
+				<form class='login-form hidden' id="changePassForm">
+					<input type="password" id="passwordOld" placeholder="Contraseña Actual">
+					<input type="password" id="passwordNew" placeholder="Contraseña Nueva">
+					<input type="password" id="passwordNewRep" placeholder="Repita Contraseña Nueva">
 					<div class="no-match">
 						<span></span>
 					</div>
-					<input type="submit" class="btn-edit btn-inicio-form" value="Editar">
-					<input type="button" class="btn-back btn-inicio-form" value="Atrás">
+					<div class="text-right padding-top-mini">
+						<button type="submit" class="btn btn-primary btn-login btn-inicio-form btn-edit-pass">Cambiar Contraseña</button>
+						<button type="button" class="btn btn-primary btn-login-to-register btn-inicio-form btn-back-pass btn-back margin-left-ultra-mini">Cancelar</button>
+					</div>
 				</form>
 			</div>
 		</div>
