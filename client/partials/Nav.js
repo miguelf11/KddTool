@@ -40,6 +40,7 @@ Template.Nav.onCreated(function() {
   // counter starts at 0
     console.log('creada nav');
     $('.nav-tabs > li a[title]').tooltip();
+    $('.buttons-progress > a[title]').tooltip();
 });
 
 Template.Nav.events({
@@ -57,5 +58,13 @@ Template.Nav.events({
     event.preventDefault();
     console.log('a visualizacion');
     FlowRouter.go('visualizacion');
+  },
+  'click .undo-btn'(event, template) {
+    event.preventDefault();
+    console.log('deshacer');
+  },
+  'click .save-btn'(event, template) {
+    event.preventDefault();
+    console.log('guardar');
   },
 });

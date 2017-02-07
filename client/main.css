@@ -620,3 +620,24 @@ a:focus {
 .add-btn{
     margin: 0 0 15px 0;
 }
+
+.buttons-progress{
+    position:fixed; 
+    bottom:0;
+}
+
+.buttons-progress-span{
+    font-size: 30px;
+}
+
+.buttons-progress-span > i{
+    color: #44a2d6;
+}
+
+.buttons-progress-span > i:hover{
+    color: #fff;
+}
+
+.capitalize{
+    text-transform:capitalize;
+}
