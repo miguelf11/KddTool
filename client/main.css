@@ -398,8 +398,8 @@ div.each-project-section:hover{
 .nav-tabs{
     border-bottom: 0px !important;
     /*list-style-type: none;*/
-    height: 100%; /* Full height */
-    position: fixed !important; /* Make it stick, even on scroll */
+    *height: 100%; /* Full height */
+    *position: fixed !important; /* Make it stick, even on scroll */
 }
 
 .wizard > div.wizard-inner {
@@ -407,7 +407,7 @@ div.each-project-section:hover{
     /*height: 100vh;*/
 }
 
-.nav-tabs > li{
+.kdd-tabs > li{
     float:none;
     /*display:inline-block;*/
 }
@@ -431,6 +431,7 @@ div.each-project-section:hover{
     cursor: default;
     border: 0;
     border-bottom-color: transparent;
+    outline: none;
 }
 
 span.round-tab {
@@ -553,7 +554,7 @@ span.round-tab:hover {
 }
 
 .nav-tabs-projects{
-    border-bottom: 3px solid #ddd !important;
+    /*border-bottom: 3px solid #ddd !important;*/
 }
 
 .nav-tabs-projects > li > a{
@@ -563,6 +564,11 @@ span.round-tab:hover {
 .nav-tabs-projects > .active > a{
     border: 3px solid #ddd !important;
     border-bottom: 0px !important;
+}
+
+.nav-tabs-projects > .active {
+    border-bottom: white;
+    z-index: 1000;
 }
 
 .no-match {
@@ -579,4 +585,38 @@ span.round-tab:hover {
     height: 100vh;
     background-color: #31708f;
     padding-left: 23%;
+    margin-top: -70px;
+    padding-top: 70px;
+}
+
+a:focus {
+    outline: none;
+}
+
+.kdd-sidebar{
+    margin-top: -70px;
+    padding-top: 70px;
+}
+
+#navProjectsDatasets .nav{
+    height: 50px;
+}
+
+.main-div{
+    height: 100vh;
+    padding-top: 136px;
+    margin-top: -140px;
+}
+
+.kdd-tabs{
+    position: fixed;
+}
+
+#projectsContainer, #datasetsContainer{
+    padding: 15px 40px;
+    border: 3px solid #ddd;
+}
+
+.add-btn{
+    margin: 0 0 15px 0;
 }
