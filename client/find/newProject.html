@@ -20,20 +20,20 @@
 					<input class="col-md-12" type="number" min=1 id="numberFields" name="numberFields" placeholder="Número de campos">
 					<br>
 
-					<label class="col-md-12 no-padding-left" for="author">Autor</label>
+					<!-- <label class="col-md-12 no-padding-left" for="author">Autor</label>
 					<input type="text" class="author" name="col-md-12 author" value="{{completeName}}" disabled>
-					<br>
+					<br> -->
 
 					<label class="col-md-12 no-padding-left" for="datasets">Datasets</label>
-					<select class="col-md-12" name="datasets">
-						<option value="volvo">Volvo</option>
-						<option value="saab">Saab</option>
-						<option value="mercedes">Mercedes</option>
-						<option value="audi">Audi</option>
+					<select class="col-md-12" name="datasets" id="dataset">
+						<option value="-1" selected="selected" disabled>Seleccione un dataset</option>
+						{{#each datasets}}
+							<option value="{{_id}}">{{name}}</option>
+						{{/each}}
 					</select> 
 					<br>
 
-					<label class="col-md-12 no-padding-left" for="cluster-address">Dirección en clúster</label>
+					<label class="col-md-12 no-padding-left" for="cluster-address">Elegir Archivo</label>
 					<input class="col-md-12" type="text" id="address" name="cluster-address" placeholder="Dirección en clúster">
 					<br>
 

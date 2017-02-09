@@ -20,15 +20,15 @@ DataSetsSchema = new SimpleSchema({
 	},
 	num_rows:{
 		type: Number,
-		label:'Number of Rows'
+		label:'NumberRows'
 	},
 	num_fields:{
 		type: Number,
-		label:'Number of Fields'
+		label:'NumberFields'
 	},
 	address:{
 		type: String,
-		label:'Address in hdfs'
+		label:'AddressHdfs'
 		// autoform:{
 		// 	type:'hidden'
 		// }
@@ -65,7 +65,10 @@ Meteor.methods({
 	// },
 	// deleteRecipe: function(id){
 	// 	Recipes.remove(id);
-	// }
+	// },
+	insertDataset: function(dataset){
+		DataSets.insert(dataset);
+	},
 });
 
 DataSets.attachSchema( DataSetsSchema );

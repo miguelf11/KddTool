@@ -69,7 +69,10 @@ Meteor.methods({
 	// },
 	// deleteRecipe: function(id){
 	// 	Recipes.remove(id);
-	// }
+	// },
+	insertProject: function(project){
+		Projects.insert(project);
+	},
 });
 
 Projects.attachSchema( ProjectsSchema );

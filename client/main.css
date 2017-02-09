@@ -55,8 +55,16 @@
     padding-right: 24px !important;
 }
 
+.padding-right-double-2 {
+    padding-right: 30px !important;
+}
+
 .padding-right-super {
     padding-right: 40px !important;
+}
+
+.padding-left-double-2 {
+    padding-left: 30px !important;
 }
 
 .padding-left-super {
@@ -553,7 +561,7 @@ span.round-tab:hover {
     margin-top: 0px;
     margin-bottom: 0px;
     opacity: 0.5;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .nav-tabs-projects{
