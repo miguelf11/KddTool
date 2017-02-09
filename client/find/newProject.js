@@ -1,4 +1,4 @@
-Template.createProject.helpers({
+Template.newProject.helpers({
 	completeName: function() {
 		if(Meteor.user()){
 			return (Meteor.user().profile.name+' '+Meteor.user().profile.lastName);
@@ -6,7 +6,7 @@ Template.createProject.helpers({
 	}
 });
 
-Template.createProject.events({
+Template.newProject.events({
 	'click .btn-back' (event, template) {
     	event.preventDefault();
    		FlowRouter.go('proyectos');

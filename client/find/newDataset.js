@@ -1,4 +1,4 @@
-Template.createDataset.helpers({
+Template.newDataset.helpers({
 	completeName: function() {
 		if(Meteor.user()){
 			return (Meteor.user().profile.name+' '+Meteor.user().profile.lastName);
@@ -6,7 +6,7 @@ Template.createDataset.helpers({
 	}
 });
 
-Template.createDataset.events({
+Template.newDataset.events({
 	'submit form'(event, template) {
 	    event.preventDefault();
 	    var name = template.find('#name').value;
