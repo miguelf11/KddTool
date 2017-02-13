@@ -1,44 +1,31 @@
 <template name='Projects'>
-	<div id="projectsContainer" class="padding-left-super padding-right-super">
+	<div id="projectsContainer" class="padding-left-super padding-right-double-2">
 		<div class="row">
-			<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+<!-- 			<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
 
+			</div> -->
+			<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+				<div class="row">
+					{{#each projects}}
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							<div class="each-project-section" id="{{_id}}">
+								<h4 class="no-margin-top capitalize">{{name}}</h4>
+								<span>{{desc}}</span>
+							</div>
+						</div>
+					{{else}}
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<h4>No ha creado ningún proyecto</h4>
+						</div>
+					{{/each}}
+				</div>
 			</div>
 			<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 add-btn">
-				<div class="row text-center">
-					<a href="/crear-proyecto" title="Crear Proyecto">
+				<div class="row text-right">
+					<a href="/nuevo-proyecto" title="Crear Proyecto">
 						<i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i>
 		            </a>
 				</div>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<div class="row">
-					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-						<div class="each-project-section">
-							<h4 class="no-margin-top">Nombre proyecto 1</h4>
-							<span>Descripcion</span>
-						</div>
-					</div>
-					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-						<div class="each-project-section">
-							<h4 class="no-margin-top">Nombre proyecto 2 </h4>
-							<span>Descripcion</span>
-						</div>
-					</div>
-					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-						<div class="each-project-section">
-							<h4 class="no-margin-top">Nombre proyecto 3</h4>
-							<span>Descripcion</span>
-						</div>
-					</div>
-					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-						<div class="each-project-section">
-							<h4 class="no-margin-top">Nombre proyecto 4</h4>
-							<span>Descripcion</span>
-						</div>
-					</div>
-				</div>
-				<!-- <h2>Proyectos</h2> -->
 			</div>
 		</div>
 	</div>

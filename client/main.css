@@ -55,8 +55,16 @@
     padding-right: 24px !important;
 }
 
+.padding-right-double-2 {
+    padding-right: 30px !important;
+}
+
 .padding-right-super {
     padding-right: 40px !important;
+}
+
+.padding-left-double-2 {
+    padding-left: 30px !important;
 }
 
 .padding-left-super {
@@ -255,6 +263,9 @@ header{
     height: 70px;
     z-index: 100;
     top: 0;  
+    -webkit-box-shadow: 0px 1px 1px #565656;
+    -moz-box-shadow:0px 1px 1px #565656;
+    box-shadow:0px 1px 1px #565656;
 }
 
 header > h1{
@@ -336,7 +347,7 @@ div.each-project-section:hover{
     /* inline-block space fix */
     margin-right:-4px;
 }
-.login-form > input{
+.login-form > input,textarea,select{
     background: #FFF;
     border: solid 2px #EEE;
     border-radius: 0px;
@@ -550,7 +561,7 @@ span.round-tab:hover {
     margin-top: 0px;
     margin-bottom: 0px;
     opacity: 0.5;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .nav-tabs-projects{
