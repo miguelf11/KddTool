@@ -14,5 +14,17 @@ Template.NavProjectDatasets.events({
     console.log('to datasets');
     FlowRouter.go('datasets');
   },
+
   
 });
+
+Template.NavProjectDatasets.helpers({
+  CurrentRoute:()=> {
+    return window.location.pathname;
+  },
+
+  equals: (a, b) =>{
+      return a === b;
+  }
+});
+

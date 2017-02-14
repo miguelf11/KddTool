@@ -10,8 +10,12 @@ Template.UserDataProfile.events({
   'click #logout'(event, template) {
     event.preventDefault();
     Meteor.logout();
-
     console.log('logout');
+  },
+
+  'click #myProjects'(event, template) {
+    event.preventDefault();
+    FlowRouter.go('proyectos');
   },
 
 });
