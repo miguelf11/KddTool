@@ -27,6 +27,7 @@ Template.newDataset.events({
     	console.log(dataset);
     	// DataSets.insert(dataset);
     	Meteor.call('insertDataset', dataset);
+    	Meteor.call('createDatasetInHDFS','nombre_dataset');
     	FlowRouter.go('datasets');
    //  DataSets.insert(Meteor.userId(),
    //  	{

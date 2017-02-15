@@ -13,6 +13,7 @@ Template.Registrer.events({
     		lastName:lastNameVar
     	}
     });
+    Meteor.call('createHdfsFolderUser',emailVar);
     console.log('user created');
   },
 

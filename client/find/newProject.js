@@ -38,7 +38,11 @@ Template.newProject.events({
     // console.log('dataset created');
     	console.log(project);
     	// DataSets.insert(dataset);
+    	// console.log(name.replace(/\s/g, ""));
+    	var HDFSProjectFolderName = name.replace(/\s/g, "");
+    	var HDFSUserFolderName = Meteor.user().emails[0].address;
     	Meteor.call('insertProject', project);
+    	Meteor.call('createHdfsFolderProject',HDFSUserFolderName,HDFSProjectFolderName);
     	FlowRouter.go('preparacion');
    //  DataSets.insert(Meteor.userId(),
    //  	{
