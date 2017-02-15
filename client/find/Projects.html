@@ -1,9 +1,6 @@
 <template name='Projects'>
 	<div id="projectsContainer" class="padding-left-super padding-right-double-2">
 		<div class="row">
-<!-- 			<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
-
-			</div> -->
 			<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
 				<div class="row">
 					{{#each projects}}
@@ -28,5 +25,14 @@
 				</div>
 			</div>
 		</div>
+		<div id="draggable" class="ui-widget-content">
+		  <p>Drag me around</p>
+		</div>
 	</div>
+	  <script>
+	  $( function() {
+	    $( "#draggable" ).draggable();
+	    console.log("jquery");
+	  } );
+  </script>
 </template>

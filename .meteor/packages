@@ -42,3 +42,4 @@ mrt:rupture
 # webpack:postcss
 check@1.2.4
 twbs:bootstrap 					# Twitter Bootstrap
+mizzao:jquery-ui

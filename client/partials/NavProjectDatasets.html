@@ -1,8 +1,13 @@
 <template name="NavProjectDatasets">
 	<div id="navProjectsDatasets" class="main-of-home padding-left-super padding-right-super">
 		<ul class="nav nav-tabs nav-tabs-projects">
-	    	<li class="active"><a data-toggle="tab" href="#" id="projectsTab"><h3>Proyectos</h3></a></li>
-	   		<li><a data-toggle="tab" href="#"  id="datasetsTab"><h3>Datasets</h3></a></li>
+			{{#if equals CurrentRoute "/proyectos"}}
+	    		<li class="active"><a data-toggle="tab" href="#" id="projectsTab"><h3>Proyectos</h3></a></li>
+	    		<li><a data-toggle="tab" href="#"  id="datasetsTab"><h3>Datasets</h3></a></li>
+	   		{{else}}
+	   		    <li><a data-toggle="tab" href="#" id="projectsTab"><h3>Proyectos</h3></a></li>
+	   		    <li class="active"><a data-toggle="tab" href="#"  id="datasetsTab"><h3>Datasets</h3></a></li>
+	   		{{/if}}	
 	  	</ul>
 	</div>
 </template>
