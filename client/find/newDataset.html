@@ -5,23 +5,23 @@
 				<h3>Añadir Dataset</h3>
 				<form class='row login-form padding-left-double padding-right-double'>
 					<label class="col-md-12 no-padding-left" for="name">Nombre</label>
-					<input class="col-md-12" type="text" name="name" id="name" placeholder="Nombre">
+					<input class="col-md-12" type="text" name="name" id="name" placeholder="Nombre" required>
 					<br>
 
 					<label class="col-md-12 no-padding-left" for="description">Descripción</label>
-					<textarea class="col-md-12" id="description" name="description" placeholder="Descripción"></textarea>
+					<textarea class="col-md-12" id="description" name="description" placeholder="Descripción" required></textarea>
 					<br>
 
-					<label class="col-md-12 no-padding-left" for="numberRows">Número de Filas</label>
+<!-- 					<label class="col-md-12 no-padding-left" for="numberRows">Número de Filas</label>
 					<input class="col-md-12" type="number" min=1 id="numberRows" name="numberRows" placeholder="Número de filas">
 					<br>
 
 					<label class="col-md-12 no-padding-left" for="numberFields">Número de Campos</label>
 					<input class="col-md-12" type="number" min=1 id="numberFields" name="numberFields" placeholder="Número de campos">
-					<br>
+					<br> -->
 
-					<label class="col-md-12 no-padding-left" for="cluster-address">Dirección en clúster</label>
-					<input class="col-md-12" type="text" id="address" name="cluster-address" placeholder="Dirección en clúster">
+					<label class="col-md-12 no-padding-left" for="local-address">Dirección Local</label>
+					<input class="col-md-12" type="text" id="localAddress" name="local-address" placeholder="Dirección local" required>
 					<br>
 
 					<div class="text-center padding-top-mini">

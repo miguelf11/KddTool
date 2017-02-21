@@ -18,17 +18,24 @@ DataSetsSchema = new SimpleSchema({
 		type: String,
 		label:'Description'
 	},
-	num_rows:{
-		type: Number,
-		label:'NumberRows'
-	},
-	num_fields:{
-		type: Number,
-		label:'NumberFields'
-	},
-	address:{
+	// num_rows:{
+	// 	type: Number,
+	// 	label:'NumberRows'
+	// },
+	// num_fields:{
+	// 	type: Number,
+	// 	label:'NumberFields'
+	// },
+	local_address:{
 		type: String,
-		label:'AddressHdfs'
+		label:'LocalAddress'
+		// autoform:{
+		// 	type:'hidden'
+		// }
+	},
+	hdfs_address:{
+		type: String,
+		label:'HDFSAddress'
 		// autoform:{
 		// 	type:'hidden'
 		// }
