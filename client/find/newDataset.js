@@ -18,7 +18,7 @@ Template.newDataset.events({
 	    var nameFile = nameFileArr[nameFileArr.length - 1];
 	    var ext = nameFile.split('.');
 	    ext = ext[ext.length - 1];
-	    if (ext == "csv"){//si es .csv
+	    if (ext == "csv") { //si es .csv
 	    	dirHdfs=cluster_root+"/datasets/"+nameFile;
 		    Meteor.call('createDatasetInHDFS',nameFile,dirLocal,dirHdfs);
 		    //se lleva a HiveTable y se obtiene el numero de rows y fields
