@@ -37,6 +37,10 @@ ProjectsSchema = new SimpleSchema({
 		// 	type:'hidden'
 		// }
 	},
+	last_stage:{
+		type: String,
+		label: 'Last Stage in KDD Process'
+	},
 	author:{
 		type: String,
 		label:'Author',
@@ -71,7 +75,7 @@ Meteor.methods({
 	// 	Recipes.remove(id);
 	// },
 	insertProject: function(project){
-		Projects.insert(project);
+		return Projects.insert(project);
 	},
 });
 

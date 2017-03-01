@@ -1,3 +1,10 @@
 <template name='DataPrepair'>
-	<h1>Preparacion de datos</h1>
+	<div class='project-title'><h2>{{project.name}}</h2></div>
+		<div class="data-prepair-content padding-top-double">
+			{{#if Template.subscriptionsReady}}
+			<!-- todo el contenido de preparacion -->
+			{{else}}
+				{{> Loader}}
+			{{/if}}	
+		</div>	
 </template>

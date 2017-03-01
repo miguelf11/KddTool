@@ -21,19 +21,25 @@ Template.newDataset.events({
 	    if (ext == "csv"){//si es .csv
 	    	dirHdfs=cluster_root+"/datasets/"+nameFile;
 		    Meteor.call('createDatasetInHDFS',nameFile,dirLocal,dirHdfs);
-		    //se lleva a HiveTable y se obtiene el numero de rows y fields
-		    var dataset =
-		    {
-		    	name: name,
-				desc: description,
-				// num_rows: nRows, ******Tambien descomentarlo en el schema datasets********
-				// num_fields: nFields, ******Tambien descomentarlo en el schema datasets********
-				local_address: dirLocal,
-				hdfs_address: dirHdfs
+		    console.log(HadoopResponse);
+		    if(HadoopResponse == true){
+		    	//se lleva a HiveTable y se obtiene el numero de rows y fields
+			    var dataset =
+			    {
+			    	name: name,
+					desc: description,
+					// num_rows: nRows, ******Tambien descomentarlo en el schema datasets********
+					// num_fields: nFields, ******Tambien descomentarlo en el schema datasets********
+					local_address: dirLocal,
+					hdfs_address: dirHdfs
+			    }
+		    	console.log(dataset);
+		    	Meteor.call('insertDataset', dataset);	 
+		    	FlowRouter.go('datasets');
+		    }else{
+		    	alert("El dataset no pudo ser almacenado en el clúster!");
 		    }
-	    	console.log(dataset);
-	    	Meteor.call('insertDataset', dataset);	 
-	    	FlowRouter.go('datasets');   	
+		       	
 	    }else{
 	    	alert("El dataset debe ser extensión .csv");
 	    }

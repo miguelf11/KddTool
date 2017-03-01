@@ -47,17 +47,20 @@ Template.Nav.events({
   'click .preparacion'(event, template) {
     event.preventDefault();
     console.log('a preparacion');
-    FlowRouter.go('preparacion');
+    var projectId = Session.get('projectId');
+    FlowRouter.go('preparacion', { id: projectId});
   },
   'click .modelado'(event, template) {
     event.preventDefault();
     console.log('a modelado');
-    FlowRouter.go('modelado');
+    var projectId = Session.get('projectId');
+    FlowRouter.go('modelado', { id: projectId});
   },
   'click .visualizacion'(event, template) {
     event.preventDefault();
     console.log('a visualizacion');
-    FlowRouter.go('visualizacion');
+    var projectId = Session.get('projectId');
+    FlowRouter.go('visualizacion', { id: projectId});
   },
   'click .undo-btn'(event, template) {
     event.preventDefault();
