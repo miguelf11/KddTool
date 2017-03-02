@@ -20,11 +20,13 @@ ProjectsSchema = new SimpleSchema({
 	},
 	num_rows:{
 		type: Number,
-		label:'Number of Rows'
+		label:'Number of Rows',
+		optional: true
 	},
 	num_fields:{
 		type: Number,
-		label:'Number of Fields'
+		label:'Number of Fields',
+		optional: true
 	},
 	dataset:{
 		type: String,
@@ -32,7 +34,8 @@ ProjectsSchema = new SimpleSchema({
 	},
 	address:{
 		type: String,
-		label:'Address in hdfs'
+		label:'Address in hdfs',
+		optional: true
 		// autoform:{
 		// 	type:'hidden'
 		// }

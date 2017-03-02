@@ -74,7 +74,7 @@ Meteor.methods({
 	// 	Recipes.remove(id);
 	// },
 	insertDataset: function(dataset){
-		DataSets.insert(dataset);
+		return DataSets.insert(dataset);
 	},
 });
 
