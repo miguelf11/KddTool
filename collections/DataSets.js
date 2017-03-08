@@ -1,4 +1,4 @@
-DataSets = new Mongo.Collection('datasets');
+let DataSets = new Mongo.Collection('datasets');
 
 DataSets.allow({
 	insert:function(userId,doc){
@@ -9,7 +9,7 @@ DataSets.allow({
 	}
 });
 
-DataSetsSchema = new SimpleSchema({
+let DataSetsSchema = new SimpleSchema({
 	name:{
 		type: String,
 		label:'Name'

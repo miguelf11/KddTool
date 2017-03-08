@@ -1,4 +1,4 @@
-Projects = new Mongo.Collection('projects');
+let Projects = new Mongo.Collection('projects');
 
 Projects.allow({
 	insert:function(userId,doc){
@@ -9,7 +9,7 @@ Projects.allow({
 	}
 });
 
-ProjectsSchema = new SimpleSchema({
+let ProjectsSchema = new SimpleSchema({
 	name:{
 		type: String,
 		label:'Name'
