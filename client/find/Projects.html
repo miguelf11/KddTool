@@ -7,7 +7,8 @@
 					{{#each projects}}
 						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 padding-bottom-complete">
 							<div class="each-project-section" id="{{_id}}">
-								<h4 class="no-margin-top capitalize">{{name}}</h4>
+								<a href="" class="delete-project float-right display-block" data-toggle="tooltip" title="Eliminar Proyecto"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								<a href="" class="project-name"><h4 class="no-margin-top capitalize">{{name}}</h4></a>
 								<span>{{desc}}</span>
 							</div>
 						</div>

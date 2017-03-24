@@ -261,7 +261,7 @@ header{
     position: fixed;
     width: 100%;
     height: 70px;
-    z-index: 100;
+    z-index: 2000;
     top: 0;  
     -webkit-box-shadow: 0px 1px 1px #565656;
     -moz-box-shadow:0px 1px 1px #565656;
@@ -323,7 +323,7 @@ header > div > a{
 
 .each-project-section{
     background: #FFF;
-    padding: 20px; 
+    padding: 15px; 
     border: rgba(0,0,0, 0.2) solid 3px;
     max-height: 146px;
 }
@@ -333,8 +333,16 @@ div.each-project-section:hover{
 }
 
 .each-project-section > h4{
-    opacity: 0.5;
+    opacity: 0.7;
     font-weight: 800;
+    margin-right: 10px;
+}
+
+.each-project-section > a > h4{
+    opacity: 0.7 !important;
+    font-weight: 800;
+    margin-right: 10px;
+    color:#2f2f2f !important;
 }
 .row-centered {
     text-align:center;
@@ -686,4 +694,20 @@ body {
 
 .project-title > h2{
     font-weight: 600;
+}
+
+.text-small{
+    font-size: small !important;
+}
+
+.float-right{
+    float: right !important;
+}
+
+.display-block{
+    display: block !important;
+}
+
+.uppercase{
+    text-transform: uppercase !important;
 }

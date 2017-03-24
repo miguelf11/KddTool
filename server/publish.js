@@ -1,5 +1,10 @@
 Meteor.publish('all_datasets', function(){
-	return DataSets.find({});
+	return DataSets.find({
+		$or:[
+			{author:this.userId},
+			{dataset_type:'publico'}
+		]
+	});
 });
 
 Meteor.publish('my_projects', function(){

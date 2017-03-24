@@ -1,4 +1,4 @@
-let Projects = new Mongo.Collection('projects');
+Projects = new Mongo.Collection('projects');
 
 Projects.allow({
 	insert:function(userId,doc){
@@ -6,10 +6,13 @@ Projects.allow({
 	},
 	update:function(userId,doc){
 		return !!userId;
+	},
+	remove:function(userId,doc){
+		return !!userId;
 	}
 });
 
-let ProjectsSchema = new SimpleSchema({
+ProjectsSchema = new SimpleSchema({
 	name:{
 		type: String,
 		label:'Name'
@@ -35,7 +38,7 @@ let ProjectsSchema = new SimpleSchema({
 	address:{
 		type: String,
 		label:'Address in hdfs',
-		optional: true
+		// optional: true
 		// autoform:{
 		// 	type:'hidden'
 		// }
@@ -79,6 +82,11 @@ Meteor.methods({
 	// },
 	insertProject: function(project){
 		return Projects.insert(project);
+	},
+	removeProject: function(id){
+		// console.log('remove dataset');
+		// console.log(id);
+		return Projects.remove(id);
 	},
 });
 
