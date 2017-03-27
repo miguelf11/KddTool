@@ -8,7 +8,7 @@ Template.DataPrepair.onCreated(function(){
 		self.subscribe('single_project',id);
 		Session.set('projectId', id);
 		Session.set('data_project','');
-		Session.set('data_keys','');
+		Session.set('data_keys',''); 	
 	});
 });
 
@@ -61,6 +61,16 @@ Template.DataPrepair.helpers({
 	    }
 	    return row;
 	}
+});
+
+Template.DataPrepair.events({
+	// 'mouseover .actions-button'(e){
+ //     	var p = $(e.currentTarget).popover({
+ //     		html:true,
+ //     		title: '<label>Acciones</label>',
+ //     		content:'<a href="">hola</a>',
+ //     	});
+ //    },
 });
 
 //Luego de realizar cualquier tarea en esta etapa se debe modificar el stage de la coleccion projecto y se debe colocar 'preparacion' para que al volver a ingresar al proyecto lo redirija a la ultima etapa que realizó alguna tarea.

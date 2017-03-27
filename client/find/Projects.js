@@ -7,6 +7,7 @@ Template.Projects.onCreated(function(){
 });
 
 Template.Projects.onRendered(function(){
+	
 
 });
 
