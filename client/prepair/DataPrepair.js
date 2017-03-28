@@ -26,41 +26,6 @@ Template.DataPrepair.helpers({
         var id = FlowRouter.getParam('id');
 		return Projects.findOne({_id:id});
 	},
-
-	data_project:()=>{
-		var id = FlowRouter.getParam('id');
-		var project_address = Projects.findOne({_id:id}).address;
-		// var response = "";
-
-		Meteor.call('queryDataDrill',project_address, function(err,res){
-			if(res.statusCode == 200){
-				// console.log(res.data.rows);
-				// console.log(res.data.columns);
-				// response = res.data.rows[0].apellido;
-				Session.set('data_project',res.data.rows);
-				// Session.set('data_keys',Object.keys(res.data.rows[0]));
-				Session.set('data_keys',res.data.columns);
-			}
-			if(err){
-				alert("no data");
-			}
-		});	
-
-		return Session.get('data_project');
-	},
-
-	tableHeader:()=> {
-        return Session.get('data_keys');
-	},
-
-	rowContent:(document)=> {
-	    var row = [];
-	    var header = Session.get('data_keys');
-	    for (var key in header) {
-	      row.push(document[header[key]] || "");
-	    }
-	    return row;
-	}
 });
 
 Template.DataPrepair.events({

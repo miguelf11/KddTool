@@ -2,81 +2,11 @@
 	<div class='project-title'>
 		<h2 class="uppercase">{{project.name}}</h2>
 	</div>
-	{{#if data_project}}
+	{{#if Template.subscriptionsReady}}
+	<!-- {{#if data_project}} -->
 	<div class="margin-top-double row">
-		<div class="col-lg-9 col-md-9 data-prepair-content table-responsive no-padding-left no-padding-right">
-			<!-- {{#if Template.subscriptionsReady}} -->
-			<!-- todo el contenido de preparacion -->
-				<!-- {{#if data_project}} -->
-					<table class="data-prepair-table table table-bordered table-condensed table-striped">
-						<thead>
-							{{#each tableHeader}}
-								<!-- <th class="padding-left-half padding-right-half padding-top-mini"><label>{{this}}</label><a href="" id="{{this}}" class="actions-button float-right display-block" data-toggle="popover" data-placement="bottom" data-trigger="focus"><i class="fa fa-bars" aria-hidden="true"></i></a></th> -->
-								<th class="padding-left-half padding-right-half padding-top-mini"><div class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><label>{{this}}</label><i class="fa fa-bars float-right display-block padding-top-mini" aria-hidden="true"></i></a>
-									<ul class="dropdown-menu dropdown-menu-first no-padding-top">
-										<li class="data-type padding-top-mini"><label>Entero</label> </li>
-										<li class="dropdown-submenu">
-							                <a tabindex="-1" href="#">Ordenar...</a>
-							                <ul class="dropdown-menu">
-							                  <li><a tabindex="-1" href="#">Second level</a></li>
-							                  <li class="dropdown-submenu">
-							                    <a href="#">Even More..</a>
-							                    <ul class="dropdown-menu">
-							                        <li><a href="#">3rd level</a></li>
-							                    	<li><a href="#">3rd level</a></li>
-							                    </ul>
-							                  </li>
-							                  <li><a href="#">Second level</a></li>
-							                  <li><a href="#">Second level</a></li>
-							                </ul>
-						              	</li>
-						              	<li class="dropdown-submenu">
-							                <a tabindex="-1" href="#">Filtrar por...</a>
-							                <ul class="dropdown-menu">
-							                  <li><a tabindex="-1" href="#">Second level</a></li>
-							                  <li class="dropdown-submenu">
-							                    <a href="#">Even More..</a>
-							                    <ul class="dropdown-menu">
-							                        <li><a href="#">3rd level</a></li>
-							                    	<li><a href="#">3rd level</a></li>
-							                    </ul>
-							                  </li>
-							                  <li><a href="#">Second level</a></li>
-							                  <li><a href="#">Second level</a></li>
-							                </ul>
-						              	</li>
-									    <li class='disabled'><a href="#">Eliminar Campo</a></li>
-									    <li><a href="#">CSS</a></li>
-									    <li class="dropdown-submenu">
-							                <a tabindex="-1" href="#">Tipo de dato</a>
-							                <ul class="dropdown-menu">
-							                  <li><a href="#">Entero</a></li> 
-							                  <li><a href="#">Decimal</a></li>
-							                  <li><a href="#">Caractéres</a></li>
-							                </ul>
-						              	</li>
-								  	</ul>
-								</div>
-								</th>
-							{{/each}}
-						</thead>
-						<tbody>
-							{{#each data_project}}
-								<tr>
-									{{#each rowContent this}}
-										<td>{{this}}</td>
-									{{/each}}	
-								</tr>
-							{{/each}}
-						</tbody>
-					</table>
-				<!-- {{else}}
-					<p>Loading...</p>
-					{{> Loader}}
-				{{/if}}	 -->	
-			<!-- {{else}}
-				{{> Loader}}
-			{{/if}} -->	
+		<div class="col-lg-9 col-md-9 data-prepair-content table-responsive no-padding-left no-padding-right">		
+			{{> DataPrepairTable}}
 		</div>
 		<div class="col-lg-3 col-md-3 data-prepair-actions">
 			<div class="row">

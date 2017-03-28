@@ -36,31 +36,45 @@ Template.newDataset.events({
 							var nRows = parseInt(res1.data.rows[0].EXPR$0);			
 			    			Meteor.call('queryDatasetColumns', dirHdfs, function(err2,res2){
 			    				console.log(res2);
+
 					    		if(res2.statusCode == 200){
 					    			console.log('numero de campos listo');
+					    			var columns = res2.data.columns;
 					    			var nFields = res2.data.columns.length;
+					    			var badCSV = false;
+
+					    			for (i=0; i<nFields;i++){
+					    				if (columns[i]==''){
+					    					badCSV = true;
+					    				}
+					    			}
 					    			console.log(nFields);
-		    					    var dataset =
-								    {
-								    	name: name,
-										desc: description,
-										num_rows: nRows,
-										num_fields: nFields,
-										local_address: dirLocal,
-										hdfs_address: dirHdfs,
-										dataset_type: datasetType
-								    }
-							    	console.log(dataset);
-							    	Meteor.call('insertDataset', dataset, function(err,res){
-							    		if(res){
-							    			FlowRouter.go('datasets');
-							    		}
-							    		if(err){
-							    			alert("No se ha creado el dataset!");
-							    		}
-							    	});
+					    			if (!badCSV){
+			    					    var dataset =
+									    {
+									    	name: name,
+											desc: description,
+											num_rows: nRows,
+											num_fields: nFields,
+											local_address: dirLocal,
+											hdfs_address: dirHdfs,
+											dataset_type: datasetType
+									    }
+								    	console.log(dataset);
+								    	Meteor.call('insertDataset', dataset, function(err,res){
+								    		if(res){
+								    			FlowRouter.go('datasets');
+								    		}
+								    		if(err){
+								    			alert("No se ha creado el dataset!");
+								    		}
+								    	});
+							    	}else{
+							    		alert("No se ha creado el dataset! Error en formación de CSV");
+					    				Meteor.call('removeHdfsFolder',dirHdfs);
+							    	}
 					    		}else{
-					    			alert("No se ha creado el dataset! Error formación de CSV");
+					    			alert("No se ha creado el dataset! Error en formación de CSV");
 					    			Meteor.call('removeHdfsFolder',dirHdfs);
 					    		}
 					    		if(err2){
@@ -68,7 +82,7 @@ Template.newDataset.events({
 					    		}
 					    	});
 			    		}else{
-			    			alert("No se ha creado el dataset en el clúster! Intente Nuevamente!!!");
+			    			alert("Este archivo supera la capacidad de memoria asignada en el clúster!!!");
 			    			Meteor.call('removeHdfsFolder',dirHdfs);
 			    		}
 			    		if(err1){
