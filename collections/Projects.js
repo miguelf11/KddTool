@@ -83,6 +83,9 @@ Meteor.methods({
 	insertProject: function(project){
 		return Projects.insert(project);
 	},
+	updateProject: function(id,project){
+		return Projects.update({_id:id},{$set:{name:project.name,desc:project.desc}});
+	},
 	removeProject: function(id){
 		// console.log('remove dataset');
 		// console.log(id);

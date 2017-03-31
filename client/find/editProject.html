@@ -1,0 +1,41 @@
+<template name="editProject">
+	<div class="row center-block row-centered">
+		<div class="col-xs-10 col-sm-7 col-md-7 col-lg-6 col-centered">
+			<div class='login-section'>
+				<h3>Editar Proyecto</h3>
+				{{#if Template.subscriptionsReady}}
+					<form class='row login-form padding-left-double padding-right-double' id="{{project._id}}">
+						<input class="hidden" type="hidden" id="projectId" value="{{project._id}}">
+						<label class="col-md-12 no-padding-left" for="name">Nombre</label>
+						<input class="col-md-12" type="text" name="name" id="name" placeholder="Nombre" required value="{{project.name}}">
+						<br>
+
+						<label class="col-md-12 no-padding-left" for="description">Descripción</label>
+						<textarea class="col-md-12" id="description" name="description" placeholder="Descripción" required>{{project.desc}}</textarea>
+						<br>
+
+						<label class="col-md-12 no-padding-left" for="datasets">Datasets</label>
+						<select class="col-md-12" name="datasets" id="dataset" required disabled>
+							<option value="-1" disabled>Seleccione un dataset</option>
+							{{#each datasets}}
+								{{#if isSelected project.dataset}}
+								<option value="{{_id}}" selected>{{name}}</option>
+								{{else}}
+								<option value="{{_id}}">{{name}}</option>
+								{{/if}}
+							{{/each}}
+						</select> 
+						<br>
+
+						<div class="text-center padding-top-mini">
+							<button type="submit" class="btn btn-primary btn-login btn-inicio-form btn-edit">Aceptar</button>
+							<button type="button" class="btn btn-primary btn-login-to-register btn-inicio-form btn-back btn-back-profile margin-left-ultra-mini">Cancelar</button>
+						</div>
+					</form>
+				{{else}}
+					{{> Loader}}
+				{{/if}}	
+			</div>
+		</div>
+	</div>	
+</template>

@@ -8,7 +8,10 @@
 						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 padding-bottom-complete">
 							<div class="each-project-section" id="{{_id}}">
 								{{#if isOwner _id}}
-									<a href="" class="delete-dataset float-right display-block" data-toggle="tooltip" title="Eliminar conjunto"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+									<ul class="actions">
+										<li><a href="/datasets/{{_id}}" class="edit-dataset" data-toggle="tooltip" title="Editar conjunto"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+										<li><a href="" class="delete-dataset" data-toggle="tooltip" title="Eliminar conjunto"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+									</ul>
 								{{/if}}
 								<h4 class="no-margin-top capitalize no-margin-bottom">{{name}}</h4>
 								<span class="text-small">{{desc}}</span><br>

@@ -3,7 +3,8 @@ Template.DataSets.onCreated(function(){
 	self.autorun(function(){
 		self.subscribe('all_datasets');
 	});
-	$('.delete-dataset').tooltip();
+	// $('.delete-dataset').tooltip();
+	// $('.edit-dataset').tooltip();
 });
 
 Template.DataSets.helpers({

@@ -335,7 +335,7 @@ div.each-project-section:hover{
 .each-project-section > h4{
     opacity: 0.7;
     font-weight: 800;
-    margin-right: 10px;
+    margin-right: 30px;
 }
 
 .each-project-section > a > h4{
@@ -710,4 +710,13 @@ body {
 
 .uppercase{
     text-transform: uppercase !important;
+}
+
+.actions {
+    list-style: none;
+    float: right;
+}
+
+.actions li{
+    display: inline;
 }

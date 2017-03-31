@@ -86,6 +86,9 @@ Meteor.methods({
 	insertDataset: function(dataset){
 		return DataSets.insert(dataset);
 	},
+	updateDataset: function(id,dataset){
+		return DataSets.update(id,dataset);
+	},
 	removeDataset: function(id){
 		// console.log('remove dataset');
 		// console.log(id);
