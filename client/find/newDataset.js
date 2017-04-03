@@ -28,6 +28,7 @@ Template.newDataset.events({
 		    	// console.log(res3);
 		    	if(res3==true){
 	    			console.log('subido a hdfs');
+	    			console.log("res3 es true");
 			    	Meteor.call('queryDatasetRows',dirHdfs, function(err1,res1){
 			    		console.log(res1);
 			    		if(res1.statusCode == 200){
@@ -36,6 +37,10 @@ Template.newDataset.events({
 							var nRows = parseInt(res1.data.rows[0].EXPR$0);			
 			    			Meteor.call('queryDatasetColumns', dirHdfs, function(err2,res2){
 			    				console.log(res2);
+			    				console.log("res2");
+			    				if (err2) {
+			    					console.log("err2");
+			    				}
 
 					    		if(res2.statusCode == 200){
 					    			console.log('numero de campos listo');
@@ -61,6 +66,7 @@ Template.newDataset.events({
 											dataset_type: datasetType
 									    }
 								    	console.log(dataset);
+								    	console.log("dataset");
 								    	Meteor.call('insertDataset', dataset, function(err,res){
 								    		if(res){
 								    			FlowRouter.go('datasets');
@@ -93,10 +99,9 @@ Template.newDataset.events({
 	    			alert("No se ha creado el dataset en el clúster!");
 	    		}
 	    		if(err3){
-	    			
+	    			console.log("err3");
 	    		}
 		    });
-		       	
 	    }else{
 	    	alert("El dataset debe ser extensión .csv");
 	    }
