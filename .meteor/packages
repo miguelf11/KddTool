@@ -44,3 +44,4 @@ twbs:bootstrap 					# Twitter Bootstrap
 mizzao:jquery-ui
 ecmascript@0.6.3
 http
+email

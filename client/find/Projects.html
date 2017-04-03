@@ -2,34 +2,51 @@
 	<div id="projectsContainer" class="padding-left-super padding-right-double-2">
 		<div class="row">
 			<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
-			{{#if Template.subscriptionsReady}}	
+				{{#if Template.subscriptionsReady}}	
 				<div class="row">
 					{{#each projects}}
-						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 padding-bottom-complete">
-							<div class="each-project-section" id="{{_id}}">
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 padding-bottom-complete">
+						<div class="each-project-section" id="{{_id}}">
 							<ul class="actions">
 								<li><a href="/proyectos/{{_id}}" class="edit-project" data-toggle="tooltip" title="Editar Proyecto"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-								<li><a href="" class="delete-project" data-toggle="tooltip" title="Eliminar Proyecto"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+								<li><a href="" class="delete-project" data-toggle="modal" data-target="#deleteModal" data-id="{{_id}}" title="Eliminar Proyecto"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
 							</ul>
-								<a href="" class="project-name"><h4 class="no-margin-top capitalize" style="margin-right: 30px;">{{name}}</h4></a>
-								<span>{{desc}}</span>
-							</div>
+							<a href="" class="project-name"><h4 class="no-margin-top capitalize" style="margin-right: 30px;">{{name}}</h4></a>
+							<span>{{desc}}</span>
 						</div>
+					</div>
 					{{else}}
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<h4>No ha creado ningún proyecto</h4>
-						</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<h4>No ha creado ningún proyecto</h4>
+					</div>
 					{{/each}}
 				</div>
-			{{else}}
+				{{else}}
 				{{> Loader}}
-			{{/if}}	
+				{{/if}}	
 			</div>
 			<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 add-btn">
 				<div class="row text-right">
 					<a href="/nuevo-proyecto" title="Crear Proyecto">
 						<i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i>
-		            </a>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
+			<div class="modal-dialog" role="document" style="transform: translate(0, 50%);">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Borrar Proyecto</h4>
+					</div>
+					<div class="modal-body">
+						<p>¿Está seguro que desea eliminar este proyecto?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						<button id="delete" type="button" class="btn btn-primary">Confirmar</button>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -25,32 +25,41 @@ Template.Projects.events({
 		Session.set('projectId', this._id);
 		FlowRouter.go(this.last_stage, { id: this._id });
 	},
-	'click .delete-project'() {
+	'click #delete'() {
    		// console.log('delete project');
    		// console.log(this.address);
    		// console.log(this._id);
-   		var id_project = this._id;
+   		let id_project = $("#delete").data("target");
+   		let that = Projects.findOne(id_project);
 
-   		Meteor.call('removeHdfsFolder', this.address, function(err,res){
+   		Meteor.call('removeHdfsFolder', that.address, function(err,res){
    			console.log(res);
-			if(res.statusCode == 200){
-				Meteor.call('removeProject',id_project, function(err2,res2){
+   			if(res.statusCode == 200){
+   				Meteor.call('removeProject',id_project, function(err2,res2){
 					// console.log(res2);
-		    		if(res2){
-		    			alert("El proyecto ha sido eliminado exitosamente!!!");
-		    		}else{
-		    			alert("No se ha podido eliminar el proyecto!!!");
-		    		}
-		    		if(err2){
-		    			alert("No se ha podido eliminar el proyecto!!!");
+					if(res2){
+						alert("El proyecto ha sido eliminado exitosamente!!!");
+						$("#deleteModal").modal('hide');
+					}else{
+						alert("No se ha podido eliminar el proyecto!!!");
+					}
+					if(err2){
+						alert("No se ha podido eliminar el proyecto!!!");
 					}
 				});	
-			}else{
-				alert("No se ha podido eliminar el proyecto!!!");
-			}
-			if(err){
-				alert("No se ha podido eliminar el proyecto!!!");
-			}
-		});
-  	},
+   			}else{
+   				alert("No se ha podido eliminar el proyecto!!!");
+   			}
+   			if(err){
+   				alert("No se ha podido eliminar el proyecto!!!");
+   			}
+   		});
+   	},
+   	'show.bs.modal #deleteModal' (event) {
+   		let button = $(event.relatedTarget);
+   		let target = button.data('id');
+		// console.log(target);
+		// let modal = $(this);
+		$("#delete").data("target", target);
+	}
 });
