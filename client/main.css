@@ -35,6 +35,10 @@
     padding-left: 4px !important;
 }
 
+.padding-left-half-plus {
+    padding-left: 5px !important;
+}
+
 .padding-left-complete {
     padding-left: 12px !important;
 }
@@ -325,7 +329,7 @@ header > div > a{
     background: #FFF;
     padding: 15px; 
     border: rgba(0,0,0, 0.2) solid 3px;
-    max-height: 146px;
+    max-height: auto;
 }
 
 div.each-project-section:hover{
@@ -335,7 +339,7 @@ div.each-project-section:hover{
 .each-project-section > h4{
     opacity: 0.7;
     font-weight: 800;
-    margin-right: 30px;
+    margin-right: 20px;
 }
 
 .each-project-section > a > h4{
@@ -715,8 +719,28 @@ body {
 .actions {
     list-style: none;
     float: right;
+    padding-left: 5px !important;
 }
 
 .actions li{
     display: inline;
+}
+
+.modal-header{
+    background: #44a2d6;
+    color: white;
+}
+
+#deleteModal > .modal-dialog > .modal-content{
+    border-radius: 0px;
+}
+
+#deleteModal > .modal-dialog > .modal-content > .modal-footer > button{
+    border-radius: 0px;
+}
+
+.cutted-text{
+    text-overflow:ellipsis;
+    white-space:nowrap; 
+    overflow:hidden; 
 }

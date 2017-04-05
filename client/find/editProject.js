@@ -65,6 +65,6 @@ Template.editProject.events({
   	},
 	'click .btn-back' (event, template) {
     	event.preventDefault();
-   		FlowRouter.go('datasets');
+   		FlowRouter.go('proyectos');
   	}
 })

@@ -12,6 +12,42 @@ Projects.allow({
 	}
 });
 
+DataTypesSchema = new SimpleSchema({
+	name:{
+		type: String,
+		label:'Name'
+	},
+	type:{
+		type: String,
+		label:'type'
+	},
+	active:{
+		type: Boolean,
+		label:'active'
+	}
+});
+
+ActionsSchema = new SimpleSchema({
+	name:{
+		type: String,
+		label:'name'
+	},
+	over:{
+		type: String,
+		label:'over'
+	},
+	createdAt:{
+		type: Date,
+		label: 'CreatedAt',
+		autoValue: function(){
+			return new Date()
+		},
+		// autoform:{
+		// 	type: 'hidden'
+		// }
+	},
+});
+
 ProjectsSchema = new SimpleSchema({
 	name:{
 		type: String,
@@ -66,7 +102,39 @@ ProjectsSchema = new SimpleSchema({
 		// autoform:{
 		// 	type: 'hidden'
 		// }
-	}
+	},
+	actions:{
+		type: [ActionsSchema],
+		label: 'acciones de preparacion',
+		optional: true
+		// autoform:{
+		// 	type: 'hidden'
+		// }
+	},
+	data_types:{
+		type: [DataTypesSchema],
+		label: 'tipos de datos',
+		optional: true
+		// autoform:{
+		// 	type: 'hidden'
+		// }
+	},
+	prepair_versions:{
+		type: [String],
+		label: 'versiones del proyecto en preparacion',
+		optional: true
+		// autoform:{
+		// 	type: 'hidden'
+		// }
+	},
+	mining_view_address:{
+		type: String,
+		label: 'direccion de vista minable',
+		optional: true
+		// autoform:{
+		// 	type: 'hidden'
+		// }
+	},
 });
 
 Meteor.methods({

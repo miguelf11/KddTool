@@ -45,24 +45,47 @@ Template.newProject.events({
 					console.log(result2);
 					if(result2.statusCode == 200){
 						console.log('dataset copied into project folder');
-					    var project =
-						    {
-						    	name: name,
-								desc: description,
-								// num_rows: nRows,
-								// num_fields: nFields,
-								address: folder_project,
-								dataset: dataset,
-								last_stage: stage
-						    };
-						Meteor.call('insertProject', project,function(err, res){
-				    		if(res){
-				    			console.log('project created in mongo');
-				    			FlowRouter.go('preparacion', { id: res});
-				    		}
-				    		if(err){
-				    			alert("No se ha podido crear el proyecto!");
-				    		}
+						var columns = '';
+						Meteor.call('queryDataDrill',folder_project, function(err,res){
+							if(res.statusCode == 200){
+								
+								// Session.set('data_keys',res.data.columns);
+
+								// console.log(res.data.columns);
+								columns = res.data.columns;
+								// console.log(columns);
+								var data_types =[];
+
+								for (var i=0;i<columns.length;i++){
+									var each_column = {name:columns[i],type:'Caractéres',active:true};
+									// console.log(each_column);
+									data_types.push(each_column);
+								}
+								// console.log(data_types);
+							    var project =
+								    {
+								    	name: name,
+										desc: description,
+										// num_rows: nRows,
+										// num_fields: nFields,
+										address: folder_project,
+										dataset: dataset,
+										last_stage: stage,
+										data_types:data_types
+								    };
+								Meteor.call('insertProject', project,function(err, res){
+						    		if(res){
+						    			console.log('project created in mongo');
+						    			FlowRouter.go('preparacion', { id: res});
+						    		}
+						    		if(err){
+						    			alert("No se ha podido crear el proyecto!");
+						    		}
+								});
+							}
+							if(err){
+								alert("no data");
+							}
 						});
 					}else{
 						alert('No se ha podido crear el proyecto! (Error en Clúster)');
