@@ -51,7 +51,7 @@ Template.DataPrepairTable.helpers({
 	    return row;
 	},
 
-  data_type:(column_name)=>{
+  data_type_name:(column_name)=>{
     // console.log('type data: '+column_name);
     // console.log(column_name);
     var project_id = FlowRouter.getParam('id');
@@ -67,10 +67,70 @@ Template.DataPrepairTable.helpers({
     }
 
     return data_type_final;
-  }
+  },
+
+  data_type_drill:(column_name)=>{
+    // console.log('type data: '+column_name);
+    // console.log(column_name);
+    var project_id = FlowRouter.getParam('id');
+    var data_types = Projects.findOne({_id:project_id},{fields: {'data_types':1}});
+    // console.log(data_types.data_types[0].name);
+    data_types = data_types.data_types;
+    var data_type_final_true = '';
+    var data_type_final = '';
+    for (var i=0;i<data_types.length;i++){
+      if(data_types[i].name == column_name && data_types[i].active == true){
+        data_type_final = data_types[i].type;
+        switch(data_type_final){
+        	case 'Carácteres':
+        		data_type_final_true = 'VARCHAR';
+        		break;
+        	case 'Entero':
+        		data_type_final_true = 'BIGINT';
+        		break;
+        	case 'Decimal':
+        		data_type_final_true = 'DOUBLE';
+        		break;	
+        }
+        break;
+      }
+    }
+
+    return data_type_final_true;
+  },
+
+
 });
 
 Template.DataPrepairTable.events({
 
 
 });
+
+// function data_type_to_drill(column_name){
+//     var project_id = FlowRouter.getParam('id');
+//     var data_types = Projects.findOne({_id:project_id},{fields: {'data_types':1}});
+//     // console.log(data_types.data_types[0].name);
+//     data_types = data_types.data_types;
+//     var data_type_final_true = '';
+//     var data_type_final = '';
+//     for (var i=0;i<data_types.length;i++){
+//       if(data_types[i].name == column_name && data_types[i].active == true){
+//         data_type_final = data_types[i].type;
+//         switch(data_type_final){
+//         	case 'Carácteres':
+//         		data_type_final_true = 'VARCHAR';
+//         		break;
+//         	case 'Entero':
+//         		data_type_final_true = 'BIGINT';
+//         		break;
+//         	case 'Decimal':
+//         		data_type_final_true = 'DOUBLE';
+//         		break;	
+//         }
+//         break;
+//       }
+//     }
+
+//     return data_type_final_true;
+// }

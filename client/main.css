@@ -265,7 +265,7 @@ header{
     position: fixed;
     width: 100%;
     height: 70px;
-    z-index: 2000;
+    z-index: 1000;
     top: 0;  
     -webkit-box-shadow: 0px 1px 1px #565656;
     -moz-box-shadow:0px 1px 1px #565656;
@@ -591,7 +591,7 @@ span.round-tab:hover {
 
 .nav-tabs-projects > .active {
     border-bottom: white;
-    z-index: 1000;
+    z-index: 900;
 }
 
 .no-match {

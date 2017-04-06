@@ -159,6 +159,9 @@ Meteor.methods({
 		// console.log(id);
 		return Projects.remove(id);
 	},
+	changeDataType: function(id,field,data_type){
+		return Projects.update({_id:id,'data_types.name':field},{$set:{'data_types.$.type':data_type}});
+	}
 });
 
 Projects.attachSchema( ProjectsSchema );

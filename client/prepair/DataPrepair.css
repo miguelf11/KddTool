@@ -186,6 +186,22 @@
 
 .dropdown-menu-first > .data-type{
     color:#FFF;
-    background-color: #8bd040 !important;
+    background-color: #8bd040;
     text-align: center !important;
+}
+
+#exploreModal > .modal-dialog > .modal-content{
+    border-radius: 0px !important;
+}
+
+#exploreModal > .modal-dialog > .modal-content > .modal-footer > button{
+    border-radius: 0px !important;
+}
+
+.DOUBLE{
+    background-color: #a94442 !important;
+}
+
+.BIGINT{
+    background-color: #8642a9 !important;
 }
