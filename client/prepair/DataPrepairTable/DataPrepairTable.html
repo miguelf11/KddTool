@@ -1,0 +1,61 @@
+<template name='DataPrepairTable'>
+{{#if data_project}}
+<table class="data-prepair-table table table-bordered table-condensed table-striped">
+	<thead>
+		{{#each tableHeader}}
+			<th class="padding-left-half padding-right-half padding-top-mini"><div class="dropdown"><a href="" id="{{this}}" class="dropdown-toggle" data-toggle="dropdown"><label>{{this}}</label><i class="fa fa-bars float-right display-block padding-top-mini" aria-hidden="true"></i></a>
+				<ul class="dropdown-menu dropdown-menu-first no-padding-top">
+					<li class="data-type padding-top-mini"><label>Entero</label> </li>
+					<li class="dropdown-submenu">
+		                <a tabindex="-1" href="#">Ordenar...</a>
+		                <ul class="dropdown-menu">
+		                  <li><a href="" value="{{this}}" class="order-up">Menor a Mayor</a></li>
+		                  <li><a href="" value="{{this}}" class="order-down">Mayor a Menor</a></li>
+		                </ul>
+	              	</li>
+	              	<li class="dropdown-submenu">
+		                <a tabindex="-1" href="#">Filtrar por...</a>
+		                <ul class="dropdown-menu">
+		                  <li><a tabindex="-1" href="#">Second level</a></li>
+		                  <li class="dropdown-submenu">
+		                    <a href="#">Even More..</a>
+		                    <ul class="dropdown-menu">
+		                        <li><a href="#">3rd level</a></li>
+		                    	<li><a href="#">3rd level</a></li>
+		                    </ul>
+		                  </li>
+		                  <li><a href="#">Second level</a></li>
+		                  <li><a href="#">Second level</a></li>
+		                </ul>
+	              	</li>
+				    <li class='disabled'><a href="#">Eliminar Campo</a></li>
+				    <li><a href="#">CSS</a></li>
+				    <li class="dropdown-submenu">
+		                <a tabindex="-1" href="#">Cambiar tipo de dato</a>
+		                <ul class="dropdown-menu">
+		                  <li><a href="#">Entero</a></li> 
+		                  <li><a href="#">Decimal</a></li>
+		                  <li><a href="#">Caractéres</a></li>
+		                </ul>
+	              	</li>
+			  	</ul>
+			</div>
+			</th>
+		{{/each}}
+	</thead>
+	<tbody>
+		{{#each data_project}}
+			<tr>
+				{{#each rowContent this}}
+					<td>{{this}}</td>
+				{{/each}}	
+			</tr>
+		{{/each}}
+	</tbody>
+</table>
+{{else}}
+	<div class="margin-top-double row">
+		{{> Loader}}
+	</div>
+{{/if}}
+</template>

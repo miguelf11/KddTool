@@ -1,3 +1,50 @@
 <template name='DataPrepair'>
-	<h1>Preparacion de datos -  </h1>
+	<div class='project-title'>
+		<h2 class="uppercase">{{project.name}}</h2>
+	</div>
+	{{#if Template.subscriptionsReady}}
+	<!-- {{#if data_project}} -->
+	<div class="margin-top-double row">
+		<div class="col-lg-9 col-md-9 data-prepair-content table-responsive no-padding-left no-padding-right">		
+			{{> DataPrepairTable}}
+		</div>
+		<div class="col-lg-3 col-md-3 data-prepair-actions">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 padding-left-mini prepair-title">
+					<h4>Preparación de Datos</h4>
+				</div>
+			</div>
+			<div class="row padding-top-half">
+				<div class="col-lg-12 col-md-12 padding-left-mini">
+					<ul>
+						<li>Cantidad de Campos: 10</li>
+						<li>Cantidad de Registros: 200</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 padding-left-mini prepair-actions-title">
+					<h5>Acciones</h5>
+				</div>
+			</div>
+			<div class="row padding-top-half prepair-actions-content">
+				<div class="col-lg-12 col-md-12">
+					<ul>
+						<li>Accion 1</li>
+						<li>Accion 2</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row padding-top-complete generate-mining-view text-center">
+				<div class="col-lg-12 col-md-12">
+					<a href="" data-toggle="tooltip" data-placement="bottom" title="Generar Vista Minable!"><i class="fa fa-table" aria-hidden="true"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>	
+	{{else}}
+		<div class="margin-top-double row">
+			{{> Loader}}
+		</div>
+	{{/if}}
 </template>

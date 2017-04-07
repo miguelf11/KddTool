@@ -1,13 +1,17 @@
 Meteor.publish('all_datasets', function(){
-	return DataSets.find({});
+	return DataSets.find({
+		$or:[
+			{author:this.userId},
+			{dataset_type:'publico'}
+		]
+	});
 });
 
 Meteor.publish('my_projects', function(){
-	return Projects.find({author:this.userId});
+	return Projects.find({author:this.userId},
+		{sort:{createdAt:-1}});
 });
 
-// to load one single Project, instead all of the Projects
-Meteor.publish('singleProject', function(id){
-	check(id, String);
-	return Projects.find({_id: id});
+Meteor.publish('single_project', function(id){
+	return Projects.find({_id:id});
 });

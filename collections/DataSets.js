@@ -6,6 +6,9 @@ DataSets.allow({
 	},
 	update:function(userId,doc){
 		return !!userId;
+	},
+	remove:function(userId,doc){
+		return !!userId;
 	}
 });
 
@@ -18,14 +21,14 @@ DataSetsSchema = new SimpleSchema({
 		type: String,
 		label:'Description'
 	},
-	// num_rows:{
-	// 	type: Number,
-	// 	label:'NumberRows'
-	// },
-	// num_fields:{
-	// 	type: Number,
-	// 	label:'NumberFields'
-	// },
+	num_rows:{
+		type: Number,
+		label:'NumberRows'
+	},
+	num_fields:{
+		type: Number,
+		label:'NumberFields'
+	},
 	local_address:{
 		type: String,
 		label:'LocalAddress'
@@ -36,6 +39,13 @@ DataSetsSchema = new SimpleSchema({
 	hdfs_address:{
 		type: String,
 		label:'HDFSAddress'
+		// autoform:{
+		// 	type:'hidden'
+		// }
+	},
+	dataset_type:{
+		type: String,
+		label:'Tipo de dataset'
 		// autoform:{
 		// 	type:'hidden'
 		// }
@@ -77,7 +87,12 @@ Meteor.methods({
 	// 	Recipes.remove(id);
 	// },
 	insertDataset: function(dataset){
-		DataSets.insert(dataset);
+		return DataSets.insert(dataset);
+	},
+	removeDataset: function(id){
+		// console.log('remove dataset');
+		// console.log(id);
+		return DataSets.remove(id);
 	},
 });
 

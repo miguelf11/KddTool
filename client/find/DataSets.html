@@ -8,13 +8,23 @@
 					{{#each datasets}}
 						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 padding-bottom-complete">
 							<div class="each-project-section" id="{{_id}}">
-								<h4 class="no-margin-top capitalize">{{name}}</h4>
-								<span>{{desc}}</span>
+								{{#if isOwner _id}}
+									<a href="" class="delete-dataset float-right display-block" data-toggle="tooltip" title="Eliminar conjunto"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								{{/if}}
+								<h4 class="no-margin-top capitalize no-margin-bottom">{{name}}</h4>
+								<span class="text-small">{{desc}}</span><br>
+								<span>Número de Campos: </span><span class="text-bold">{{num_fields}}</span><br>
+								<span>Número de Registros: </span><span class="text-bold">{{num_rows}}</span><br>
+								{{#if isPrivate _id}}
+									<span><i class="fa fa-user-circle-o" aria-hidden="true"></i> Privado</span><br>
+								{{else}}
+									<span><i class="fa fa-globe" aria-hidden="true"></i> Público</span>
+								{{/if}}
 							</div>
 						</div>	
 					{{else}}
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<h4>No existen DataSets en el clúster</h4>
+							<h4>No existen conjuntos de datos en el clúster</h4>
 						</div>					
 					{{/each}}
 =======

@@ -6,6 +6,9 @@ Projects.allow({
 	},
 	update:function(userId,doc){
 		return !!userId;
+	},
+	remove:function(userId,doc){
+		return !!userId;
 	}
 });
 
@@ -20,11 +23,13 @@ ProjectsSchema = new SimpleSchema({
 	},
 	num_rows:{
 		type: Number,
-		label:'Number of Rows'
+		label:'Number of Rows',
+		optional: true
 	},
 	num_fields:{
 		type: Number,
-		label:'Number of Fields'
+		label:'Number of Fields',
+		optional: true
 	},
 	dataset:{
 		type: String,
@@ -32,10 +37,15 @@ ProjectsSchema = new SimpleSchema({
 	},
 	address:{
 		type: String,
-		label:'Address in hdfs'
+		label:'Address in hdfs',
+		// optional: true
 		// autoform:{
 		// 	type:'hidden'
 		// }
+	},
+	last_stage:{
+		type: String,
+		label: 'Last Stage in KDD Process'
 	},
 	author:{
 		type: String,
@@ -71,7 +81,12 @@ Meteor.methods({
 	// 	Recipes.remove(id);
 	// },
 	insertProject: function(project){
-		Projects.insert(project);
+		return Projects.insert(project);
+	},
+	removeProject: function(id){
+		// console.log('remove dataset');
+		// console.log(id);
+		return Projects.remove(id);
 	},
 });
 
