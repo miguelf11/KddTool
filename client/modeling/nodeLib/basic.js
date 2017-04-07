@@ -1,9 +1,10 @@
+/*
 $(document).ready(function() {
     console.log("Starting basic example for jquery.ui.nodeEditor.js");
 
     $('<div></div>')
         .addClass('nodeEditor')
-        .appendTo('#__blaze-root.hello')
+        .appendTo('body > #__blaze-root')
         .nodeEditor({
             nodes: [
                 {
@@ -209,3 +210,4 @@ $(document).ready(function() {
             ]
         });
 });
+*/
