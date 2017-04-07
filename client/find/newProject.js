@@ -20,6 +20,7 @@ Template.newProject.helpers({
 Template.newProject.events({
 	'submit form'(event, template) {
 	    event.preventDefault();
+	    $(".backdrop").css('display','block');
 	    var name = template.find('#name').value;
 	    var description = template.find('#description').value;
 	    // var nRows = template.find('#numberRows').value;
@@ -79,24 +80,29 @@ Template.newProject.events({
 						    			FlowRouter.go('preparacion', { id: res});
 						    		}
 						    		if(err){
+						    			$(".backdrop").css('display','none');
 						    			alert("No se ha podido crear el proyecto!");
 						    		}
 								});
 							}
 							if(err){
+								$(".backdrop").css('display','none');
 								alert("no data");
 							}
 						});
 					}else{
+						$(".backdrop").css('display','none');
 						alert('No se ha podido crear el proyecto! (Error en Clúster)');
 					}
 					if(error2){
+						$(".backdrop").css('display','none');
 						alert('No se ha podido crear el proyecto! (Error en Clúster)');
 					}
 				});
 
 				
 			}else{
+				$(".backdrop").css('display','none');
 				alert('No se ha podido crear el proyecto! (Error en Clúster)');
 			}
 		});
