@@ -95,6 +95,10 @@
     padding-bottom: 12px !important;
 }
 
+.padding-bottom-complete:hover{
+    text-decoration: none;
+}
+
 .padding-bottom-double {
     padding-bottom: 24px !important;
 }
@@ -328,9 +332,10 @@ header > div > a{
     max-height: 146px;
 }
 
-div.each-project-section:hover{
+div.each-project-section:hover {
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
+
 
 .each-project-section > h4{
     opacity: 0.7;
@@ -651,7 +656,7 @@ a:focus {
 }
 
 .buttons-progress-span > i{
-    color: #44a2d6;
+    color: #fff;
 }
 
 .buttons-progress-span > i:hover{

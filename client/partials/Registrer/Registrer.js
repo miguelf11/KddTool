@@ -18,7 +18,6 @@ Template.Registrer.events({
   },
 
   'click .btn-login-back'(event, template) {
-    // increment the counter when button is clicked
     event.preventDefault();
     FlowRouter.go('login');
     console.log('to login');
