@@ -28,6 +28,7 @@ http://opensource.org/licenses/mit-license.php/
     padding: 10px;
     margin-right: 0px;
     overflow-y: scroll;
+    width: 140px;
 }
 
 .ui-nodeEditor-Field {
@@ -65,7 +66,7 @@ http://opensource.org/licenses/mit-license.php/
     );
     */
     background-size: 20px 20px, 20px 20px;
-    height: 600px;
+    min-height: 500px;
     box-sizing: border-box;
     cursor: default;
     -webkit-user-select: none;
@@ -74,16 +75,18 @@ http://opensource.org/licenses/mit-license.php/
 }
 
 .ui-nodeEditor-Node {
-    background-color: #ccc;
+    background-color: #ccc; 
     border-radius: 5px;
     -moz-border-radius: 5px;
     box-sizing: border-box;
     /*border: solid 1px #222;*/
-    width: 80px;
+    width: 100px;
     /*height: 90px;*/
     margin-bottom: 10px;
-    cursor: default;
-
+    cursor: pointer;
+    color: #000;
+    text-transform: capitalize;
+    padding: 5px;
     -moz-box-shadow:    1px 1px 9px black;
     -webkit-box-shadow: 1px 1px 9px black;
     box-shadow:         1px 1px 9px black;
@@ -93,7 +96,7 @@ http://opensource.org/licenses/mit-license.php/
 }
 
 .ui-nodeEditor-Node.Busy {
-    background-color: #fcc;
+    background-color: #44a2d6;
 }
 
 .ui-nodeEditor-Menu  .ui-nodeEditor-Node {
@@ -117,7 +120,14 @@ http://opensource.org/licenses/mit-license.php/
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
+    font-weight: bold;
     /*border: solid 1px #eee;*/
+}
+
+
+.ui-draggable > div:first-child {
+    font-weight: bold;
+    border-bottom: 1px solid;
 }
 
 .ui-nodeEditor-nodeDisplay {
@@ -136,10 +146,13 @@ http://opensource.org/licenses/mit-license.php/
 
 .ui-nodeEditor-nodeInput {
     text-align: left;
+    color: #000;
 }
 
 .ui-nodeEditor-nodeOutput {
     text-align: right;
+    color: #000;
+    border-top: 1px solid;
 }
 
 .ui-nodeEditor-nodeIO > * {
@@ -187,7 +200,7 @@ border-radius: 0px 186px 0px 0px;
     height: 50%;
     border-width: 3px 3px 0px 0px;
     border-style: solid;
-    border-color: #fa4;
+    border-color: #31708f;
     border-top-right-radius: 100%;
     /*
     background-color: rgba(255,0,0,.1);
@@ -202,7 +215,7 @@ border-radius: 0px 186px 0px 0px;
     left: 50%;
     border-width: 0px 0px 3px 3px;
     border-style: solid;
-    border-color: #fa4;
+    border-color: #31708f;
     border-bottom-left-radius: 100%;
     /*
     background-color: rgba(0,0,255,.1);

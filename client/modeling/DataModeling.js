@@ -17,10 +17,9 @@ Template.DataModeling.onRendered(function(){
 	$('#modeladoTab').removeClass('disabled');
 	/*********************************/
     //console.log("Starting basic example for jquery.ui.nodeEditor.js");
-
     $('<div></div>')
         .addClass('nodeEditor')
-        .appendTo('.hello')
+        .appendTo('.workspace')
         .nodeEditor({
             nodes: [
                 {
@@ -158,11 +157,16 @@ Template.DataModeling.events({
 		//$('#workspace').addClass('col-md-7');
 		//$('#attrs').css('display', 'block');
 	},
-	'click .draggable'() {
+	'click .nodeEditor'() {
 		//$('#workspace').removeClass('col-md-10');
 		//$('#workspace').addClass('col-md-7');
 		//$('#attrs').css('display', 'block');
-		$('#Aparams').text(this.desc);
+		// $('#Aparams').text(this.);
+        console.log("datos de: "+this);
+        console.log("propiedades de: "+Object.getOwnPropertyNames(this));
+        console.log("Keys de: "+Object.keys(this));
+        console.log("propiedades de: "+Object.getOwnPropertyNames(this.main));
+        console.log("FINAL: "+this.label);
 	},
 	/*'click #closeAttrs'() {
 		$('#attrs').css('display', 'none');
