@@ -6,6 +6,7 @@ Template.DataModeling.onCreated(function(){
 		self.subscribe('single_project',id);
 		Session.set('projectId', id);	
 	});
+
 });
 
 Template.DataModeling.onRendered(function(){
@@ -157,17 +158,29 @@ Template.DataModeling.events({
 		//$('#workspace').addClass('col-md-7');
 		//$('#attrs').css('display', 'block');
 	},
-	'click .nodeEditor'() {
+	'click .ui-nodeEditor-Node'(e, x) {
 		//$('#workspace').removeClass('col-md-10');
 		//$('#workspace').addClass('col-md-7');
 		//$('#attrs').css('display', 'block');
 		// $('#Aparams').text(this.);
-        console.log("datos de: "+this);
-        console.log("propiedades de: "+Object.getOwnPropertyNames(this));
-        console.log("Keys de: "+Object.keys(this));
-        console.log("propiedades de: "+Object.getOwnPropertyNames(this.main));
-        console.log("FINAL: "+this.label);
-        console.log("FINAL: "+this.nodes);
+        // console.log("datos de: "+this);
+        // console.log("propiedades de: "+Object.getOwnPropertyNames(this));
+        // console.log("Keys de: "+Object.keys(this));
+        // console.log("propiedades de: "+Object.getOwnPropertyNames(this.main));
+        // console.log("FINAL: "+this.label);
+        // console.log("FINAL: "+this.nodes);
+
+        // $('#Aparams').text(this.name);
+		// $('#Aparams').text(e);
+        var x1=$(".ui-nodeEditor").nodeEditor();  //initialize the widget..
+        var opts=x1.nodeEditor("getOptions"); //call getOptions method.
+        console.log("datos de x1: "+x1);
+        console.log("datos de opts: "+opts);
+        console.log("Keys de x: "+Object.keys(x));
+        console.log("Keys de opts: "+Object.keys(opts));
+        console.log("Keys de opts.nodes: "+Object.keys(opts.nodes[0]));
+        console.log("Keys de opts.nodes.outputs: "+Object.keys(opts.nodes[0].outputs[0].label[1]));
+        // console.log("Keys de x.view: "+Object.keys(x.view));
 	},
 	/*'click #closeAttrs'() {
 		$('#attrs').css('display', 'none');
