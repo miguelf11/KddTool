@@ -9,6 +9,7 @@ Template.newDataset.helpers({
 Template.newDataset.events({
 	'submit form'(event, template) {
 	    event.preventDefault();
+	    $(".backdrop").css('display','block');
 	    var name = template.find('#name').value;
 	    var description = template.find('#description').value;
 	    // var nRows = template.find('#numberRows').value;
@@ -72,30 +73,37 @@ Template.newDataset.events({
 								    			FlowRouter.go('datasets');
 								    		}
 								    		if(err){
+								    			$(".backdrop").css('display','none');
 								    			alert("No se ha creado el dataset!");
 								    		}
 								    	});
 							    	}else{
+							    		$(".backdrop").css('display','none');
 							    		alert("No se ha creado el dataset! Error en formación de CSV");
 					    				Meteor.call('removeHdfsFolder',dirHdfs);
 							    	}
 					    		}else{
+					    			$(".backdrop").css('display','none');
 					    			alert("No se ha creado el dataset! Error en formación de CSV");
 					    			Meteor.call('removeHdfsFolder',dirHdfs);
 					    		}
 					    		if(err2){
+					    			$(".backdrop").css('display','none');
 					    			alert("No se ha creado el dataset! Error formación de CSV");
 					    		}
 					    	});
 			    		}else{
+			    			$(".backdrop").css('display','none');
 			    			alert("Este archivo supera la capacidad de memoria asignada en el clúster!!!");
 			    			Meteor.call('removeHdfsFolder',dirHdfs);
 			    		}
 			    		if(err1){
+			    			$(".backdrop").css('display','none');
 			    			alert("No se ha creado el dataset!");
 			    		}
 			    	});
 	    		}else{
+	    			$(".backdrop").css('display','none');
 	    			alert("No se ha creado el dataset en el clúster!");
 	    		}
 	    		if(err3){
@@ -103,6 +111,7 @@ Template.newDataset.events({
 	    		}
 		    });
 	    }else{
+	    	$(".backdrop").css('display','none');
 	    	alert("El dataset debe ser extensión .csv");
 	    }
 

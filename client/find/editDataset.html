@@ -1,32 +1,34 @@
-<template name="newDataset">
+<template name="editDataset">
 	<div class="row center-block row-centered">
 		<div class="col-xs-10 col-sm-7 col-md-7 col-lg-6 col-centered">
 			<div class='login-section'>
-				<h3>Conjunto de Datos</h3>
-				<form class='row login-form padding-left-double padding-right-double'>
+				<h3>Editar Conjunto de Datos</h3>
+				<form class='row login-form padding-left-double padding-right-double' id="{{dataset._id}}">
 					<label class="col-md-12 no-padding-left" for="name">Nombre</label>
-					<input class="col-md-12" type="text" name="name" id="name" placeholder="Nombre" required>
+					<input class="col-md-12" type="text" name="name" id="name" placeholder="Nombre" required value="{{dataset.name}}">
 					<br>
 
 					<label class="col-md-12 no-padding-left" for="description">Descripción</label>
-					<textarea class="col-md-12" id="description" name="description" placeholder="Descripción" required></textarea>
+					<textarea class="col-md-12" id="description" name="description" placeholder="Descripción" required>{{dataset.desc}}</textarea>
 					<br>
-
-<!-- 					<label class="col-md-12 no-padding-left" for="numberRows">Número de Filas</label>
-					<input class="col-md-12" type="number" min=1 id="numberRows" name="numberRows" placeholder="Número de filas">
-					<br>
-
-					<label class="col-md-12 no-padding-left" for="numberFields">Número de Campos</label>
-					<input class="col-md-12" type="number" min=1 id="numberFields" name="numberFields" placeholder="Número de campos">
-					<br> -->
 
 					<label class="col-md-12 no-padding-left" for="local-address">Dirección Local</label>
-					<input class="col-md-12" type="text" id="localAddress" name="local-address" placeholder="Dirección local" required>
+					<input class="col-md-12" type="text" id="localAddress" name="local-address" placeholder="Dirección local" required value="{{dataset.local_address}}" disabled>
 					<br>
 
 					<label class="col-md-12 no-padding-left" for="dataset-type">Carácter</label>
+					{{#if isPrivate dataset.dataset_type}}
+					<label class="radio-inline"><input type="radio" name="datasetType" value="privado" required checked>Privado</label>
+					{{else}}
 					<label class="radio-inline"><input type="radio" name="datasetType" value="privado" required>Privado</label>
+					{{/if}}
+
+
+					{{#if isPublic dataset.dataset_type}}
+					<label class="radio-inline"><input type="radio" name="datasetType" value="publico" checked>Público</label>
+					{{else}}
 					<label class="radio-inline"><input type="radio" name="datasetType" value="publico">Público</label>
+					{{/if}}
 					<br>
 
 					<div class="text-center padding-top-mini">
@@ -36,8 +38,5 @@
 				</form>
 			</div>
 		</div>
-	</div>
-	<div class="backdrop" style="display: none;">
-		{{> Loader}}
-	</div>
+	</div>	
 </template>

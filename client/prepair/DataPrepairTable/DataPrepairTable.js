@@ -49,53 +49,88 @@ Template.DataPrepairTable.helpers({
 	      row.push(document[header[key]] || "");
 	    }
 	    return row;
-	}
+	},
+
+  data_type_name:(column_name)=>{
+    // console.log('type data: '+column_name);
+    // console.log(column_name);
+    var project_id = FlowRouter.getParam('id');
+    var data_types = Projects.findOne({_id:project_id},{fields: {'data_types':1}});
+    // console.log(data_types.data_types[0].name);
+    data_types = data_types.data_types;
+    var data_type_final = '';
+    for (var i=0;i<data_types.length;i++){
+      if(data_types[i].name == column_name && data_types[i].active == true){
+        data_type_final = data_types[i].type;
+        break;
+      }
+    }
+
+    return data_type_final;
+  },
+
+  data_type_drill:(column_name)=>{
+    // console.log('type data: '+column_name);
+    // console.log(column_name);
+    var project_id = FlowRouter.getParam('id');
+    var data_types = Projects.findOne({_id:project_id},{fields: {'data_types':1}});
+    // console.log(data_types.data_types[0].name);
+    data_types = data_types.data_types;
+    var data_type_final_true = '';
+    var data_type_final = '';
+    for (var i=0;i<data_types.length;i++){
+      if(data_types[i].name == column_name && data_types[i].active == true){
+        data_type_final = data_types[i].type;
+        switch(data_type_final){
+        	case 'Carácteres':
+        		data_type_final_true = 'VARCHAR';
+        		break;
+        	case 'Entero':
+        		data_type_final_true = 'BIGINT';
+        		break;
+        	case 'Decimal':
+        		data_type_final_true = 'DOUBLE';
+        		break;	
+        }
+        break;
+      }
+    }
+
+    return data_type_final_true;
+  },
+
+
 });
 
 Template.DataPrepairTable.events({
-	'click .order-up' (event, template) {
-    	event.preventDefault();
-    	var column = $(event.currentTarget).attr("value");
-    	var order = 'asc';
-    	// console.log(column);
-   		// console.log('ordenar de menor a mayor');
 
-   		var project_id = FlowRouter.getParam('id');
-   		var project_address = Projects.findOne({_id:project_id}).address;
-   		// console.log(project_address);
 
-   		Meteor.call('queryDataDrillOrderBy',column,order,project_address,function(err,res){
-   			// console.log(res.data.rows);
-    		if(res.statusCode == 200){
-    			Session.set('data_project',res.data.rows);
-    			$( ".sort-inserted" ).remove();
-   				$("<i class='fa fa-caret-up padding-left-half sort-inserted' aria-hidden='true'></i>").insertAfter("#"+column+" > label");
-    		}
-    		if(err){
-    			alert("No se pudo ordenar el tipo de dato!");
-    		}
-    	});
-  	},
-  	'click .order-down' (event, template) {
-    	event.preventDefault();
-    	var column = $(event.currentTarget).attr("value");
-    	var order = 'desc';
-    	// console.log(column);
-   		// console.log('ordenar de mayor a menor')
-   		var project_id = FlowRouter.getParam('id');
-   		var project_address = Projects.findOne({_id:project_id}).address;
-   		console.log(project_address);
-
-   		Meteor.call('queryDataDrillOrderBy',column,order,project_address,function(err,res){
-   			// console.log(res.data.rows);
-    		if(res.statusCode == 200){
-    			Session.set('data_project',res.data.rows);
-    			$( ".sort-inserted" ).remove();
-   				$("<i class='fa fa-caret-down padding-left-half sort-inserted' aria-hidden='true'></i>").insertAfter("#"+column+" > label");
-    		}
-    		if(err){
-    			alert("No se pudo ordenar el tipo de dato!");
-    		}
-    	});
-  	},
 });
+
+// function data_type_to_drill(column_name){
+//     var project_id = FlowRouter.getParam('id');
+//     var data_types = Projects.findOne({_id:project_id},{fields: {'data_types':1}});
+//     // console.log(data_types.data_types[0].name);
+//     data_types = data_types.data_types;
+//     var data_type_final_true = '';
+//     var data_type_final = '';
+//     for (var i=0;i<data_types.length;i++){
+//       if(data_types[i].name == column_name && data_types[i].active == true){
+//         data_type_final = data_types[i].type;
+//         switch(data_type_final){
+//         	case 'Carácteres':
+//         		data_type_final_true = 'VARCHAR';
+//         		break;
+//         	case 'Entero':
+//         		data_type_final_true = 'BIGINT';
+//         		break;
+//         	case 'Decimal':
+//         		data_type_final_true = 'DOUBLE';
+//         		break;	
+//         }
+//         break;
+//       }
+//     }
+
+//     return data_type_final_true;
+// }

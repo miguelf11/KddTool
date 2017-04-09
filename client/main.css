@@ -35,6 +35,10 @@
     padding-left: 4px !important;
 }
 
+.padding-left-half-plus {
+    padding-left: 5px !important;
+}
+
 .padding-left-complete {
     padding-left: 12px !important;
 }
@@ -265,7 +269,7 @@ header{
     position: fixed;
     width: 100%;
     height: 70px;
-    z-index: 2000;
+    z-index: 1000;
     top: 0;  
     -webkit-box-shadow: 0px 1px 1px #565656;
     -moz-box-shadow:0px 1px 1px #565656;
@@ -329,7 +333,7 @@ header > div > a{
     background: #FFF;
     padding: 15px; 
     border: rgba(0,0,0, 0.2) solid 3px;
-    max-height: 146px;
+    max-height: auto;
 }
 
 div.each-project-section:hover {
@@ -340,7 +344,7 @@ div.each-project-section:hover {
 .each-project-section > h4{
     opacity: 0.7;
     font-weight: 800;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .each-project-section > a > h4{
@@ -446,63 +450,63 @@ div.each-project-section:hover {
     right: 0;
     top: 50%;
     z-index: 1;
-}*/
+    }*/
 
-.wizard .nav-tabs > li.active > a, 
-.wizard .nav-tabs > li.active > a:hover, 
-.wizard .nav-tabs > li.active > a:focus {
-    color: #555555;
-    cursor: default;
-    border: 0;
-    border-bottom-color: transparent;
-    outline: none;
-}
+    .wizard .nav-tabs > li.active > a, 
+    .wizard .nav-tabs > li.active > a:hover, 
+    .wizard .nav-tabs > li.active > a:focus {
+        color: #555555;
+        cursor: default;
+        border: 0;
+        border-bottom-color: transparent;
+        outline: none;
+    }
 
-span.round-tab {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    display: inline-block;
-    border-radius: 100px;
-    background: #fff;
-    border: 2px solid #e0e0e0;
-    z-index: 2;
-    position: absolute;
-    left: 0;
-    text-align: center;
-    font-size: 25px;
-}
-span.round-tab i{
-    color:#555555;
-}
-.wizard li.active span.round-tab {
-    background: #fff;
-    border: 2px solid #5bc0de;
-    
-}
-.wizard li.active span.round-tab i{
-    color: #5bc0de;
-}
+    span.round-tab {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        display: inline-block;
+        border-radius: 100px;
+        background: #fff;
+        border: 2px solid #e0e0e0;
+        z-index: 2;
+        position: absolute;
+        left: 0;
+        text-align: center;
+        font-size: 25px;
+    }
+    span.round-tab i{
+        color:#555555;
+    }
+    .wizard li.active span.round-tab {
+        background: #fff;
+        border: 2px solid #5bc0de;
+        
+    }
+    .wizard li.active span.round-tab i{
+        color: #5bc0de;
+    }
 
-span.round-tab:hover {
-    /*color: #333;*/
-    border: 2px solid #333;
-}
+    span.round-tab:hover {
+        /*color: #333;*/
+        border: 2px solid #333;
+    }
 
-.wizard .nav-tabs > li {
-    width: 100%;
-}
+    .wizard .nav-tabs > li {
+        width: 100%;
+    }
 
-.wizard li:after {
-    content: " ";
-    position: absolute;
-    left: 47%;
-    opacity: 0;
-    margin: 0 auto;
-    bottom: 0px;
-    border: 5px solid transparent;
+    .wizard li:after {
+        content: " ";
+        position: absolute;
+        left: 47%;
+        opacity: 0;
+        margin: 0 auto;
+        bottom: 0px;
+        border: 5px solid transparent;
 /*    border-bottom-color: #5bc0de;
-    transition: 0.1s ease-in-out;*/
+transition: 0.1s ease-in-out;*/
 }
 
 .wizard li.active:after {
@@ -562,7 +566,7 @@ span.round-tab:hover {
         position: absolute;
         left: 15%;
     }
-}*/
+    }*/
 
 .name-section > h4{
     font-weight: 900;
@@ -592,7 +596,7 @@ span.round-tab:hover {
 
 .nav-tabs-projects > .active {
     border-bottom: white;
-    z-index: 1000;
+    z-index: 900;
 }
 
 .no-match {
@@ -642,56 +646,66 @@ a:focus {
     background-color: #fff;
 }
 
-.add-btn{
-    margin: 0 0 15px 0;
-}
-
-.buttons-progress{
-    position:fixed; 
-    bottom:0;
-}
-
-.buttons-progress-span{
-    font-size: 30px;
-}
 
 .buttons-progress-span > i{
     color: #fff;
 }
 
-.buttons-progress-span > i:hover{
-    color: #fff;
-}
+    .add-btn{
+        margin: 0 0 15px 0;
+    }
 
-.capitalize{
-    text-transform:capitalize;
-}
+    .buttons-progress{
+        position:fixed; 
+        bottom:0;
+    }
 
-body {
-    background-color: #f5f5f5;
-}
+    .buttons-progress-span{
+        font-size: 30px;
+    }
 
-.loader {
-  border: 10px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 10px solid #44a2d6;
-  width: 90px;
-  height: 90px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-}
+    .buttons-progress-span > i{
+        color: #44a2d6;
+    }
 
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
+    .buttons-progress-span > i:hover{
+        color: #fff;
+    }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+    .capitalize{
+        text-transform:capitalize;
+    }
 
-.project-title{
+    body {
+        background-color: #f5f5f5;
+    }
+
+    .loader {
+      border: 10px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 10px solid #44a2d6;
+      width: 90px;
+      height: 90px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -45px;
+      margin-top: -45px;
+  }
+
+  @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+
+  .project-title{
     text-align: center;
     color: #31708f;
     border-bottom: rgba(0,0,0, 0.4) solid 3px;
@@ -715,4 +729,43 @@ body {
 
 .uppercase{
     text-transform: uppercase !important;
+}
+
+.actions {
+    list-style: none;
+    float: right;
+    padding-left: 5px !important;
+}
+
+.actions li{
+    display: inline;
+}
+
+.modal-header{
+    background: #44a2d6;
+    color: white;
+}
+
+#deleteModal > .modal-dialog > .modal-content{
+    border-radius: 0px;
+}
+
+#deleteModal > .modal-dialog > .modal-content > .modal-footer > button{
+    border-radius: 0px;
+}
+
+.cutted-text{
+    text-overflow:ellipsis;
+    white-space:nowrap; 
+    overflow:hidden; 
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 100000;
 }

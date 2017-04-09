@@ -7,7 +7,6 @@
   "dependencies": {
     "babel-runtime": "^6.23.0",
     "bcrypt": "^1.0.2",
-    "jshs2": "0.3.1",
     "meteor-node-stubs": "^0.2.6",
     "rio": "^2.4.1",
     "thrift": "^0.10.0",
