@@ -9,7 +9,6 @@ $.widget("ui.nodeEditor", {
 
     _create: function() {
         //console.log("nodeEditor.create()");
-
         $(this.element).addClass('ui-nodeEditor');
     },
 

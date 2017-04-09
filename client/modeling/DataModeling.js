@@ -167,6 +167,7 @@ Template.DataModeling.events({
         console.log("Keys de: "+Object.keys(this));
         console.log("propiedades de: "+Object.getOwnPropertyNames(this.main));
         console.log("FINAL: "+this.label);
+        console.log("FINAL: "+this.nodes);
 	},
 	/*'click #closeAttrs'() {
 		$('#attrs').css('display', 'none');
