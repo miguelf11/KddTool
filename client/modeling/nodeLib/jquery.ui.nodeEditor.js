@@ -7,6 +7,10 @@ $.widget("ui.nodeEditor", {
         nodes: []
     },
 
+    getOptions:function(){
+          return this.options;
+    },
+
     _create: function() {
         //console.log("nodeEditor.create()");
 
