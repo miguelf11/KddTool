@@ -9,7 +9,7 @@ Template.DataSets.onCreated(function(){
 
 Template.DataSets.onRendered(function(){
 	$(".nav-tabs-projects > li").each(function() {
-	  $(this).removeClass("active");
+		$(this).removeClass("active");
 	});	
 
 	$("#datasetsTabli").addClass('active');
@@ -51,8 +51,16 @@ Template.DataSets.events({
    				Meteor.call('removeDataset',id_dataset, function(err2,res2){
 					// console.log(res2);
 					if(res2){
-						alert("El conjunto ha sido eliminado exitosamente!!!");
-						$("#deleteModal").modal('hide');
+						Meteor.call('removeColumn', id_dataset, function (err, res) {
+							if (res) {
+								$("#deleteModal").modal('hide');
+								alert("El conjunto ha sido eliminado exitosamente!!!");
+							}
+							if (err) {
+								console.log(err);
+							}
+							
+						});
 					}else{
 						alert("No se ha podido eliminar el conjunto!!!");
 					}

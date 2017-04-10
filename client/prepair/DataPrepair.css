@@ -5,6 +5,7 @@
     overflow-y: scroll;
     white-space: nowrap;
     max-height: 75vh;
+    min-height: 15vh;
     border-right: rgba(0,0,0, 0.4) solid 2px;
     /*height: auto;*/
 }
@@ -81,6 +82,12 @@
     min-width: 20em;
 }
 
+.data-prepair-table > thead > .checkbox-field{
+    /*min-width: 180px !important;*/
+    width: 100%;
+    min-width: 2em !important;
+}
+
 .data-prepair-table > thead > th > div > a{
     color:#fff !important;
 }
@@ -93,6 +100,12 @@
     /*min-width: 180px !important;*/
     width: 100%;
     min-width: 20em;
+}
+
+.data-prepair-table > tbody > tr > .checkbox-field{
+    /*min-width: 180px !important;*/
+    width: 100%;
+    min-width: 2em !important;
 }
 
 .prepair-actions-content{

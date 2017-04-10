@@ -10,7 +10,7 @@ Template.DataPrepairTable.onCreated(function(){
 	});
 
 	var id = FlowRouter.getParam('id');
-	var project_address = Projects.findOne({_id:id}).address;
+	var project_address = Projects.findOne({_id:id}).current_version_address;
 	Meteor.call('queryDataDrill',project_address, function(err,res){
 		if(res.statusCode == 200){
 			// console.log(res.data.rows);
@@ -46,9 +46,20 @@ Template.DataPrepairTable.helpers({
 	    var row = [];
 	    var header = Session.get('data_keys');
 	    for (var key in header) {
-	      row.push(document[header[key]] || "");
+	    	if (key == 0){
+	    		row.isFirst = true;
+	    	}
+	      	row.push(document[header[key]] || "");
 	    }
 	    return row;
+	},
+
+	isFirst:(index)=>{
+		if(index == 0){
+			return true;
+		}else{
+			return false;
+		}
 	},
 
   data_type_name:(column_name)=>{

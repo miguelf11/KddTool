@@ -103,6 +103,14 @@ ProjectsSchema = new SimpleSchema({
 		// 	type: 'hidden'
 		// }
 	},
+	modifiedAt:{
+		type: Date,
+		label: 'ModifiedAt',
+		optional: true
+		// autoform:{
+		// 	type: 'hidden'
+		// }
+	},
 	actions:{
 		type: [ActionsSchema],
 		label: 'acciones de preparacion',
@@ -130,6 +138,14 @@ ProjectsSchema = new SimpleSchema({
 	mining_view_address:{
 		type: String,
 		label: 'direccion de vista minable',
+		optional: true
+		// autoform:{
+		// 	type: 'hidden'
+		// }
+	},
+	current_version_address:{
+		type: String,
+		label: 'direccion de version actual',
 		optional: true
 		// autoform:{
 		// 	type: 'hidden'
