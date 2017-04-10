@@ -2,6 +2,7 @@ Template.newProject.onCreated(function(){
 	var self = this;
 	self.autorun(function(){
 		self.subscribe('all_datasets');
+		self.subscribe('all_columns');
 	});
 });
 
@@ -47,7 +48,7 @@ Template.newProject.events({
 					if(result2.statusCode == 200){
 						console.log('dataset copied into project folder');
 						var columns = '';
-						Meteor.call('queryDataDrill',folder_project, function(err,res){
+						Meteor.call('queryDataDrill', folder_project, function(err,res){
 							if(res.statusCode == 200){
 								
 								// Session.set('data_keys',res.data.columns);
@@ -58,7 +59,8 @@ Template.newProject.events({
 								var data_types =[];
 
 								for (var i=0;i<columns.length;i++){
-									var each_column = {name:columns[i],type:'Caractéres',active:true};
+									let column = Columns.findOne({datasetId: dataset, name: columns[i]});
+									var each_column = {name:columns[i],type:column.dataType, active:true};
 									// console.log(each_column);
 									data_types.push(each_column);
 								}
