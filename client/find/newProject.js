@@ -70,6 +70,7 @@ Template.newProject.events({
 										// num_rows: nRows,
 										// num_fields: nFields,
 										address: folder_project,
+										current_version_address: folder_project,
 										dataset: dataset,
 										last_stage: stage,
 										data_types:data_types
