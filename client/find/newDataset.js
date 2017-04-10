@@ -144,9 +144,9 @@ Template.newDataset.events({
 				let double 	= isDouble(columns[i], array);
 
 				if (int >= factor) {
-					results[columns[i]] = "Integer";
+					results[columns[i]] = "Entero";
 				} else if (double >= factor) {
-					results[columns[i]] = "Double";
+					results[columns[i]] = "Decimal";
 				} else {
 					results[columns[i]] = "String";
 				}

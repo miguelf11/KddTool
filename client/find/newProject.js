@@ -55,10 +55,10 @@ Template.newProject.events({
 
 								// console.log(res.data.columns);
 								columns = res.data.columns;
-								// console.log(columns);
+								console.log(columns);
 								var data_types =[];
 
-								for (var i=0;i<columns.length;i++){
+								for (var i=1;i<columns.length;i++){
 									let column = Columns.findOne({datasetId: dataset, name: columns[i]});
 									var each_column = {name:columns[i],type:column.dataType, active:true};
 									// console.log(each_column);
