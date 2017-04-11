@@ -25,6 +25,7 @@ Template.DataModeling.onRendered(function(){
             nodes: [
                 {
                     label: 'datos',
+                    id: 'id de datos',
                     outputs: [
                         {
                             label: 'dataset',
@@ -38,6 +39,7 @@ Template.DataModeling.onRendered(function(){
                 },
                 {
                     label: 'Arbol de decision',
+                    id: 'id arbol',
                     inputs: [
                         {
                             id: 'dataset',
@@ -72,6 +74,7 @@ Template.DataModeling.onRendered(function(){
                 },
                 {
                     label: 'R',
+                    id: 'id R',
                     inputs: [
                         {
                             id: 'A',
@@ -158,35 +161,23 @@ Template.DataModeling.events({
 		//$('#workspace').addClass('col-md-7');
 		//$('#attrs').css('display', 'block');
 	},
-	'click .ui-nodeEditor-Node'(e, x) {
-		//$('#workspace').removeClass('col-md-10');
-		//$('#workspace').addClass('col-md-7');
-		//$('#attrs').css('display', 'block');
-		// $('#Aparams').text(this.);
-        // console.log("datos de: "+this);
-        // console.log("propiedades de: "+Object.getOwnPropertyNames(this));
-        // console.log("Keys de: "+Object.keys(this));
-        // console.log("propiedades de: "+Object.getOwnPropertyNames(this.main));
-        // console.log("FINAL: "+this.label);
-        // console.log("FINAL: "+this.nodes);
+	'click .ui-nodeEditor-Node': function(e) {
 
-        // $('#Aparams').text(this.name);
-		// $('#Aparams').text(e);
-        var x1=$(".ui-nodeEditor").nodeEditor();  //initialize the widget..
-        var opts=x1.nodeEditor("getOptions"); //call getOptions method.
-        console.log("datos de x1: "+x1);
-        console.log("datos de opts: "+opts);
-        console.log("Keys de x: "+Object.keys(x));
-        console.log("Keys de opts: "+Object.keys(opts));
-        console.log("Keys de opts.nodes: "+Object.keys(opts.nodes[0]));
-        console.log("Keys de opts.nodes.outputs: "+Object.keys(opts.nodes[0].outputs[0].label[1]));
-        // console.log("Keys de x.view: "+Object.keys(x.view));
+        // var $this = $(e.target);
+        var label = $(e.currentTarget).data('node').label;
+        var id = $(e.currentTarget).data('node').id;
+        var labelOutput = $(e.currentTarget).data('node').outputs[0].label;
+        // console.log("e.target: "+ $(e.target));
+        console.log("label: "+label);
+        console.log("id: "+id);
+        console.log("labelOutput: "+labelOutput);
 	},
 	/*'click #closeAttrs'() {
 		$('#attrs').css('display', 'none');
 		$('#workspace').removeClass('col-md-7');
 		$('#workspace').addClass('col-md-10');
 	}*/
+
 
 });
 
