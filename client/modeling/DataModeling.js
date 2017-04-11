@@ -164,15 +164,16 @@ Template.DataModeling.events({
 	},
 	'click .ui-nodeEditor-Node': function(e) {
 
-        // var $this = $(e.target);
         var label = $(e.currentTarget).data('node').label;
         var id = $(e.currentTarget).data('node').id;
         //var attrsInput = $(e.currentTarget).data('node').inputs[0].attrs;
         var labelOutput = $(e.currentTarget).data('node').outputs[0].label;
-        // console.log("e.target: "+ $(e.target));
         console.log("label: "+label);
         console.log("id: "+id);
         console.log("labelOutput: "+labelOutput);
+	},
+
+	/*'click #closeAttrs'() {
         //console.log("ELEMENTOS DEL NODO: "+key($(e.currentTarget).data('node')));
         //console.log("attrsInput: "+attrsInput);
         $('#Aparams').text(label);

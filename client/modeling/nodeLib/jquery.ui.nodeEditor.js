@@ -1,14 +1,9 @@
-
 (function( $, undefined ) {
 
 $.widget("ui.nodeEditor", {
 
     options: {
         nodes: []
-    },
-
-    getOptions:function(){
-          return this.options;
     },
 
     _create: function() {
@@ -42,7 +37,9 @@ $.widget("ui.nodeEditor", {
 
         //console.group('populateNodeMenu');
         $.each(this.options.nodes, function(index, node) {
-            //console.log('New Node: ' + node.label);
+            // console.log("this: "+this);
+            // console.log('New Node: ' + node.label);
+            // console.log('New Node id '+ node.id);
 
             that._buildNode(node);   
         });
@@ -227,10 +224,10 @@ $.widget("ui.nodeEditor", {
         };
 
         element.find('.ui-nodeEditor-nodeInputConnector').each(function (idx, input) {
-            console.log('input[' + idx + '] ' + node.inputs[idx].label);
+            // console.log('input[' + idx + '] ' + node.inputs[idx].label);
 
             $(this).data('update', function(value) {
-                console.log('Input ' + node.inputs[idx].label + ' received value: ' + value);
+                // console.log('Input ' + node.inputs[idx].label + ' received value: ' + value);
                 var updateMap = {inputs:{}};
                 updateMap.inputs[node.inputs[idx].label] = value;
 
@@ -252,7 +249,7 @@ $.widget("ui.nodeEditor", {
                     var resultDeferred = node.outputs[idx].fn(node.state);
 
                     resultDeferred.done(function(result) {
-                        console.log('Computed result for output, notifying: ' + result);
+                        // console.log('Computed result for output, notifying: ' + result);
                         that._updateTip(output, node, result);
                         outD.notify(result);
                     });
@@ -261,7 +258,7 @@ $.widget("ui.nodeEditor", {
                 $(output).data('update')();
             }
             else {
-                console.log('something is wrong setting output function ' + node.label);
+                // console.log('something is wrong setting output function ' + node.label);
             }
         });
         //console.groupEnd();
@@ -294,7 +291,7 @@ $.widget("ui.nodeEditor", {
             var wireData = $(this).data('wire');
 
             if ($(this).hasClass('ui-nodeEditor-nodeInputConnector') && wireData) {
-                console.log('moving existing wire');
+                // console.log('moving existing wire');
                 $(wireData).addClass('ui-nodeEditor-activeWire');
                 $(wireData).data('clickEndConnector', null);
                 $(this).data('update')(null);
@@ -313,7 +310,7 @@ $.widget("ui.nodeEditor", {
                         'clickStartPosition': pos,
                         'clickStartConnector': $(this),
                         'disconnect': function() {
-                            console.log('wire.disconnect()');
+                            // console.log('wire.disconnect()');
                             var to = $(wire).data('to');
                             var from = $(wire).data('from');
                             if (to) {
@@ -399,7 +396,7 @@ $.widget("ui.nodeEditor", {
 
             
             if ($(this).hasClass('ui-nodeEditor-nodeInputConnector')) {
-                console.log('mouseup on input');
+                // console.log('mouseup on input');
                 var oldWire = $(this).data('wire');
 
                 if (oldWire) {
@@ -409,7 +406,7 @@ $.widget("ui.nodeEditor", {
 
             if ($('.ui-nodeEditor-activeWire').length) {
                 ev.stopPropagation();
-                console.log('making connection!');
+                // console.log('making connection!');
 
                 var wire = $('.ui-nodeEditor-activeWire');
                 var wireOrigin = wire.data('clickStartConnector');
@@ -453,7 +450,7 @@ $.widget("ui.nodeEditor", {
                 var getPromise = from.data('deferred');
 
                 getPromise.progress(function(data) {
-                    console.log('Wire transferring value: ' + data);
+                    // console.log('Wire transferring value: ' + data);
                     to.data('update')(data);
                 });
             }
@@ -461,7 +458,7 @@ $.widget("ui.nodeEditor", {
 
         this.nodeField.on('mouseup', function() {
             if ($('.ui-nodeEditor-activeWire').length && !that.nodeDrag) {
-                console.log('releasing wire');
+                // console.log('releasing wire');
 
                 $('.ui-nodeEditor-activeWire').empty().remove();
             }
