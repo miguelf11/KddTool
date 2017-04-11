@@ -10,7 +10,7 @@ Template.DataPrepairTable.events({
             var data_type = $(event.currentTarget).attr("data-type");
             console.log(data_type);
             var id = FlowRouter.getParam('id');
-            var project_address = Projects.findOne({_id:id}).address;
+            var project_address = Projects.findOne({_id:id}).current_version_address;
             $('.modal-title').text(column);
             // var order = 'desc';
             // console.log(column);

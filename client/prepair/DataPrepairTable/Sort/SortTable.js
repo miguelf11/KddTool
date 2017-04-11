@@ -8,7 +8,7 @@ Template.DataPrepairTable.events({
    		// console.log('ordenar de menor a mayor');
       $("<i class='fa fa-spinner fa-spin padding-left-half-plus sort-inserted' aria-hidden='true'></i>").insertAfter("#"+column+" > label");
    		var project_id = FlowRouter.getParam('id');
-   		var project_address = Projects.findOne({_id:project_id}).address;
+   		var project_address = Projects.findOne({_id:project_id}).current_version_address;
 
       var data_type_final_true = '';
       switch(data_type_final){
@@ -53,7 +53,7 @@ Template.DataPrepairTable.events({
    		// console.log('ordenar de mayor a menor')
       $("<i class='fa fa-spinner fa-spin padding-left-half-plus sort-inserted' aria-hidden='true'></i>").insertAfter("#"+column+" > label");
    		var project_id = FlowRouter.getParam('id');
-   		var project_address = Projects.findOne({_id:project_id}).address;
+   		var project_address = Projects.findOne({_id:project_id}).current_version_address;
    		console.log(project_address);
 
       var data_type_final_true = '';
