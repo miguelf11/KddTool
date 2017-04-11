@@ -125,9 +125,13 @@ http://opensource.org/licenses/mit-license.php/
 }
 
 
-.ui-draggable > div:first-child {
+.ui-draggable > div:first-child  {
     font-weight: bold;
     border-bottom: 1px solid;
+}
+
+.dropped > div:first-child  {
+    margin-top: 10px;
 }
 
 .ui-nodeEditor-nodeDisplay {

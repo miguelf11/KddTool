@@ -58,7 +58,8 @@ $.widget("ui.nodeEditor", {
                 drop: function(ev,ui) {
                     if ($(ui.helper).closest('.ui-nodeEditor-Menu').length) {
                         //console.log('Field drop');
-                        var element = $(ui.draggable).clone(false);
+                        // var element = $(ui.draggable).clone(false);
+                        var element = $(ui.draggable).clone(true);
                         var nodeCopy = $.extend(true, {}, $(ui.draggable).data('node'));
                         $(this).append(element);
                         element.attr('id', 'clone');
@@ -118,6 +119,7 @@ $.widget("ui.nodeEditor", {
                     });
 
                     obj.attr('id', '');
+                    obj.addClass("dropped");
                 }
             });
 
