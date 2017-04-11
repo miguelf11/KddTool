@@ -163,15 +163,14 @@ Template.DataModeling.events({
 	},
 	'click .ui-nodeEditor-Node': function(e) {
 
-        // var $this = $(e.target);
         var label = $(e.currentTarget).data('node').label;
         var id = $(e.currentTarget).data('node').id;
         var labelOutput = $(e.currentTarget).data('node').outputs[0].label;
-        // console.log("e.target: "+ $(e.target));
         console.log("label: "+label);
         console.log("id: "+id);
         console.log("labelOutput: "+labelOutput);
 	},
+
 	/*'click #closeAttrs'() {
 		$('#attrs').css('display', 'none');
 		$('#workspace').removeClass('col-md-7');
