@@ -122,6 +122,7 @@ $.widget("ui.nodeEditor", {
                     });
 
                     obj.attr('id', '');
+                    obj.append("<span id='closeAttrs' title='Eliminar nodo'>x</span>");
                     obj.addClass("dropped");
                 }
             });
