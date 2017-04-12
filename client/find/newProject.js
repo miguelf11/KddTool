@@ -55,11 +55,10 @@ Template.newProject.events({
 
 								// console.log(res.data.columns);
 								columns = res.data.columns;
-								console.log(columns);
+								// console.log(columns);
 								var data_types =[];
 
 								for (var i=1;i<columns.length;i++){
-									console.log(columns[i]);
 									var column = Columns.findOne({datasetId: dataset, name: columns[i]});
 									console.log(column);
 									if(column != undefined){
@@ -120,6 +119,6 @@ Template.newProject.events({
   	},
 	'click .btn-back' (event, template) {
     	event.preventDefault();
-   		FlowRouter.go('datasets');
+   		FlowRouter.go('proyectos');
   	},
 })

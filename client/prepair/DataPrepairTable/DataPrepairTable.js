@@ -23,9 +23,7 @@ Template.DataPrepairTable.onCreated(function(){
 		if(err){
 			alert("no data");
 		}
-	});	
-
-
+	});
 });
 
 Template.DataPrepairTable.helpers({
@@ -93,7 +91,7 @@ Template.DataPrepairTable.helpers({
       if(data_types[i].name == column_name && data_types[i].active == true){
         data_type_final = data_types[i].type;
         switch(data_type_final){
-        	case 'Carácteres':
+        	case 'String':
         		data_type_final_true = 'VARCHAR';
         		break;
         	case 'Entero':
