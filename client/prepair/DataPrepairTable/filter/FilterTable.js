@@ -16,54 +16,97 @@ Template.DataPrepairTable.events({
 	},
 
 	'click #filter_numeric' () {
-		let filter 			= $('#filter_numeric_by').val();
-		let value 			= $('#filter_numeric_value').val();
-		let id 				= FlowRouter.getParam('id');
-		let column 			= $('#filter_numeric').data('column');
-		let project_address = Projects.findOne({_id:id}).current_version_address;
-
+		var filter 			= $('#filter_numeric_by').val();
+		var value 			= $('#filter_numeric_value').val();
+		var id 				= FlowRouter.getParam('id');
+		var column 			= $('#filter_numeric').data('column');
+		var project_address = Projects.findOne({_id:id}).current_version_address;
+		var old_version_address = Projects.findOne({_id:id}).current_version_address;
+		var new_version_address = Projects.findOne({_id:id}).address;
+		new_version_address = new_version_address+"/version"+Date.now();
 		// console.log(column+filter+value);
 
-		Meteor.call('queryDataDrillFilterBy',column,filter,value,project_address, function (err, res) {
+		
+
+		Meteor.call('queryDataDrillFilterBy',new_version_address,old_version_address,column,filter,value, function (err, res) {
 			if(res.statusCode == 200){
-				$("#filterModal").modal('hide');
-				$('#filterModal #numeric').css('display', 'none');
-				Session.set('data_project',res.data.rows);
+				var versions = Projects.findOne({_id:id}).prepair_versions;
+				console.log(versions);
+				versions.unshift(new_version_address);
+				console.log(versions);
+				var new_version = Projects.update({_id:id},{$set:{current_version_address:new_version_address,prepair_versions:versions}});
+				console.log(new_version);
+
+				if (new_version){
+					Meteor.call('queryDataDrill',new_version_address, function(err,res){
+						if(res.statusCode == 200){
+							$("#filterModal").modal('hide');
+							$('#filterModal #numeric').css('display', 'none');
+
+							Session.set('data_project',res.data.rows);
+							Session.set('data_keys',res.data.columns);
+						}
+						if(err){
+							alert("No se pudo filtrar vuelva a intentarlo");
+						}
+					});
+				}
 			}
 			if(err){
-				alert("No se pudo filtrar vuelva a intentarlo!");
+				alert("No se pudo filtrar vuelva a intentarlo");
 			}
 		});
-
-
 	},
 
 	'click #filter_string' () {
-		let option 			= $('#filter_string_by').val();
-		let value 			= $('#filter_string_value').val();
-		let id 				= FlowRouter.getParam('id');
-		let column 			= $('#filter_string').data('column');
-		let project_address = Projects.findOne({_id:id}).current_version_address;
-		let filter 			= 'like';
+		var option 			= $('#filter_string_by').val();
+		var value 			= $('#filter_string_value').val();
+		var id 				= FlowRouter.getParam('id');
+		var column 			= $('#filter_string').data('column');
+		var project_address = Projects.findOne({_id:id}).current_version_address;
+		var filter 			= 'like';
+		var old_version_address = Projects.findOne({_id:id}).current_version_address;
+		var new_version_address = Projects.findOne({_id:id}).address;
+		new_version_address = new_version_address+"/version"+Date.now();
 
 		if (option == 'SW') {
 			value = "'"+value+"%'";
 		} else if (option == 'EW') {
 			value = "'%"+value+"'";
+		} else if (option == 'EQ') {
+			value = "'"+value+"'";
 		} else if (option == 'CT') {
 			value = "'%"+value+"%'";
 		}
 
 		// console.log(column+filter+value);
 
-		Meteor.call('queryDataDrillFilterBy',column,filter,value,project_address, function (err, res) {
+		Meteor.call('queryDataDrillFilterBy',new_version_address,old_version_address,column,filter,value, function (err, res) {
 			if(res.statusCode == 200){
-				$("#filterModal").modal('hide');
-				$('#filterModal #string').css('display', 'none');
-				Session.set('data_project',res.data.rows);
+				var versions = Projects.findOne({_id:id}).prepair_versions;
+				console.log(versions);
+				versions.unshift(new_version_address);
+				console.log(versions);
+				var new_version = Projects.update({_id:id},{$set:{current_version_address:new_version_address,prepair_versions:versions}});
+				console.log(new_version);
+
+				if (new_version){
+					Meteor.call('queryDataDrill',new_version_address, function(err,res){
+						if(res.statusCode == 200){
+							$("#filterModal").modal('hide');
+							$('#filterModal #string').css('display', 'none');
+
+							Session.set('data_project',res.data.rows);
+							Session.set('data_keys',res.data.columns);
+						}
+						if(err){
+							alert("No se pudo filtrar vuelva a intentarlo");
+						}
+					});
+				}
 			}
 			if(err){
-				alert("No se pudo filtrar vuelva a intentarlo!");
+				alert("No se pudo filtrar vuelva a intentarlo");
 			}
 		});
 	},
