@@ -27,6 +27,7 @@ Template.newDataset.events({
 			dirHdfs=cluster_root+"/datasets/"+nameFile;
 			Meteor.call('createDatasetInHDFS',nameFile,dirLocal,dirHdfs,function(err3,res3){
 				// console.log(res3);
+				for(var i = 0; i < 3000; i++){console.log(i);}
 				if(res3==true){
 					console.log('subido a hdfs');
 					Meteor.call('queryDatasetRows',dirHdfs, function(err1,res1){
