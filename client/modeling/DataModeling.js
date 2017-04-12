@@ -163,12 +163,16 @@ Template.DataModeling.events({
         //$('#attrs').css('display', 'block');
     },
     'click #closeAttrs': function(e) {
-        console.log($(e.currentTarget).parent());
-        $(e.currentTarget).parent().remove()
+        // console.log($(e.currentTarget).parent());
         //$(this).parent(".ui-nodeEditor-Node").fadeOut(300);
-        $('#Aparams').text("");
-        $('.new-elements').remove();        
+        $(e.currentTarget).parent().fadeOut(300);
+        if ($('#Aparams').text() == $(e.currentTarget).parent().data('node').label || !$('#Aparams').text()) {
+            $('#Aparams').text("");
+            $('.new-elements').remove();
+        }
+        e.stopPropagation();
     },
+
     'click .ui-nodeEditor-Node': function(e) {
         var currentNode = $(e.currentTarget);
         var label = currentNode.data('node').label;
@@ -180,14 +184,14 @@ Template.DataModeling.events({
         $('.new-elements').remove();
         $('#Aparams').text(label);
         $(".attrs-table").append("<tr class='new-elements'><td>"+labelOutput+"</td></tr>");
-        console.log("Cable "+Object.keys(currentNode.closest('.ui-nodeEditor-wire')));
-        console.log("Cable ###### "+currentNode.closest('.ui-nodeEditor-wire'));
-        console.log("Cable length "+currentNode.closest('.ui-nodeEditor-wire').length);
-        console.log("Cable prevObject obj "+currentNode.closest('.ui-nodeEditor-wire').prevObject);
-        console.log("Cable prevObject  "+Object.keys(currentNode.closest('.ui-nodeEditor-wire').prevObject));
-        console.log("Cable obj"+currentNode.closest('.ui-nodeEditor-wire').context);
-        console.log("Cable "+Object.keys(currentNode.closest('.ui-nodeEditor-wire').context));
-        currentNode.closest('.ui-nodeEditor-wire').hide();
+        // console.log("Cable "+Object.keys(currentNode.closest('.ui-nodeEditor-wire')));
+        // console.log("Cable ###### "+currentNode.closest('.ui-nodeEditor-wire'));
+        // console.log("Cable length "+currentNode.closest('.ui-nodeEditor-wire').length);
+        // console.log("Cable prevObject obj "+currentNode.closest('.ui-nodeEditor-wire').prevObject);
+        // console.log("Cable prevObject  "+Object.keys(currentNode.closest('.ui-nodeEditor-wire').prevObject));
+        // console.log("Cable obj"+currentNode.closest('.ui-nodeEditor-wire').context);
+        // console.log("Cable "+Object.keys(currentNode.closest('.ui-nodeEditor-wire').context));
+        // currentNode.closest('.ui-nodeEditor-wire').hide();
     },
     /*'click #closeAttrs'() {
 		$('#attrs').css('display', 'none');

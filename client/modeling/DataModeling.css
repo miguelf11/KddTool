@@ -58,8 +58,10 @@
 #Aparams {
     font-weight: bold;
     font-size: 20px;
+    text-transform: capitalize;
 }
 
 .hide-IO {
 	display: none;
 }
+
