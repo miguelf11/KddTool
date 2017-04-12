@@ -107,13 +107,13 @@ Template.DataModeling.onRendered(function(){
 
 							    Meteor.call('example1', inputs.A, inputs.B, function(error, result){
 							       	if(error){
-							            console.log(error);
+							            // console.log(error);
 							        } else {
 							            // console.log(result);
 							            //out = JSON.stringify(result);
 							            out = result;
 							            //console.log("salidaaaaaaaaaaaa,  "+JSON.stringify(result));
-							            console.log("salidaaaaaaaaaaaa,  "+result);
+							            // console.log("salidaaaaaaaaaaaa,  "+result);
 							        }
 							    });
 
@@ -170,15 +170,24 @@ Template.DataModeling.events({
         $('.new-elements').remove();        
     },
     'click .ui-nodeEditor-Node': function(e) {
-        var label = $(e.currentTarget).data('node').label;
-        var id = $(e.currentTarget).data('node').id;
+        var currentNode = $(e.currentTarget);
+        var label = currentNode.data('node').label;
+        var id = currentNode.data('node').id;
         //var attrsInput = $(e.currentTarget).data('node').inputs[0].attrs;
-        var labelOutput = $(e.currentTarget).data('node').outputs[0].label;
+        var labelOutput = currentNode.data('node').outputs[0].label;
         console.log("label: "+label);
         console.log("labelOutput: "+labelOutput);
         $('.new-elements').remove();
         $('#Aparams').text(label);
         $(".attrs-table").append("<tr class='new-elements'><td>"+labelOutput+"</td></tr>");
+        console.log("Cable "+Object.keys(currentNode.closest('.ui-nodeEditor-wire')));
+        console.log("Cable ###### "+currentNode.closest('.ui-nodeEditor-wire'));
+        console.log("Cable length "+currentNode.closest('.ui-nodeEditor-wire').length);
+        console.log("Cable prevObject obj "+currentNode.closest('.ui-nodeEditor-wire').prevObject);
+        console.log("Cable prevObject  "+Object.keys(currentNode.closest('.ui-nodeEditor-wire').prevObject));
+        console.log("Cable obj"+currentNode.closest('.ui-nodeEditor-wire').context);
+        console.log("Cable "+Object.keys(currentNode.closest('.ui-nodeEditor-wire').context));
+        currentNode.closest('.ui-nodeEditor-wire').hide();
     },
     /*'click #closeAttrs'() {
 		$('#attrs').css('display', 'none');

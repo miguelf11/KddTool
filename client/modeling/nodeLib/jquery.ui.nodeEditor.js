@@ -108,7 +108,6 @@ $.widget("ui.nodeEditor", {
                     var pos = $(ui.helper).position();
                     var obj = $('#clone');
                     var obj2 = $('#clone > .ui-nodeEditor-nodeIO');
-                    var obj3 = $('#clone > div:first-child');
                     obj.css({
                         'left': pos.left,
                         'top':  pos.top
@@ -124,7 +123,6 @@ $.widget("ui.nodeEditor", {
                     obj.append("<span id='closeAttrs' title='Eliminar nodo'>x</span>");
                     obj.addClass("dropped");
                     obj2.removeClass("hide-IO");
-                    obj3.css('border-bottom':'1px solid');
                 }
             });
 
