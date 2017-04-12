@@ -51,6 +51,11 @@ Template.DataModeling.onRendered(function(){
                         {
                             label: 'Rtest2',
                             fn: function(nodeState) {
+                                console.log("NODESTATE ES: "+Object.keys(nodeState));
+                                console.log("NODESTATE ES: "+Object.keys(nodeState.inputs));
+                                console.log("NODESTATE ES: "+nodeState.inputs.dataset);
+                                console.log("NODESTATE ES: "+Object.keys(nodeState.properties));
+
                                 var d = $.Deferred();
                             
                                 var out;
@@ -59,10 +64,10 @@ Template.DataModeling.onRendered(function(){
                                     if(error){
                                         console.log(error);
                                     } else {
-                                        console.log(result);
+                                        // console.log(result);
                                         out = result;
-                                        console.log("json.stringify,  "+JSON.stringify(result));
-                                        console.log("salidaaaaaaaaaaaa,  "+result);
+                                        // console.log("json.stringify,  "+JSON.stringify(result));
+                                        // console.log("salidaaaaaaaaaaaa,  "+result);
                                     }
                                 });
                                 d.resolve(out);
@@ -157,15 +162,13 @@ Template.DataModeling.helpers({
 });
 
 Template.DataModeling.events({
-	'click #preparedData'() {
-		//$('#workspace').removeClass('col-md-10');
-		//$('#workspace').addClass('col-md-7');
-        //$('#attrs').css('display', 'block');
-    },
-    'click #closeAttrs': function(e) {
-        // console.log($(e.currentTarget).parent());
-        //$(this).parent(".ui-nodeEditor-Node").fadeOut(300);
-        $(e.currentTarget).parent().fadeOut(300);
+	'click #closeAttrs': function(e) {
+        $(e.currentTarget).parent().fadeOut(300, function() {
+            $(this).remove();
+        });
+        console.log("Parent: "+Object.keys($(e.currentTarget).parent()));
+        console.log("NextAll: "+Object.keys($(e.currentTarget).nextAll('.ui-nodeEditor-wire')));
+        $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire').remove();
         if ($('#Aparams').text() == $(e.currentTarget).parent().data('node').label || !$('#Aparams').text()) {
             $('#Aparams').text("");
             $('.new-elements').remove();
@@ -184,20 +187,14 @@ Template.DataModeling.events({
         $('.new-elements').remove();
         $('#Aparams').text(label);
         $(".attrs-table").append("<tr class='new-elements'><td>"+labelOutput+"</td></tr>");
-        // console.log("Cable "+Object.keys(currentNode.closest('.ui-nodeEditor-wire')));
-        // console.log("Cable ###### "+currentNode.closest('.ui-nodeEditor-wire'));
-        // console.log("Cable length "+currentNode.closest('.ui-nodeEditor-wire').length);
-        // console.log("Cable prevObject obj "+currentNode.closest('.ui-nodeEditor-wire').prevObject);
-        // console.log("Cable prevObject  "+Object.keys(currentNode.closest('.ui-nodeEditor-wire').prevObject));
-        // console.log("Cable obj"+currentNode.closest('.ui-nodeEditor-wire').context);
-        // console.log("Cable "+Object.keys(currentNode.closest('.ui-nodeEditor-wire').context));
-        // currentNode.closest('.ui-nodeEditor-wire').hide();
+        // console.log("DATA CABLEEE: obj"+currentNode.find('.ui-nodeEditor-nodeInput'));
+        // console.log("DATA CABLEEE: "+Object.keys(currentNode.find('.ui-nodeEditor-nodeInput')));
+        // console.log("DATA CABLEEE inputs: "+currentNode.data('node').inputs);
+        // console.log("DATA CABLEEE inputs obj: "+Object.keys(currentNode.data('node').inputs[0]));
+        // console.log("DATA CABLEEE outputs obj: "+Object.keys(currentNode.data('node').outputs[0]));
+
+
     },
-    /*'click #closeAttrs'() {
-		$('#attrs').css('display', 'none');
-		$('#workspace').removeClass('col-md-7');
-		$('#workspace').addClass('col-md-10');
-	}*/
 
 
 });
