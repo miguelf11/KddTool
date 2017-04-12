@@ -89,7 +89,7 @@ Template.newDataset.events({
 							});
 						}else{
 							$(".backdrop").css('display','none');
-							alert("Este archivo supera la capacidad de memoria asignada en el clúster!!!");
+							alert("Memoria superada en el clúster... Intente nuevamente!!!");
 							Meteor.call('removeHdfsFolder',dirHdfs);
 						}
 						if(err1){

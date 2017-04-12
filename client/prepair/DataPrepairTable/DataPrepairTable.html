@@ -15,6 +15,7 @@
 				<ul class="dropdown-menu dropdown-menu-first no-padding-top">
 					<li class="data-type padding-top-mini {{data_type_drill this}}"><label>{{data_type_name this}}</label> </li>
 					<li class="dropdown-submenu">
+						<<<<<<< HEAD
 						<a tabindex="-1" href="#"><i class="fa fa-sort" aria-hidden="true"></i> Ordenar...</a>
 						<ul class="dropdown-menu">
 							<li><a href="" value="{{this}}" class="order-up" rel="{{data_type_name this}}"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i> Menor a Mayor</a></li>
@@ -36,106 +37,72 @@
 					</li>
 					<li class='disabled'><a href="#"><i class="fa fa-minus-circle" aria-hidden="true"></i> Eliminar Campo</a></li>
 				</ul>
-			</div>
-		</th>
-		{{/if}}
-		{{/each}}
-	</thead>
-	<tbody>
-		{{#each data_project}}
-		<tr>
-			<!-- <td class="checkbox-field"><input type="checkbox" name="oneRow" value="oneRow"></td> -->
-			{{#each rowContent this}}
-			{{#if isFirst @index}}
-			<td class="checkbox-field"><input type="checkbox" name="oneRow" value="{{this}}"></td>
+				=======
+				<a tabindex="-1" href="#"><i class="fa fa-sort" aria-hidden="true"></i> Ordenar...</a>
+				<ul class="dropdown-menu">
+					<li><a href="" value="{{this}}" class="order-up" rel="{{data_type_name this}}"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i> Menor a Mayor</a></li>
+					<li><a href="" value="{{this}}" class="order-down" rel="{{data_type_name this}}"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Mayor a Menor</a></li>
+				</ul>
+			</li>
+			<li class="dropdown-submenu">
+				<a tabindex="-1" href="#"><i class="fa fa-filter" aria-hidden="true"></i> Filtrar por...</a>
+				<ul class="dropdown-menu">
+					<li><a tabindex="-1" href="#">Second level</a></li>
+					<li class="dropdown-submenu">
+						<a href="#">Even More..</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">3rd level</a></li>
+							<li><a href="#">3rd level</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Second level</a></li>
+					<li><a href="#">Second level</a></li>
+				</ul>
+			</li>
+			{{#if typeOfModalNumber this}}
+			<li><a href="#" class="explore-number" value="{{this}}" data-toggle="modal" data-target="#exploreModalNumber" data-id="{{this}}" data-type="{{data_type_drill this}}"><i class="fa fa-search" aria-hidden="true"></i> Explorar</a></li>
 			{{else}}
-			<td>{{this}}</td>
-			{{/if}}		
-			{{/each}}	
-		</tr>
-		{{/each}}
-	</tbody>
+			<li><a href="#" class="explore-string" value="{{this}}" data-toggle="modal" data-target="#exploreModalString" data-id="{{this}}" data-type="{{data_type_drill this}}"><i class="fa fa-search" aria-hidden="true"></i> Explorar</a></li>
+			{{/if}}	
+			<li class="dropdown-submenu">
+				<a tabindex="-1" href="#"><i class="fa fa-sliders" aria-hidden="true"></i> Tipo de Dato</a>
+				<ul class="dropdown-menu">
+					<li><a href="#" value="{{this}}" class="change-type" rel="Entero" data-name="{{this}}">Entero</a></li> 
+					<li><a href="#" value="{{this}}" class="change-type" rel="Decimal" data-name="{{this}}">Decimal</a></li>
+					<li><a href="#" value="{{this}}" class="change-type" rel="Caractéres" data-name="{{this}}">Caractéres</a></li>
+					<li class='disabled'><a href="#" value="{{this}}" class="change-type" rel="Fecha" data-name="{{this}}">Fecha</a></li>
+				</ul>
+			</li>
+			<li class='disabled'><a href="#"><i class="fa fa-minus-circle" aria-hidden="true"></i> Eliminar Campo</a></li>
+		</ul>
+		>>>>>>> b3895c568041ced73e41061278b8f1de7ec17121
+	</div>
+</th>
+{{/if}}
+{{/each}}
+</thead>
+<tbody>
+	{{#each data_project}}
+	<tr>
+		<!-- <td class="checkbox-field"><input type="checkbox" name="oneRow" value="oneRow"></td> -->
+		{{#each rowContent this}}
+		{{#if isFirst @index}}
+		<td class="checkbox-field"><input type="checkbox" name="oneRow" value="{{this}}"></td>
+		{{else}}
+		<td>{{this}}</td>
+		{{/if}}		
+		{{/each}}	
+	</tr>
+	{{/each}}
+</tbody>
 </table>
 {{else}}
 <div class="margin-top-double row">
 	{{> Loader}}
 </div>
 {{/if}}
-<div class="modal fade" id="exploreModal" tabindex="-1" role="dialog" aria-labelledby="exploreModal">
-	<div class="modal-dialog" role="document" style="transform: translate(0, 50%);">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title text-bold"></h4>
-			</div>
-			<div class="modal-body">
-				<!-- <p>Todos los datos del campo a explorar</p> -->
-				<ul>
-					<li>Valor Máximo: <label id="maxValue" class="text-bold"></label></li>
-					<li>Valor Mínimo: <label id="minValue" class="text-bold"></label></li>
-					<li>Valor Promedio: <label id="avgValue" class="text-bold"></label></li>
-				</ul>
-			</div>
-				<!-- <div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-					<button id="delete" type="button" class="btn btn-primary">Confirmar</button>
-			
-				</div> -->
-			</div>
-		</div>
-	</div>
 
-	<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exploreModal">
-		<div class="modal-dialog" role="document" style="transform: translate(0, 50%);">
-			<div class="modal-content" id="numeric" style="display: none;">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title text-bold">Filtrar</h4>
-				</div>
-				<div class="modal-body row">
-					<!-- <p>Todos los datos del campo a explorar</p> -->
-					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-						<select name="filterBy" id="filter_numeric_by">
-							<option value=">">Mayor que</option>
-							<option value="<">Menor que</option>
-							<option value="=">Igual a</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-						<input type="text" name="filterValue" id="filter_numeric_value">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default closeFilter" data-dismiss="modal">Cancelar</button>
-					<button id="filter_numeric" data-column="" type="button" class="btn btn-primary">Filtrar</button>
-				</div>
-			</div>
-
-
-			<div class="modal-content" id="string" style="display: none;">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title text-bold">Filtrar</h4>
-				</div>
-				<div class="modal-body row">
-					<!-- <p>Todos los datos del campo a explorar</p> -->
-					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-						<select name="filterBy" id="filter_string_by">
-							<option value="SW">Inicie con</option>
-							<option value="EW">Termine con</option>
-							<option value="EQ">Igual a</option>
-							<option value="CT">Contenga</option>
-						</select>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-						<input type="text" name="filterValue" id="filter_string_value">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default closeFilter" data-dismiss="modal">Cancelar</button>
-					<button id="filter_string" data-column="" type="button" class="btn btn-primary">Filtrar</button>
-				</div>
-			</div>
-		</div>
-	</div>
+{{> exploreModalNumber}}
+{{> exploreModalString}}
+{{> filterModal}}
 </template>

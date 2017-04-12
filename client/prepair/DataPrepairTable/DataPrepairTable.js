@@ -108,6 +108,27 @@ Template.DataPrepairTable.helpers({
     return data_type_final_true;
   },
 
+  	typeOfModalNumber:(column_name)=>{
+		var project_id = FlowRouter.getParam('id');
+	    var data_types = Projects.findOne({_id:project_id},{fields: {'data_types':1}});
+	    // console.log(data_types.data_types[0].name);
+	    data_types = data_types.data_types;
+	    var data_type_final = '';
+	    for (var i=0;i<data_types.length;i++){
+	      if(data_types[i].name == column_name && data_types[i].active == true){
+	        data_type_final = data_types[i].type;
+	        break;
+	      }
+	    }
+
+	    if (data_type_final == 'Entero' || data_type_final == 'Decimal'){
+	    	return true;
+	    }else{
+	    	return false;
+	    } 
+	},
+
+
 
 });
 

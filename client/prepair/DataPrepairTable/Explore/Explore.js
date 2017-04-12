@@ -3,7 +3,7 @@ Template.DataPrepairTable.events({
             // console.log('show modal');
 
       },
-      'click .explore' (event, template) {
+      'click .explore-number' (event, template) {
             event.preventDefault();
             var column = $(event.currentTarget).attr("value");
             console.log(column);
@@ -67,5 +67,26 @@ Template.DataPrepairTable.events({
             // $( ".sort-inserted" ).remove();
 
       },
+      'click .explore-string' (event, template) {
+            event.preventDefault();
+            var column = $(event.currentTarget).attr("value");
+            console.log(column);
+            var id = FlowRouter.getParam('id');
+            var project_address = Projects.findOne({_id:id}).current_version_address;
+            $('.modal-title').text(column);
+          
+            Meteor.call('queryExploreString',column,project_address,function(err,res){
+              if(res.statusCode == 200){
+                console.log(res.data.rows);
+                Session.set('data_explore_string',res.data.rows);
+                Session.set('data_explore_string_keys',res.data.columns);
+              }else{
+                
+              }
+              if(err){
+                alert("Error en columna!");
+              }
+            });
 
+      },
 });

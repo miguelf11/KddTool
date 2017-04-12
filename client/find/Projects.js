@@ -42,16 +42,19 @@ Template.Projects.events({
    				Meteor.call('removeProject',id_project, function(err2,res2){
 					// console.log(res2);
 					if(res2){
-						alert("El proyecto ha sido eliminado exitosamente!!!");
+						// alert("El proyecto ha sido eliminado exitosamente!!!");
 						$("#deleteModal").modal('hide');
 					}else{
+						$("#deleteModal").modal('hide');
 						alert("No se ha podido eliminar el proyecto!!!");
 					}
 					if(err2){
+						$("#deleteModal").modal('hide');
 						alert("No se ha podido eliminar el proyecto!!!");
 					}
 				});	
    			}else{
+   				$("#deleteModal").modal('hide');
    				alert("No se ha podido eliminar el proyecto!!!");
    			}
    			if(err){
