@@ -160,24 +160,24 @@ Template.DataModeling.events({
 	'click #preparedData'() {
 		//$('#workspace').removeClass('col-md-10');
 		//$('#workspace').addClass('col-md-7');
-		//$('#attrs').css('display', 'block');
-	},
-	'click .ui-nodeEditor-Node': function(e) {
-
+        //$('#attrs').css('display', 'block');
+    },
+    'click #closeAttrs': function(e) {
+        console.log($(e.currentTarget).parent());
+        $(e.currentTarget).parent().remove()
+        //$(this).parent(".ui-nodeEditor-Node").fadeOut(300);
+        $('#Aparams').text("");
+        $('.new-elements').remove();        
+    },
+    'click .ui-nodeEditor-Node': function(e) {
         var label = $(e.currentTarget).data('node').label;
         var id = $(e.currentTarget).data('node').id;
         //var attrsInput = $(e.currentTarget).data('node').inputs[0].attrs;
         var labelOutput = $(e.currentTarget).data('node').outputs[0].label;
         console.log("label: "+label);
-        console.log("id: "+id);
         console.log("labelOutput: "+labelOutput);
-	},
-
-	/*'click #closeAttrs'() {
-        //console.log("ELEMENTOS DEL NODO: "+key($(e.currentTarget).data('node')));
-        //console.log("attrsInput: "+attrsInput);
         $('#Aparams').text(label);
-        $(".attrs-table").append("<tr><td>"+labelOutput+"</td></tr>");
+        $(".attrs-table").append("<tr class='new-elements'><td>"+labelOutput+"</td></tr>");
     },
     /*'click #closeAttrs'() {
 		$('#attrs').css('display', 'none');
