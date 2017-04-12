@@ -15,7 +15,7 @@
 				<ul class="dropdown-menu dropdown-menu-first no-padding-top">
 					<li class="data-type padding-top-mini {{data_type_drill this}}"><label>{{data_type_name this}}</label> </li>
 					<li class="dropdown-submenu">
-						<<<<<<< HEAD
+
 						<a tabindex="-1" href="#"><i class="fa fa-sort" aria-hidden="true"></i> Ordenar...</a>
 						<ul class="dropdown-menu">
 							<li><a href="" value="{{this}}" class="order-up" rel="{{data_type_name this}}"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i> Menor a Mayor</a></li>
@@ -25,7 +25,11 @@
 					<li>
 						<a tabindex="-1" href="#" class="filter" value={{this}} data-toggle="modal" data-target="#filterModal" data-id="{{this}}" data-type="{{data_type_drill this}}"><i class="fa fa-filter" aria-hidden="true"></i> Filtrar por...</a>
 					</li>
-					<li><a href="#" class="explore" value="{{this}}" data-toggle="modal" data-target="#exploreModal" data-id="{{this}}" data-type="{{data_type_drill this}}"><i class="fa fa-search" aria-hidden="true"></i> Explorar</a></li>
+					{{#if typeOfModalNumber this}}
+					<li><a href="#" class="explore-number" value="{{this}}" data-toggle="modal" data-target="#exploreModalNumber" data-id="{{this}}" data-type="{{data_type_drill this}}"><i class="fa fa-search" aria-hidden="true"></i> Explorar</a></li>
+					{{else}}
+					<li><a href="#" class="explore-string" value="{{this}}" data-toggle="modal" data-target="#exploreModalString" data-id="{{this}}" data-type="{{data_type_drill this}}"><i class="fa fa-search" aria-hidden="true"></i> Explorar</a></li>
+					{{/if}}	
 					<li class="dropdown-submenu">
 						<a tabindex="-1" href="#"><i class="fa fa-sliders" aria-hidden="true"></i> Tipo de Dato</a>
 						<ul class="dropdown-menu">
@@ -37,64 +41,25 @@
 					</li>
 					<li class='disabled'><a href="#"><i class="fa fa-minus-circle" aria-hidden="true"></i> Eliminar Campo</a></li>
 				</ul>
-				=======
-				<a tabindex="-1" href="#"><i class="fa fa-sort" aria-hidden="true"></i> Ordenar...</a>
-				<ul class="dropdown-menu">
-					<li><a href="" value="{{this}}" class="order-up" rel="{{data_type_name this}}"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i> Menor a Mayor</a></li>
-					<li><a href="" value="{{this}}" class="order-down" rel="{{data_type_name this}}"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Mayor a Menor</a></li>
-				</ul>
-			</li>
-			<li class="dropdown-submenu">
-				<a tabindex="-1" href="#"><i class="fa fa-filter" aria-hidden="true"></i> Filtrar por...</a>
-				<ul class="dropdown-menu">
-					<li><a tabindex="-1" href="#">Second level</a></li>
-					<li class="dropdown-submenu">
-						<a href="#">Even More..</a>
-						<ul class="dropdown-menu">
-							<li><a href="#">3rd level</a></li>
-							<li><a href="#">3rd level</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Second level</a></li>
-					<li><a href="#">Second level</a></li>
-				</ul>
-			</li>
-			{{#if typeOfModalNumber this}}
-			<li><a href="#" class="explore-number" value="{{this}}" data-toggle="modal" data-target="#exploreModalNumber" data-id="{{this}}" data-type="{{data_type_drill this}}"><i class="fa fa-search" aria-hidden="true"></i> Explorar</a></li>
+			</div>
+		</th>
+		{{/if}}
+		{{/each}}
+	</thead>
+	<tbody>
+		{{#each data_project}}
+		<tr>
+			<!-- <td class="checkbox-field"><input type="checkbox" name="oneRow" value="oneRow"></td> -->
+			{{#each rowContent this}}
+			{{#if isFirst @index}}
+			<td class="checkbox-field"><input type="checkbox" name="oneRow" value="{{this}}"></td>
 			{{else}}
-			<li><a href="#" class="explore-string" value="{{this}}" data-toggle="modal" data-target="#exploreModalString" data-id="{{this}}" data-type="{{data_type_drill this}}"><i class="fa fa-search" aria-hidden="true"></i> Explorar</a></li>
-			{{/if}}	
-			<li class="dropdown-submenu">
-				<a tabindex="-1" href="#"><i class="fa fa-sliders" aria-hidden="true"></i> Tipo de Dato</a>
-				<ul class="dropdown-menu">
-					<li><a href="#" value="{{this}}" class="change-type" rel="Entero" data-name="{{this}}">Entero</a></li> 
-					<li><a href="#" value="{{this}}" class="change-type" rel="Decimal" data-name="{{this}}">Decimal</a></li>
-					<li><a href="#" value="{{this}}" class="change-type" rel="Caractéres" data-name="{{this}}">Caractéres</a></li>
-					<li class='disabled'><a href="#" value="{{this}}" class="change-type" rel="Fecha" data-name="{{this}}">Fecha</a></li>
-				</ul>
-			</li>
-			<li class='disabled'><a href="#"><i class="fa fa-minus-circle" aria-hidden="true"></i> Eliminar Campo</a></li>
-		</ul>
-		>>>>>>> b3895c568041ced73e41061278b8f1de7ec17121
-	</div>
-</th>
-{{/if}}
-{{/each}}
-</thead>
-<tbody>
-	{{#each data_project}}
-	<tr>
-		<!-- <td class="checkbox-field"><input type="checkbox" name="oneRow" value="oneRow"></td> -->
-		{{#each rowContent this}}
-		{{#if isFirst @index}}
-		<td class="checkbox-field"><input type="checkbox" name="oneRow" value="{{this}}"></td>
-		{{else}}
-		<td>{{this}}</td>
-		{{/if}}		
-		{{/each}}	
-	</tr>
-	{{/each}}
-</tbody>
+			<td>{{this}}</td>
+			{{/if}}		
+			{{/each}}	
+		</tr>
+		{{/each}}
+	</tbody>
 </table>
 {{else}}
 <div class="margin-top-double row">
