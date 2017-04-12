@@ -54,7 +54,7 @@ Template.DataSets.events({
 						Meteor.call('removeColumn', id_dataset, function (err, res) {
 							if (res) {
 								$("#deleteModal").modal('hide');
-								alert("El conjunto ha sido eliminado exitosamente!!!");
+								// alert("El conjunto ha sido eliminado exitosamente!!!");
 							}
 							if (err) {
 								console.log(err);
@@ -62,16 +62,20 @@ Template.DataSets.events({
 							
 						});
 					}else{
+						$("#deleteModal").modal('hide');
 						alert("No se ha podido eliminar el conjunto!!!");
 					}
 					if(err2){
+						$("#deleteModal").modal('hide');
 						alert("No se ha podido eliminar el conjunto!!!");
 					}
 				});	
    			}else{
+   				$("#deleteModal").modal('hide');
    				alert("No se ha podido eliminar el conjunto!!!");
    			}
    			if(err){
+   				$("#deleteModal").modal('hide');
    				alert("No se ha podido eliminar el conjunto!!!");
    			}
    		});

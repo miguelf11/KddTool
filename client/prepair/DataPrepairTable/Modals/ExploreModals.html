@@ -26,15 +26,32 @@
 
 <template name='exploreModalString'>
 	<div class="modal fade" id="exploreModalString" tabindex="-1" role="dialog" aria-labelledby="exploreModalString">
-		<div class="modal-dialog" role="document" style="transform: translate(0, 50%);">
+		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<h4 class="modal-title text-bold"></h4>
 				</div>
 				<div class="modal-body">
-					<p>Todos los datos del campo a explorar string</p>
-					
+					<!-- <p>Todos los datos del campo a explorar string</p> -->
+					<div class="table-explore-content table-responsive">
+						<table class="table table-bordered table-condensed table-striped no-margin-bottom">
+							<thead>
+								{{#each table_header_explore}}
+									<th>{{this}}</th>
+								{{/each}}
+							</thead>
+							<tbody>
+								{{#each data_explore}}
+									<tr>
+										{{#each row_content_explore this}}
+											<td>{{this}}</td>
+										{{/each}}
+									</tr>
+								{{/each}}
+							</tbody>
+						</table>
+					</div>					
 				</div>
 				<!-- <div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
