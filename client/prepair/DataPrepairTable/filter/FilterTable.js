@@ -16,6 +16,7 @@ Template.DataPrepairTable.events({
 	},
 
 	'click #filter_numeric' () {
+		$(".backdrop").css('display','block');
 		var filter 			= $('#filter_numeric_by').val();
 		var value 			= $('#filter_numeric_value').val();
 		var id 				= FlowRouter.getParam('id');
@@ -45,20 +46,24 @@ Template.DataPrepairTable.events({
 
 							Session.set('data_project',res.data.rows);
 							Session.set('data_keys',res.data.columns);
+							$(".backdrop").css('display','none');
 						}
 						if(err){
+							$(".backdrop").css('display','none');
 							alert("No se pudo filtrar vuelva a intentarlo");
 						}
 					});
 				}
 			}
 			if(err){
+				$(".backdrop").css('display','none');
 				alert("No se pudo filtrar vuelva a intentarlo");
 			}
 		});
 	},
 
 	'click #filter_string' () {
+		$(".backdrop").css('display','block');
 		var option 			= $('#filter_string_by').val();
 		var value 			= $('#filter_string_value').val();
 		var id 				= FlowRouter.getParam('id');
@@ -98,14 +103,17 @@ Template.DataPrepairTable.events({
 
 							Session.set('data_project',res.data.rows);
 							Session.set('data_keys',res.data.columns);
+							$(".backdrop").css('display','none');
 						}
 						if(err){
+							$(".backdrop").css('display','none');
 							alert("No se pudo filtrar vuelva a intentarlo");
 						}
 					});
 				}
 			}
 			if(err){
+				$(".backdrop").css('display','none');
 				alert("No se pudo filtrar vuelva a intentarlo");
 			}
 		});
