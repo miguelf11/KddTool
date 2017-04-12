@@ -107,6 +107,8 @@ $.widget("ui.nodeEditor", {
                 stop: function (ev, ui) {
                     var pos = $(ui.helper).position();
                     var obj = $('#clone');
+                    var obj2 = $('#clone > .ui-nodeEditor-nodeIO');
+                    var obj3 = $('#clone > div:first-child');
                     obj.css({
                         'left': pos.left,
                         'top':  pos.top
@@ -121,6 +123,8 @@ $.widget("ui.nodeEditor", {
                     obj.attr('id', '');
                     obj.append("<span id='closeAttrs' title='Eliminar nodo'>x</span>");
                     obj.addClass("dropped");
+                    obj2.removeClass("hide-IO");
+                    obj3.css('border-bottom':'1px solid');
                 }
             });
 
@@ -137,7 +141,7 @@ $.widget("ui.nodeEditor", {
 
         node.inputs = node.inputs || [];
         $.each(node.inputs, function(idx, input) {
-            $('<div class="ui-nodeEditor-nodeIO ui-nodeEditor-nodeInput">' +
+            $('<div class="ui-nodeEditor-nodeIO ui-nodeEditor-nodeInput hide-IO">' +
                   '<div class="ui-nodeEditor-nodeConnector ui-nodeEditor-nodeInputConnector"></div>' +
                   '<div class="ui-nodeEditor-nodeInputLabel">' +
                       input.label + '</div>' +
@@ -152,7 +156,7 @@ $.widget("ui.nodeEditor", {
 
         node.outputs = node.outputs || [];
         $.each(node.outputs, function(idx, output) {
-            var outputDiv = $('<div class="ui-nodeEditor-nodeIO ui-nodeEditor-nodeOutput">' +
+            var outputDiv = $('<div class="ui-nodeEditor-nodeIO ui-nodeEditor-nodeOutput hide-IO">' +
                   '<div class="ui-nodeEditor-nodeOutputLabel">' +
                       output.label + '</div>' +
               '</div>')

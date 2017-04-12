@@ -176,6 +176,7 @@ Template.DataModeling.events({
         var labelOutput = $(e.currentTarget).data('node').outputs[0].label;
         console.log("label: "+label);
         console.log("labelOutput: "+labelOutput);
+        $('.new-elements').remove();
         $('#Aparams').text(label);
         $(".attrs-table").append("<tr class='new-elements'><td>"+labelOutput+"</td></tr>");
     },
