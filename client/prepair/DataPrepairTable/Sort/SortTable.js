@@ -6,8 +6,9 @@ Template.DataPrepairTable.events({
     	var order = 'asc';
     	// console.log(column);
    		// console.log('ordenar de menor a mayor');
-      $("<i class='fa fa-spinner fa-spin sort-inserted' aria-hidden='true'></i>").insertAfter("#"+column+" > label");
-   		var project_id = FlowRouter.getParam('id');
+      $("<i class='fa fa-circle-o-notch fa-spin sort-inserted' aria-hidden='true'></i>").insertAfter("#"+column+" > label");
+   		$( "body").unbind( "click" );
+      var project_id = FlowRouter.getParam('id');
    		var project_address = Projects.findOne({_id:project_id}).current_version_address;
 
       var data_type_final_true = '';
@@ -35,9 +36,11 @@ Template.DataPrepairTable.events({
     			$(".sort-inserted").remove();
           $(".fa-spinner").remove();
    				$("<i class='fa fa-caret-up padding-left-half sort-inserted' aria-hidden='true'></i>").insertAfter("#"+column+" > label");
+          $( "body").bind( "click" );
     		}else{
           alert("Error en tipo de dato de columna!");
           $( ".sort-inserted" ).remove();
+          $( "body").bind( "click" );
         }
     		if(err){
     			alert("No se pudo ordenar el tipo de dato!");
@@ -51,7 +54,8 @@ Template.DataPrepairTable.events({
     	var order = 'desc';
     	// console.log(column);
    		// console.log('ordenar de mayor a menor')
-      $("<i class='fa fa-spinner fa-spin padding-left-half-plus sort-inserted' aria-hidden='true'></i>").insertAfter("#"+column+" > label");
+      $("<i class='fa fa-circle-o-notch fa-spin padding-left-half-plus sort-inserted' aria-hidden='true'></i>").insertAfter("#"+column+" > label");
+      $( "body").unbind( "click" );
    		var project_id = FlowRouter.getParam('id');
    		var project_address = Projects.findOne({_id:project_id}).current_version_address;
    		console.log(project_address);
@@ -80,9 +84,11 @@ Template.DataPrepairTable.events({
     			Session.set('data_project',res.data.rows);
     			$( ".sort-inserted" ).remove();
    				$("<i class='fa fa-caret-down padding-left-half sort-inserted' aria-hidden='true'></i>").insertAfter("#"+column+" > label");
+          $( "body").bind( "click" );
     		}else{
           alert("Error en tipo de dato de columna!");
           $( ".sort-inserted" ).remove();
+          $( "body").bind( "click" );
         }
     		if(err){
     			alert("No se pudo ordenar el tipo de dato!");

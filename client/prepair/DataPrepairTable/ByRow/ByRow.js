@@ -6,7 +6,8 @@ Template.DataPrepairTable.events({
       });
 
       if (selected != ''){
-        $("<i class='fa fa-spinner fa-spin padding-left-half-plus sort-inserted' aria-hidden='true'></i>").insertAfter("#row_num");
+        $("<i class='fa fa-circle-o-notch fa-spin sort-inserted' aria-hidden='true'></i>").insertAfter("#row_num");
+        $( "body").unbind( "click" );
         selected = selected.substring(0, selected.length - 1);
 
         console.log(selected);
@@ -31,18 +32,21 @@ Template.DataPrepairTable.events({
                   Session.set('data_project',res.data.rows);
                   Session.set('data_keys',res.data.columns);
                   // alert("Se han eliminado los registros exitosamente!!!");
-                  $(".fa-spinner").remove();
+                  $(".fa-circle-o-notch").remove();
+                  $( "body").bind( "click" );
                 }
                 if(err){
                   alert("No se han podido eliminar los registros!!!");
                 }
               });
             }else{
+              $( "body").bind( "click" );
               alert("No se han podido eliminar los registros!!!");
             }
             
             // $("#deleteModal").modal('hide');
           }else{
+            $( "body").bind( "click" );
             alert("No se han podido eliminar los registros!!!");
           }
           if(err){
@@ -50,6 +54,7 @@ Template.DataPrepairTable.events({
           }
         });
       }else{
+        // $( "body").bind( "click" );
         alert("Debes seleccionar los registros a eliminar!!!");
       }
 
