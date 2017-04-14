@@ -19,3 +19,7 @@ Meteor.publish('single_project', function(id){
 Meteor.publish('all_columns', () => {
 	return Columns.find({});
 });
+
+Meteor.publish('all_users', () => {
+	return Meteor.users.find({}, { fields: {emails:1 }});
+});

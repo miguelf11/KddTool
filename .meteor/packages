@@ -29,7 +29,7 @@ raix:handlebar-helpers
 aldeed:collection2
 aldeed:autoform
 accounts-ui@1.1.9
-accounts-password@1.3.4
+accounts-password
 matb33:bootstrap-glyphicons
 # msavin:jetsetter
 zimme:active-route
