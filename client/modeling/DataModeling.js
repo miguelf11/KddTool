@@ -213,23 +213,27 @@ Template.DataModeling.events({
         // $(".attrs-table").append("<tr class='new-elements'><td>"+id+"</td></tr>");
 
 
-        $(".attrs-table").append('<form class= ".form" action="" onsubmit="this.action=get_action();"></form>')
-
+        $(".attrs-table")
+        .append("<tr class='new-elements'><td><form class= 'form' action='' onsubmit='this.action=get_action();''></form></td></tr>");
         if(parametros[0]) {
             for(var i in parametros) {   
+                console.log("parametros[i].value "+parametros[i].value);
                 name = parametros[i].key;
                 value = parametros[i].value;
-                var input = $("<input type='text' name="+name+" value="+value+">");
+                // var input = $("<input type='text' name="+name+" value="+value+">");
+                var input = "<input type='text' name="+name+" value="+parametros[i].value+">";
+                console.log("parametros[i].value "+input);
                 // $(".attrs-table").append("<tr class='new-elements'><td>"+name+"</td><td>"+value+"</td></tr>");
+                // $(".form").append("<tr class='new-elements'><td>"+name+"</td><td>"+input+"</td></tr>");
                 $(".form").append("<tr class='new-elements'><td>"+name+"</td><td>"+input+"</td></tr>");
             }
             $(".form").append("<input type='submit' value='Submit'>");
         }
 
-        var name = "deep";
-        var value = "5";
-        var input = $("<tr class='new-elements'><td><input type='text' name="+name+" value="+value+"></td></tr>");
-        $(".form").append("<tr class='new-elements'><td>"+name+"</td><td>"+input+"</td></tr>");
+        // var name = "deep";
+        // var value = "5";
+        // var input = $("<tr class='new-elements'><td><input type='text' name="+name+" value="+value+"></td></tr>");
+        // $(".form").append("<tr class='new-elements'><td>"+name+"</td><td>"+input+"</td></tr>");
 
 
     },
