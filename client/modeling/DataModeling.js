@@ -200,43 +200,28 @@ Template.DataModeling.events({
         var labelOutput = currentNode.data('node').outputs[0].label;
 
 
-        function get_action() { // inside script tags
-            return form_action;
-        }
-
-
         //var attrsInput = $(e.currentTarget).data('node').inputs[0].attrs;
         $('.new-elements').remove();
         $('#Aparams').text(label);
-        // $(".attrs-table").append("<tr class='new-elements'><td>"+labelOutput+"</td></tr>");
-        // $(".attrs-table").append("<tr class='new-elements'><td>"+label+"</td></tr>");
-        // $(".attrs-table").append("<tr class='new-elements'><td>"+id+"</td></tr>");
 
 
         $(".attrs-table")
-        .append("<tr class='new-elements'><td><form class= 'form' action='' onsubmit='this.action=get_action();''></form></td></tr>");
+        .append("<tr class='new-elements'><td><form class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
         if(parametros[0]) {
             for(var i in parametros) {   
-                console.log("parametros[i].value "+parametros[i].value);
                 name = parametros[i].key;
                 value = parametros[i].value;
-                // var input = $("<input type='text' name="+name+" value="+value+">");
-                var input = "<input type='text' name="+name+" value="+parametros[i].value+">";
-                console.log("parametros[i].value "+input);
-                // $(".attrs-table").append("<tr class='new-elements'><td>"+name+"</td><td>"+value+"</td></tr>");
-                // $(".form").append("<tr class='new-elements'><td>"+name+"</td><td>"+input+"</td></tr>");
+                var input = "<input type='text' name="+name+" value="+value+">";;
                 $(".form").append("<tr class='new-elements'><td>"+name+"</td><td>"+input+"</td></tr>");
             }
-            $(".form").append("<input type='submit' value='Submit'>");
+            $(".form").append("<input type='submit' id = 'submit' value='Submit' onclick='get_action()'>");
         }
-
-        // var name = "deep";
-        // var value = "5";
-        // var input = $("<tr class='new-elements'><td><input type='text' name="+name+" value="+value+"></td></tr>");
-        // $(".form").append("<tr class='new-elements'><td>"+name+"</td><td>"+input+"</td></tr>");
-
-
     },
+
+    'click #submit': function(e) {
+        alert("hola");
+    }
+
 });
 
 // Luego de realizar cualquier tarea en esta etapa se debe modificar el stage 
