@@ -232,8 +232,7 @@
 input,select{
     background: #FFF;
     border: solid 2px #EEE;
-    border-radius: 0px;
-    width: 100%; 
+    border-radius: 0px; 
     padding: 6px 10px;
     margin-bottom: 10px; 
 }
@@ -244,4 +243,8 @@ input,select{
 
 .modal-content > .modal-footer > button{
     border-radius: 0px;
+}
+
+#filter_numeric_value{
+    width: 100%;
 }
