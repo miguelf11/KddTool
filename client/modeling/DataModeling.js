@@ -26,6 +26,20 @@ Template.DataModeling.onRendered(function(){
                 {
                     label: 'datos',
                     id: 'id de datos',
+                    parametros : [
+                        {
+                            key: 'deep',
+                            value : '5'
+                        },
+                        {
+                            key: 'down',
+                            value : '7'
+                        },
+                        {
+                            key: 'cp',
+                            value : '5'
+                        }
+                    ],
                     outputs: [
                         {
                             label: 'dataset',
@@ -40,6 +54,7 @@ Template.DataModeling.onRendered(function(){
                 {
                     label: 'Arbol de decision',
                     id: 'id arbol',
+                    parametros: [],
                     inputs: [
                         {
                             id: 'dataset',
@@ -91,6 +106,7 @@ Template.DataModeling.onRendered(function(){
                             label: 'B'
                         }
                     ],
+                    parametros: [],
                     outputs: [
                         {
                             label: 'Rtest',
@@ -180,23 +196,43 @@ Template.DataModeling.events({
         var currentNode = $(e.currentTarget);
         var label = currentNode.data('node').label;
         var id = currentNode.data('node').id;
-        //var attrsInput = $(e.currentTarget).data('node').inputs[0].attrs;
+        var parametros = currentNode.data('node').parametros;
         var labelOutput = currentNode.data('node').outputs[0].label;
-        console.log("label: "+label);
-        console.log("labelOutput: "+labelOutput);
+
+
+        function get_action() { // inside script tags
+            return form_action;
+        }
+
+
+        //var attrsInput = $(e.currentTarget).data('node').inputs[0].attrs;
         $('.new-elements').remove();
         $('#Aparams').text(label);
-        $(".attrs-table").append("<tr class='new-elements'><td>"+labelOutput+"</td></tr>");
-        // console.log("DATA CABLEEE: obj"+currentNode.find('.ui-nodeEditor-nodeInput'));
-        // console.log("DATA CABLEEE: "+Object.keys(currentNode.find('.ui-nodeEditor-nodeInput')));
-        // console.log("DATA CABLEEE inputs: "+currentNode.data('node').inputs);
-        // console.log("DATA CABLEEE inputs obj: "+Object.keys(currentNode.data('node').inputs[0]));
-        // console.log("DATA CABLEEE outputs obj: "+Object.keys(currentNode.data('node').outputs[0]));
+        // $(".attrs-table").append("<tr class='new-elements'><td>"+labelOutput+"</td></tr>");
+        // $(".attrs-table").append("<tr class='new-elements'><td>"+label+"</td></tr>");
+        // $(".attrs-table").append("<tr class='new-elements'><td>"+id+"</td></tr>");
+
+
+        $(".attrs-table").append('<form class= ".form" action="" onsubmit="this.action=get_action();"></form>')
+
+        if(parametros[0]) {
+            for(var i in parametros) {   
+                name = parametros[i].key;
+                value = parametros[i].value;
+                var input = $("<input type='text' name="+name+" value="+value+">");
+                // $(".attrs-table").append("<tr class='new-elements'><td>"+name+"</td><td>"+value+"</td></tr>");
+                $(".form").append("<tr class='new-elements'><td>"+name+"</td><td>"+input+"</td></tr>");
+            }
+            $(".form").append("<input type='submit' value='Submit'>");
+        }
+
+        var name = "deep";
+        var value = "5";
+        var input = $("<tr class='new-elements'><td><input type='text' name="+name+" value="+value+"></td></tr>");
+        $(".form").append("<tr class='new-elements'><td>"+name+"</td><td>"+input+"</td></tr>");
 
 
     },
-
-
 });
 
 // Luego de realizar cualquier tarea en esta etapa se debe modificar el stage 
