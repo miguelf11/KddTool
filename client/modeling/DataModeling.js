@@ -29,15 +29,15 @@ Template.DataModeling.onRendered(function(){
                     parametros : [
                         {
                             key: 'deep',
-                            value : '5'
+                            value : 5
                         },
                         {
                             key: 'down',
-                            value : '7'
+                            value : 7
                         },
                         {
                             key: 'cp',
-                            value : '5'
+                            value : ["opcion 1", "opcion 2", "opcion 3"] 
                         }
                     ],
                     outputs: [
@@ -60,6 +60,24 @@ Template.DataModeling.onRendered(function(){
                             id: 'dataset',
                             label: 'dataset',
                             attrs: ["atributo1", "atributo2", "atributo3"]
+                        }
+                    ],
+                    parametros : [
+                        {
+                            key: 'deep',
+                            value : 5
+                        },
+                        {
+                            key: 'down',
+                            value : 7
+                        },
+                        {
+                            key: 'luz',
+                            value : 12
+                        },
+                        {
+                            key: 'cp',
+                            value : ["opcion 1", "opcion 2", "opcion 3"] 
                         }
                     ],
                     outputs: [
@@ -193,9 +211,12 @@ Template.DataModeling.events({
     },
 
     'click .ui-nodeEditor-Node': function(e) {
-        var currentNode = $(e.currentTarget);
+
+        // defining global for accesing from the next event
+        currentNode = $(e.currentTarget);
         var label = currentNode.data('node').label;
         var id = currentNode.data('node').id;
+
         var parametros = currentNode.data('node').parametros;
         var labelOutput = currentNode.data('node').outputs[0].label;
 
@@ -206,20 +227,40 @@ Template.DataModeling.events({
 
 
         $(".attrs-table")
-        .append("<tr class='new-elements'><td><form class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
+            .append("<tr class='new-elements'><td><form class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
         if(parametros[0]) {
             for(var i in parametros) {   
                 name = parametros[i].key;
                 value = parametros[i].value;
-                var input = "<input type='text' name="+name+" value="+value+">";;
-                $(".form").append("<tr class='new-elements'><td>"+name+"</td><td>"+input+"</td></tr>");
+                if ( Array.isArray(value) ) {
+                    var input = "<select id="+name+" name="+name+"/>";
+                    $(".form")
+                    .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
+                    $.each(value, function(a,b) {
+                        $(".form #"+name).append($("<option/>").attr("value", b).text(b));
+                    });          
+                } else {
+                    var input = "<input type='text' name="+name+" value="+value+">";                    
+                    $(".form").append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
+                }
             }
-            $(".form").append("<input type='submit' id = 'submit' value='Submit' onclick='get_action()'>");
+            $(".form").append("<br><input type='submit' id='submit' value='Submit'>");
         }
     },
 
     'click #submit': function(e) {
-        alert("hola");
+        var i = 0 ;
+        var node = currentNode.data('node');
+        $( ".new-elements input" ).each(function( index ) {
+            value = $( this ).val();
+            name = $( this ).attr("name");
+            if(value != "Submit"){
+                node.parametros[i].value = value;
+            }
+            i = i + 1;
+        });
+        currentNode.data('node',node);
+        currentNode = "";
     }
 
 });
