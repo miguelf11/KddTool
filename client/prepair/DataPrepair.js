@@ -27,6 +27,12 @@ Template.DataPrepair.helpers({
         var id = FlowRouter.getParam('id');
 		return Projects.findOne({_id:id});
 	},
+	num_rows:()=> {
+		return Session.get('num_rows');
+	},
+	num_fields:()=> {
+		return Session.get('num_fields');
+	},
 });
 
 Template.DataPrepair.events({

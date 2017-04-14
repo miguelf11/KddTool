@@ -98,6 +98,8 @@ Template.Nav.events({
                   Session.set('data_project',res.data.rows);
                   // Session.set('data_keys',Object.keys(res.data.rows[0]));
                   Session.set('data_keys',res.data.columns);
+                  Session.set('num_rows',res.data.rows.length);
+                  Session.set('num_fields',res.data.columns.length);
                   $(".backdrop").css('display','none');
                 }
                 if(err){

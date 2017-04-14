@@ -31,6 +31,8 @@ Template.DataPrepairTable.events({
                 if(res.statusCode == 200){
                   Session.set('data_project',res.data.rows);
                   Session.set('data_keys',res.data.columns);
+                  Session.set('num_rows',res.data.rows.length);
+                  Session.set('num_fields',res.data.columns.length);
                   // alert("Se han eliminado los registros exitosamente!!!");
                   $(".fa-circle-o-notch").remove();
                   $( "body").bind( "click" );

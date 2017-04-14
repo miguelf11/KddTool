@@ -6,19 +6,23 @@ Template.DataPrepairTable.onCreated(function(){
 		self.subscribe('single_project',id);
 		Session.set('projectId', id);
 		Session.set('data_project','');
-		Session.set('data_keys',''); 	
+		Session.set('data_keys','');
+		Session.set('num_rows','');
+		Session.set('num_fields',''); 	
 	});
 
 	var id = FlowRouter.getParam('id');
 	var project_address = Projects.findOne({_id:id}).current_version_address;
 	Meteor.call('queryDataDrill',project_address, function(err,res){
 		if(res.statusCode == 200){
-			// console.log(res.data.rows);
-			// console.log(res.data.columns);
+			console.log("cantidad de registros: "+res.data.rows.length);
+			console.log("cantidad de columnas: "+res.data.columns.length);
 			// response = res.data.rows[0].apellido;
 			Session.set('data_project',res.data.rows);
 			// Session.set('data_keys',Object.keys(res.data.rows[0]));
 			Session.set('data_keys',res.data.columns);
+			Session.set('num_rows',res.data.rows.length);
+			Session.set('num_fields',res.data.columns.length);
 		}
 		if(err){
 			alert("no data");
