@@ -29,15 +29,15 @@ Template.DataModeling.onRendered(function(){
                     parametros : [
                         {
                             key: 'deep',
-                            value : '5'
+                            value : 5
                         },
                         {
                             key: 'down',
-                            value : '7'
+                            value : 7
                         },
                         {
                             key: 'cp',
-                            value : '5'
+                            value : ["opcion 1", "opcion 2", "opcion 3"] 
                         }
                     ],
                     outputs: [
@@ -214,26 +214,25 @@ Template.DataModeling.events({
 
 
         $(".attrs-table")
-        .append("<tr class='new-elements'><td><form class= 'form' action='' onsubmit='this.action=get_action();''></form></td></tr>");
+        .append("<tr class='new-elements'><td><form class='form' action='' onsubmit='this.action=get_action();'></form></td></tr>");
         if(parametros[0]) {
             for(var i in parametros) {   
-                console.log("parametros[i].value "+parametros[i].value);
                 name = parametros[i].key;
                 value = parametros[i].value;
-                // var input = $("<input type='text' name="+name+" value="+value+">");
-                var input = "<input type='text' name="+name+" value="+parametros[i].value+">";
-                console.log("parametros[i].value "+input);
-                // $(".attrs-table").append("<tr class='new-elements'><td>"+name+"</td><td>"+value+"</td></tr>");
-                // $(".form").append("<tr class='new-elements'><td>"+name+"</td><td>"+input+"</td></tr>");
-                $(".form").append("<tr class='new-elements'><td>"+name+"</td><td>"+input+"</td></tr>");
+                if ( Array.isArray(value) ) {
+                    var input = "<select id="+name+" name="+name+"/>";
+                    $(".form")
+                    .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
+                    $.each(value, function(a,b) {
+                        $(".form #"+name).append($("<option/>").attr("value", b).text(b));
+                    });          
+                } else {
+                    var input = "<input type='text' name="+name+" value="+value+">";                    
+                    $(".form").append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
+                }
             }
-            $(".form").append("<input type='submit' value='Submit'>");
+            $(".form").append("<br><input type='submit' value='Submit'>");
         }
-
-        // var name = "deep";
-        // var value = "5";
-        // var input = $("<tr class='new-elements'><td><input type='text' name="+name+" value="+value+"></td></tr>");
-        // $(".form").append("<tr class='new-elements'><td>"+name+"</td><td>"+input+"</td></tr>");
 
 
     },
