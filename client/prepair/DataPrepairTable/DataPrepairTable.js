@@ -133,7 +133,10 @@ Template.DataPrepairTable.helpers({
 });
 
 Template.DataPrepairTable.events({
+	// 'click .undo-btn' (event, template) {
+	// 	console.log('deshacer');      
 
+ //    },
 
 });
 

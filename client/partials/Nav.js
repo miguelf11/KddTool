@@ -64,7 +64,63 @@ Template.Nav.events({
   },
   'click .undo-btn'(event, template) {
     event.preventDefault();
+    $(".backdrop").css('display','block');
     console.log('deshacer');
+
+    var project_id = FlowRouter.getParam('id');
+    console.log(project_id);
+
+    var versions = Projects.findOne({_id:project_id}).prepair_versions;
+
+    if (versions.length > 1){
+      // versions.unshift(new_version_address);
+      var version_to_remove = versions[0];
+      var current_version = versions[1];
+      console.log(versions);
+      console.log(version_to_remove);
+      console.log(current_version);
+      versions.shift();
+      console.log(versions);
+      Meteor.call('removeHdfsFolder',version_to_remove,function(err,res){
+        console.log(res);
+        if(res.statusCode == 200){
+            console.log('eliminado de hdfs');
+            // Session.set('data_project',res.data.rows);
+            var old_version = Projects.update({_id:project_id},{$set:{current_version_address:current_version,prepair_versions:versions}}); 
+            if (old_version){
+              // FlowRouter.go('preparacion', { id: project_id});
+              // $(".backdrop").css('display','none');
+              Meteor.call('queryDataDrill',current_version, function(err,res){
+                if(res.statusCode == 200){
+                  // console.log(res.data.rows);
+                  // console.log(res.data.columns);
+                  // response = res.data.rows[0].apellido;
+                  Session.set('data_project',res.data.rows);
+                  // Session.set('data_keys',Object.keys(res.data.rows[0]));
+                  Session.set('data_keys',res.data.columns);
+                  $(".backdrop").css('display','none');
+                }
+                if(err){
+                  alert("no data");
+                }
+              });  
+            }else{
+              $(".backdrop").css('display','none');
+              alert('No se ha podido revertir ninguna acción!!!');
+            }
+        }else{
+          $(".backdrop").css('display','none');
+          alert('No se ha podido revertir ninguna acción!!!');
+        }
+        if(err){
+          $(".backdrop").css('display','none');
+          alert('No se ha podido revertir ninguna acción!!!');
+        }
+      });       
+    }else{
+      $(".backdrop").css('display','none');
+      alert('No existe una versión previa para revertir!!!');
+    }
   },
   'click .save-btn'(event, template) {
     event.preventDefault();

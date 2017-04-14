@@ -19,6 +19,7 @@ Template.DataPrepair.onRendered(function(){
 	});
 	$('#preparacionTab').addClass('active');
 	$('#preparacionTab').removeClass('disabled');
+	$('.save-btn').addClass('hidden');
 });
 
 Template.DataPrepair.helpers({
@@ -29,12 +30,9 @@ Template.DataPrepair.helpers({
 });
 
 Template.DataPrepair.events({
-	// 'mouseover .actions-button'(e){
- //     	var p = $(e.currentTarget).popover({
- //     		html:true,
- //     		title: '<label>Acciones</label>',
- //     		content:'<a href="">hola</a>',
- //     	});
+	// 'click .undo-btn' (event, template) {
+	// 	console.log('deshacer');      
+
  //    },
 });
 
