@@ -3,6 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Accounts } from 'meteor/accounts-base';
 import { HTTP } from 'meteor/http';
 import { Meteor } from 'meteor/meteor';
+import { Email } from 'meteor/email';
 
 // import './main.html';
 

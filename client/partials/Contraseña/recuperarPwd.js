@@ -1,20 +1,11 @@
-Meteor.methods({
-  recoverPwd: () => {
-    
-  }
-});
-
 Template.recoverPwd.events({
   'submit form'(event, template) {
     // increment the counter when button is clicked
     event.preventDefault();
-    // var emailVar = template.find('#loginEmail').value;
-    // Meteor.call('recoverPwd');
-    // Meteor.loginWithPassword(emailVar,passwordVar, function(error){
-    //    	if(typeof error != typeof undefined){
-    // 		alert(error.reason);
-    // 	}
-    // });
+
+    var emailVar = template.find('#loginEmail').value;
+    Meteor.call('recoverPwd', emailVar);
+    FlowRouter.go('login');
   },
   'click .btn-login-to-register'(event) {
     // increment the counter when button is clicked

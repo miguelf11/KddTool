@@ -2,6 +2,7 @@ Template.Projects.onCreated(function(){
 	var self = this;
 	self.autorun(function(){
 		self.subscribe('my_projects');
+		self.subscribe('all_datasets');
 	});
 	Session.set('projectId', null);
 });
@@ -62,11 +63,23 @@ Template.Projects.events({
    			}
    		});
    	},
+
    	'show.bs.modal #deleteModal' (event) {
    		let button = $(event.relatedTarget);
    		let target = button.data('id');
 		// console.log(target);
 		// let modal = $(this);
 		$("#delete").data("target", target);
+	},
+
+	'show.bs.modal #viewModal' (event) {
+		let button 		= $(event.relatedTarget);
+		let id_project 	= button.data('id');
+		let that 		= Projects.findOne(id_project);
+		let ds 			= DataSets.findOne(that.dataset);
+
+		$('#pjName').text(that.name);
+		$('#pjDataset').text(ds.name);
+		$('#pjDesc').text(that.desc);
 	}
 });

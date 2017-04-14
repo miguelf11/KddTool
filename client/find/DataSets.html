@@ -9,12 +9,13 @@
 						<div class="each-project-section" id="{{_id}}">
 							{{#if isOwner _id}}
 							<ul class="actions">
+								<li><a href="" class="view-dataset" data-toggle="modal" data-target="#viewModal" data-id="{{_id}}" title="Ver Detalle"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
 								<li><a href="/datasets/{{_id}}" class="edit-dataset" data-toggle="tooltip" title="Editar conjunto"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
 								<li><a href="" class="delete-dataset" title="Eliminar conjunto" data-toggle="modal" data-target="#deleteModal" data-id="{{_id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
 							</ul>
 							{{/if}}
-							<h4 class="no-margin-top capitalize no-margin-bottom cutted-text">{{name}}</h4>
-							<p class="text-small cutted-text no-margin-bottom">{{desc}}</p>
+							<h4 class="no-margin-top capitalize no-margin-bottom cutted-text" style="margin-right: 45px;">Nombre: {{name}}</h4>
+							<p class="text-small cutted-text no-margin-bottom">Descripción: {{desc}}</p>
 							<span class="text-small">Número de Campos: </span><span class="text-bold text-small">{{num_fields}}</span><br>
 							<span class="text-small">Número de Registros: </span><span class="text-bold text-small">{{num_rows}}</span><br>
 							{{#if isPrivate _id}}
@@ -42,22 +43,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
-			<div class="modal-dialog" role="document" style="transform: translate(0, 50%);">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title">Borrar Conjunto de datos</h4>
-					</div>
-					<div class="modal-body">
-						<p>¿Está seguro que desea eliminar este conjunto de datos?</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						<button id="delete" type="button" class="btn btn-primary">Confirmar</button>
-					</div>
-				</div>
-			</div>
-		</div>
+		{{> deleteDsModal }}
+		{{> viewDsModal }}
 	</div>
 </template>

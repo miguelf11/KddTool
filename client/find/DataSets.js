@@ -84,7 +84,25 @@ Template.DataSets.events({
 		let button = $(event.relatedTarget);
 		let target = button.data('id');
 		// console.log(target);
-		let modal = $(this);
 		$("#delete").data("target", target);
+	},
+	
+	'show.bs.modal #viewModal' (event) {
+		let button 		= $(event.relatedTarget);
+		let id_dataset 	= button.data('id');
+		let that 		= DataSets.findOne(id_dataset);
+
+		$('#dsName').text(that.name);
+		$('#dsNfields').text(that.num_fields);
+		$('#dsNrows').text(that.num_rows);
+		$('#dsDesc').text(that.desc);
+
+		if (that.dataset_type == 'privado'){
+			$('#public').css('display', 'none');
+			$('#private').css('display', 'block');
+		}else{
+			$('#private').css('display', 'none');
+			$('#public').css('display', 'block');
+		}
 	}
 });
