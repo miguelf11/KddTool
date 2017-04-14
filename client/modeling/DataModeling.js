@@ -66,10 +66,10 @@ Template.DataModeling.onRendered(function(){
                         {
                             label: 'Rtest2',
                             fn: function(nodeState) {
-                                console.log("NODESTATE ES: "+Object.keys(nodeState));
-                                console.log("NODESTATE ES: "+Object.keys(nodeState.inputs));
-                                console.log("NODESTATE ES: "+nodeState.inputs.dataset);
-                                console.log("NODESTATE ES: "+Object.keys(nodeState.properties));
+                                // console.log("NODESTATE ES: "+Object.keys(nodeState));
+                                // console.log("NODESTATE ES: "+Object.keys(nodeState.inputs));
+                                // console.log("NODESTATE ES: "+nodeState.inputs.dataset);
+                                // console.log("NODESTATE ES: "+Object.keys(nodeState.properties));
 
                                 var d = $.Deferred();
                             
@@ -178,13 +178,25 @@ Template.DataModeling.helpers({
 });
 
 Template.DataModeling.events({
-	'click #closeAttrs': function(e) {
+	'click #drop-node': function(e) {
+        // $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire').remove();
+        var numberOfParentChildren = $(e.currentTarget).closest('.ui-droppable').children().length;
+        var numberOfConnections = $(e.currentTarget).parent().children().length-2;
+        var numberOfCurrentBox = $(e.currentTarget).parent().index()+1;
+        var cont = 0;
+        console.log("# Parent children: "+numberOfParentChildren);
+        console.log("# of my connections: "+numberOfConnections);
+        console.log("current position Box: "+numberOfCurrentBox);
+        console.log("############################");
+        while (cont != numberOfConnections) {
+            console.log("DENTRO DEL WHILE");
+            $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire:first').remove();
+            cont++; 
+        }
         $(e.currentTarget).parent().fadeOut(300, function() {
             $(this).remove();
         });
-        console.log("Parent: "+Object.keys($(e.currentTarget).parent()));
-        console.log("NextAll: "+Object.keys($(e.currentTarget).nextAll('.ui-nodeEditor-wire')));
-        $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire').remove();
+        //console.log("NextAll: "+Object.keys($(e.currentTarget).nextAll('.ui-nodeEditor-wire')));
         if ($('#Aparams').text() == $(e.currentTarget).parent().data('node').label || !$('#Aparams').text()) {
             $('#Aparams').text("");
             $('.new-elements').remove();
@@ -214,7 +226,7 @@ Template.DataModeling.events({
 
 
         $(".attrs-table")
-        .append("<tr class='new-elements'><td><form class='form' action='' onsubmit='this.action=get_action();'></form></td></tr>");
+            .append("<tr class='new-elements'><td><form class='form' action='' onsubmit='this.action=get_action();'></form></td></tr>");
         if(parametros[0]) {
             for(var i in parametros) {   
                 name = parametros[i].key;
@@ -222,13 +234,14 @@ Template.DataModeling.events({
                 if ( Array.isArray(value) ) {
                     var input = "<select id="+name+" name="+name+"/>";
                     $(".form")
-                    .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
+                        .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
                     $.each(value, function(a,b) {
                         $(".form #"+name).append($("<option/>").attr("value", b).text(b));
                     });          
                 } else {
                     var input = "<input type='text' name="+name+" value="+value+">";                    
-                    $(".form").append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
+                    $(".form")
+                        .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
                 }
             }
             $(".form").append("<br><input type='submit' value='Submit'>");

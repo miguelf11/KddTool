@@ -120,7 +120,7 @@ $.widget("ui.nodeEditor", {
                     });
 
                     obj.attr('id', '');
-                    obj.append("<span id='closeAttrs' title='Eliminar nodo'>x</span>");
+                    obj.append("<span id='drop-node' title='Eliminar nodo'>x</span>");
                     obj.addClass("dropped");
                     obj.data('node',node);
                     obj2.removeClass("hide-IO");
