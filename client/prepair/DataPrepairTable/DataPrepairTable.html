@@ -15,7 +15,6 @@
 				<ul class="dropdown-menu dropdown-menu-first no-padding-top">
 					<li class="data-type padding-top-mini {{data_type_drill this}}"><label>{{data_type_name this}}</label> </li>
 					<li class="dropdown-submenu">
-
 						<a tabindex="-1" href="#"><i class="fa fa-sort" aria-hidden="true"></i> Ordenar...</a>
 						<ul class="dropdown-menu">
 							<li><a href="" value="{{this}}" class="order-up" rel="{{data_type_name this}}"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i> Menor a Mayor</a></li>
@@ -39,7 +38,7 @@
 							<li class='disabled'><a href="#" value="{{this}}" class="change-type" rel="Fecha" data-name="{{this}}">Fecha</a></li>
 						</ul>
 					</li>
-					<li class='disabled'><a href="#"><i class="fa fa-minus-circle" aria-hidden="true"></i> Eliminar Campo</a></li>
+					<li><a href="#" value="{{this}}" class="remove-field"><i class="fa fa-minus-circle" aria-hidden="true"></i> Eliminar Campo</a></li>
 				</ul>
 			</div>
 		</th>

@@ -19,6 +19,7 @@ Template.DataPrepair.onRendered(function(){
 	});
 	$('#preparacionTab').addClass('active');
 	$('#preparacionTab').removeClass('disabled');
+	$('.save-btn').addClass('hidden');
 });
 
 Template.DataPrepair.helpers({
@@ -26,15 +27,18 @@ Template.DataPrepair.helpers({
         var id = FlowRouter.getParam('id');
 		return Projects.findOne({_id:id});
 	},
+	num_rows:()=> {
+		return Session.get('num_rows');
+	},
+	num_fields:()=> {
+		return Session.get('num_fields');
+	},
 });
 
 Template.DataPrepair.events({
-	// 'mouseover .actions-button'(e){
- //     	var p = $(e.currentTarget).popover({
- //     		html:true,
- //     		title: '<label>Acciones</label>',
- //     		content:'<a href="">hola</a>',
- //     	});
+	// 'click .undo-btn' (event, template) {
+	// 	console.log('deshacer');      
+
  //    },
 });
 

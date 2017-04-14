@@ -34,7 +34,8 @@ ActionsSchema = new SimpleSchema({
 	},
 	over:{
 		type: String,
-		label:'over'
+		label:'over',
+		optional: true
 	},
 	createdAt:{
 		type: Date,

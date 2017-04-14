@@ -122,8 +122,18 @@
     min-height: 12vh;
 }
 
+.generate-mining-view > div > a > img:hover{
+    color:#0da938;
+}
+
 .generate-mining-view > div > a > i:hover{
     color:#0da938;
+}
+
+.generate-mining-view > div > a > img{
+    color:#0da938;
+    height: 75px;
+    width: 75px;
 }
 
 .dropdown-menu-first:before {
@@ -217,4 +227,21 @@
 
 .BIGINT{
     background-color: #8642a9 !important;
+}
+
+input,select{
+    background: #FFF;
+    border: solid 2px #EEE;
+    border-radius: 0px;
+    width: 100%; 
+    padding: 6px 10px;
+    margin-bottom: 10px; 
+}
+
+.modal-content{
+    border-radius: 0px;   
+}
+
+.modal-content > .modal-footer > button{
+    border-radius: 0px;
 }

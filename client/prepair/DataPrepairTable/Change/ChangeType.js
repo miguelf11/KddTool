@@ -8,7 +8,8 @@ Template.DataPrepairTable.events({
       // var order = 'desc';
       console.log(data_type_new);
       // console.log('ordenar de mayor a menor')
-      $("<i class='fa fa-spinner fa-spin padding-left-half-plus sort-inserted' aria-hidden='true'></i>").insertAfter("#"+column+" > label");
+      $("<i class='fa fa-circle-o-notch fa-spin padding-left-half-plus sort-inserted' aria-hidden='true'></i>").insertAfter("#"+column+" > label");
+      $( "body").unbind( "click" );
       var project_id = FlowRouter.getParam('id');
       var project_address = Projects.findOne({_id:project_id}).address;
       console.log(project_address);
@@ -19,8 +20,10 @@ Template.DataPrepairTable.events({
             console.log('cambiado tipo de dato');
             // Session.set('data_project',res.data.rows);
             $( ".sort-inserted" ).remove();
+            $( "body").bind( "click" );
             $('#'+column).click();
         }else{
+          $( "body").bind( "click" );
           alert("No se ha podido cambiar el tipo de dato!");
         }
         if(err){
