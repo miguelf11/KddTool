@@ -92,18 +92,30 @@ Template.DataModeling.onRendered(function(){
                         },
                         {
                             key: 'cp',
-                            value : ["opcion 1", "opcion 2", "opcion 3"] 
+                            value : [
+                                {
+                                    name:"opcion 1",
+                                    selected: 0,
+
+                                },
+                                {
+                                    name:"opcion 2",
+                                    selected: 0,
+
+                                },
+                                {
+                                    name:"opcion 3",
+                                    selected: 1,
+
+                                },
+                            ] 
                         }
                     ],
                     outputs: [
                         {
                             label: 'Rtest2',
                             fn: function(nodeState) {
-                                // console.log("NODESTATE ES: "+Object.keys(nodeState));
-                                // console.log("NODESTATE ES: "+Object.keys(nodeState.inputs));
-                                // console.log("NODESTATE ES: "+nodeState.inputs.dataset);
-                                // console.log("NODESTATE ES: "+Object.keys(nodeState.properties));
-
+                                console.log("NODESTATE ES: "+Object.keys(nodeState));
                                 var d = $.Deferred();
                             
                                 var out;
@@ -217,12 +229,7 @@ Template.DataModeling.events({
         var numberOfConnections = $(e.currentTarget).parent().children().length-2;
         var numberOfCurrentBox = $(e.currentTarget).parent().index()+1;
         var cont = 0;
-        console.log("# Parent children: "+numberOfParentChildren);
-        console.log("# of my connections: "+numberOfConnections);
-        console.log("current position Box: "+numberOfCurrentBox);
-        console.log("############################");
         while (cont != numberOfConnections) {
-            console.log("DENTRO DEL WHILE");
             $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire:first').remove();
             cont++; 
         }
@@ -313,6 +320,9 @@ Template.DataModeling.events({
             i = i + 1;
         });
         currentNode.data('node',node);
+        console.log("currentNode[0] : "+Object.keys(currentNode[0]));
+        console.log(currentNode.data());
+        console.log(currentNode.outputs);
     },
 
 });
