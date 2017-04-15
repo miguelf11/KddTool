@@ -35,6 +35,7 @@ Template.newProject.events({
 	    console.log(dataset_address);
 
     	var HDFSProjectFolderName = name.replace(/\s/g, "");
+    	HDFSProjectFolderName = HDFSProjectFolderName+Date.now();
     	var HDFSUserFolderName = Meteor.user().emails[0].address;
 		Meteor.call('createHdfsFolderProject',HDFSUserFolderName,HDFSProjectFolderName,function(error, result){
 			console.log(result);

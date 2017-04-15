@@ -36,7 +36,17 @@ Template.DataPrepairTable.events({
 				console.log(versions);
 				versions.unshift(new_version_address);
 				console.log(versions);
-				var new_version = Projects.update({_id:id},{$set:{current_version_address:new_version_address,prepair_versions:versions}});
+				var actions = Projects.findOne({_id:id}).actions;
+				var new_action = 'Filtro: '+column+' '+filter+' '+value;
+
+				if(actions){
+					actions.push(new_action);  
+				}else{
+					var actions = [];
+					actions[0] = new_action;
+				}
+
+				var new_version = Projects.update({_id:id},{$set:{current_version_address:new_version_address,prepair_versions:versions,actions:actions}});
 				console.log(new_version);
 
 				if (new_version){
@@ -47,6 +57,9 @@ Template.DataPrepairTable.events({
 
 							Session.set('data_project',res.data.rows);
 							Session.set('data_keys',res.data.columns);
+							Session.set('num_rows',res.data.rows.length);
+                  			Session.set('num_fields',res.data.columns.length);
+                  			Session.set('project_actions',actions);
 							$(".backdrop").css('display','none');
 						}
 						if(err){
@@ -56,7 +69,7 @@ Template.DataPrepairTable.events({
 					});
 				}
 			}
-			if(res.response.statusCode == 500){
+			if(res.statusCode == 500){
 				$(".backdrop").css('display','none');
 				alert("No se pudo filtrar debido que existen valores faltantes");
 			}
@@ -83,7 +96,17 @@ Template.DataPrepairTable.events({
 				console.log(versions);
 				versions.unshift(new_version_address);
 				console.log(versions);
-				var new_version = Projects.update({_id:id},{$set:{current_version_address:new_version_address,prepair_versions:versions}});
+				var actions = Projects.findOne({_id:id}).actions;
+				var new_action = 'Filtro: '+column+' '+filter+' '+value;
+
+				if(actions){
+					actions.push(new_action);  
+				}else{
+					var actions = [];
+					actions[0] = new_action;
+				}
+
+				var new_version = Projects.update({_id:id},{$set:{current_version_address:new_version_address,prepair_versions:versions,actions:actions}});
 				console.log(new_version);
 
 				if (new_version){
@@ -96,6 +119,7 @@ Template.DataPrepairTable.events({
 							Session.set('data_keys',res.data.columns);
 							Session.set('num_rows',res.data.rows.length);
 							Session.set('num_fields',res.data.columns.length);
+							Session.set('project_actions',actions);
 							$(".backdrop").css('display','none');
 						}
 						if(err){
@@ -105,7 +129,7 @@ Template.DataPrepairTable.events({
 					});
 				}
 			}
-			if(res.response.statusCode == 500){
+			if(res.statusCode == 500){
 				$(".backdrop").css('display','none');
 				alert("No se pudo filtrar debido que existen valores faltantes");
 			}
@@ -115,6 +139,7 @@ Template.DataPrepairTable.events({
 	'click #filter_string' () {
 		$(".backdrop").css('display','block');
 		var option 			= $('#filter_string_by').val();
+		// var option_text 	= $('#filter_string_by').text();
 		var value 			= $('#filter_string_value').val();
 		var id 				= FlowRouter.getParam('id');
 		var column 			= $('#filter_string').data('column');
@@ -123,15 +148,20 @@ Template.DataPrepairTable.events({
 		var old_version_address = Projects.findOne({_id:id}).current_version_address;
 		var new_version_address = Projects.findOne({_id:id}).address;
 		new_version_address = new_version_address+"/version"+Date.now();
+		var value_text = value;
 
 		if (option == 'SW') {
 			value = "'"+value+"%'";
+			var option_text = 'Inicie con';
 		} else if (option == 'EW') {
 			value = "'%"+value+"'";
+			var option_text = 'Termine con';
 		} else if (option == 'EQ') {
 			value = "'"+value+"'";
+			var option_text = 'Igual a';
 		} else if (option == 'CT') {
 			value = "'%"+value+"%'";
+			var option_text = 'Contenga';
 		}
 
 		// console.log(column+filter+value);
@@ -142,7 +172,18 @@ Template.DataPrepairTable.events({
 				console.log(versions);
 				versions.unshift(new_version_address);
 				console.log(versions);
-				var new_version = Projects.update({_id:id},{$set:{current_version_address:new_version_address,prepair_versions:versions}});
+
+				var actions = Projects.findOne({_id:id}).actions;
+				var new_action = 'Filtro: '+option_text+' "'+value_text+'"';
+
+				if(actions){
+					actions.push(new_action);  
+				}else{
+					var actions = [];
+					actions[0] = new_action;
+				}
+
+				var new_version = Projects.update({_id:id},{$set:{current_version_address:new_version_address,prepair_versions:versions,actions:actions}});
 				console.log(new_version);
 
 				if (new_version){
@@ -153,6 +194,9 @@ Template.DataPrepairTable.events({
 
 							Session.set('data_project',res.data.rows);
 							Session.set('data_keys',res.data.columns);
+							Session.set('num_rows',res.data.rows.length);
+							Session.set('num_fields',res.data.columns.length);
+							Session.set('project_actions',actions);
 							$(".backdrop").css('display','none');
 						}
 						if(err){
@@ -162,7 +206,7 @@ Template.DataPrepairTable.events({
 					});
 				}
 			}
-			if(res.response.statusCode == 500){
+			if(res.statusCode == 500){
 				$(".backdrop").css('display','none');
 				alert("No se pudo filtrar debido que existen valores faltantes");
 			}

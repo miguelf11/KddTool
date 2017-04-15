@@ -13,6 +13,7 @@ Template.DataPrepairTable.onCreated(function(){
 
 	var id = FlowRouter.getParam('id');
 	var project_address = Projects.findOne({_id:id}).current_version_address;
+	var project_actions = Projects.findOne({_id:id}).actions;
 	Meteor.call('queryDataDrill',project_address, function(err,res){
 		if(res.statusCode == 200){
 			console.log("cantidad de registros: "+res.data.rows.length);
@@ -23,6 +24,10 @@ Template.DataPrepairTable.onCreated(function(){
 			Session.set('data_keys',res.data.columns);
 			Session.set('num_rows',res.data.rows.length);
 			Session.set('num_fields',res.data.columns.length);
+			if(project_actions){
+				Session.set('project_actions',project_actions);
+			}
+
 		}
 		if(err){
 			alert("no data");

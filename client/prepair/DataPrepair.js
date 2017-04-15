@@ -8,7 +8,8 @@ Template.DataPrepair.onCreated(function(){
 		self.subscribe('single_project',id);
 		Session.set('projectId', id);
 		Session.set('data_project','');
-		Session.set('data_keys',''); 	
+		Session.set('data_keys','');
+		Session.set('project_actions',[]); 	
 	});
 });
 
@@ -32,6 +33,9 @@ Template.DataPrepair.helpers({
 	},
 	num_fields:()=> {
 		return Session.get('num_fields');
+	},
+	project_actions:()=> {
+		return Session.get('project_actions');
 	},
 });
 

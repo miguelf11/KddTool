@@ -1,8 +1,10 @@
 Template.DataPrepairTable.events({
     'click #removeRows' (event, template) {
       var selected = '';
+      var count = 0;
       $('input:checkbox[name=oneRow]:checked').each(function() {
           selected = $(this).attr('value') + "," + selected;
+          count++;
       });
 
       if (selected != ''){
@@ -24,7 +26,22 @@ Template.DataPrepairTable.events({
             console.log(versions);
             versions.unshift(new_version_address);
             console.log(versions);
-            var new_version = Projects.update({_id:id},{$set:{current_version_address:new_version_address,prepair_versions:versions}});
+
+            var actions = Projects.findOne({_id:id}).actions;
+            if (count > 1){
+              var new_action = 'Eliminados '+count+' registros.';
+            }else{
+              var new_action = 'Eliminado '+count+' registro.'
+            }
+            
+            if(actions){
+              actions.push(new_action);  
+            }else{
+              var actions = [];
+              actions[0] = new_action;
+            }
+
+            var new_version = Projects.update({_id:id},{$set:{current_version_address:new_version_address,prepair_versions:versions,actions:actions}});
             console.log(new_version);
             if (new_version){
               Meteor.call('queryDataDrill',new_version_address, function(err,res){
@@ -33,6 +50,7 @@ Template.DataPrepairTable.events({
                   Session.set('data_keys',res.data.columns);
                   Session.set('num_rows',res.data.rows.length);
                   Session.set('num_fields',res.data.columns.length);
+                  Session.set('project_actions',actions);
                   // alert("Se han eliminado los registros exitosamente!!!");
                   $(".fa-circle-o-notch").remove();
                   $( "body").bind( "click" );

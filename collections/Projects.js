@@ -27,27 +27,22 @@ DataTypesSchema = new SimpleSchema({
 	}
 });
 
-ActionsSchema = new SimpleSchema({
-	name:{
-		type: String,
-		label:'name'
-	},
-	over:{
-		type: String,
-		label:'over',
-		optional: true
-	},
-	createdAt:{
-		type: Date,
-		label: 'CreatedAt',
-		autoValue: function(){
-			return new Date()
-		},
-		// autoform:{
-		// 	type: 'hidden'
-		// }
-	},
-});
+// ActionsSchema = new SimpleSchema({
+// 	name:{
+// 		type: String,
+// 		label:'name'
+// 	},
+// 	createdAt:{
+// 		type: Date,
+// 		label: 'CreatedAt',
+// 		autoValue: function(){
+// 			return new Date()
+// 		},
+// 		// autoform:{
+// 		// 	type: 'hidden'
+// 		// }
+// 	},
+// });
 
 ProjectsSchema = new SimpleSchema({
 	name:{
@@ -113,7 +108,7 @@ ProjectsSchema = new SimpleSchema({
 		// }
 	},
 	actions:{
-		type: [ActionsSchema],
+		type: [String],
 		label: 'acciones de preparacion',
 		optional: true
 		// autoform:{

@@ -25,7 +25,16 @@ Template.DataPrepairTable.events({
       var old_version_address = Projects.findOne({_id:id}).current_version_address;
       var new_version_address = Projects.findOne({_id:id}).address;
       new_version_address = new_version_address+"/version"+Date.now();
+      var actions = Projects.findOne({_id:id}).actions;
+      var new_action = 'Campo '+column+' eliminado.';
 
+      if(actions){
+        actions.push(new_action);  
+      }else{
+        var actions = [];
+        actions[0] = new_action;
+      }
+      
       Meteor.call('removeField',new_version_address,old_version_address,fields_final, function(err,res){
         console.log(res);
         if(res.statusCode == 200){
@@ -33,7 +42,7 @@ Template.DataPrepairTable.events({
           console.log(versions);
           versions.unshift(new_version_address);
           console.log(versions);
-          var new_version = Projects.update({_id:id},{$set:{current_version_address:new_version_address,prepair_versions:versions}});
+          var new_version = Projects.update({_id:id},{$set:{current_version_address:new_version_address,prepair_versions:versions,actions:actions}});
           console.log(new_version);
           if (new_version){
             Meteor.call('queryDataDrill',new_version_address, function(err,res){
@@ -42,6 +51,7 @@ Template.DataPrepairTable.events({
                 Session.set('data_keys',res.data.columns);
                 Session.set('num_rows',res.data.rows.length);
                 Session.set('num_fields',res.data.columns.length);
+                Session.set('project_actions',actions);
                 $( "body").bind( "click" );
                 // alert("Se han eliminado los registros exitosamente!!!");
                 // $(".fa-spinner").remove();

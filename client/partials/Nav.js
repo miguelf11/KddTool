@@ -71,8 +71,10 @@ Template.Nav.events({
     console.log(project_id);
 
     var versions = Projects.findOne({_id:project_id}).prepair_versions;
+    var actions = Projects.findOne({_id:project_id}).actions;
 
-    if (versions.length > 1){
+
+    if (versions.length > 1 && actions.length > 0){
       // versions.unshift(new_version_address);
       var version_to_remove = versions[0];
       var current_version = versions[1];
@@ -80,13 +82,15 @@ Template.Nav.events({
       console.log(version_to_remove);
       console.log(current_version);
       versions.shift();
+      actions.pop();
       console.log(versions);
+      console.log(actions);
       Meteor.call('removeHdfsFolder',version_to_remove,function(err,res){
         console.log(res);
         if(res.statusCode == 200){
             console.log('eliminado de hdfs');
             // Session.set('data_project',res.data.rows);
-            var old_version = Projects.update({_id:project_id},{$set:{current_version_address:current_version,prepair_versions:versions}}); 
+            var old_version = Projects.update({_id:project_id},{$set:{current_version_address:current_version,prepair_versions:versions,actions:actions}}); 
             if (old_version){
               // FlowRouter.go('preparacion', { id: project_id});
               // $(".backdrop").css('display','none');
@@ -100,6 +104,7 @@ Template.Nav.events({
                   Session.set('data_keys',res.data.columns);
                   Session.set('num_rows',res.data.rows.length);
                   Session.set('num_fields',res.data.columns.length);
+                  Session.set('project_actions',actions);
                   $(".backdrop").css('display','none');
                 }
                 if(err){
