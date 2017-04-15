@@ -62,24 +62,24 @@ Template.DataModeling.onRendered(function(){
                             attrs: ["atributo1", "atributo2", "atributo3"]
                         }
                     ],
-                    parametros : [
-                        {
-                            key: 'deep',
-                            value : 5
-                        },
-                        {
-                            key: 'down',
-                            value : 7
-                        },
-                        {
-                            key: 'luz',
-                            value : 12
-                        },
-                        {
-                            key: 'cp',
-                            value : ["opcion 1", "opcion 2", "opcion 3"] 
-                        }
-                    ],
+                    // parametros : [
+                    //     {
+                    //         key: 'deep',
+                    //         value : 5
+                    //     },
+                    //     {
+                    //         key: 'down',
+                    //         value : 7
+                    //     },
+                    //     {
+                    //         key: 'luz',
+                    //         value : 12
+                    //     },
+                    //     {
+                    //         key: 'cp',
+                    //         value : ["opcion 1", "opcion 2", "opcion 3"] 
+                    //     }
+                    // ],
                     outputs: [
                         {
                             label: 'Rtest2',
@@ -240,7 +240,7 @@ Template.DataModeling.events({
 
         $(".attrs-table")
             .append("<tr class='new-elements'><td><form class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
-            
+
         if(parametros[0]) {
             for(var i in parametros) {   
                 name = parametros[i].key;
@@ -265,7 +265,9 @@ Template.DataModeling.events({
     'click #submit': function(e) {
         var i = 0 ;
         var node = currentNode.data('node');
-        $( ".new-elements input" ).each(function( index ) {
+        var json = JSON.stringify(node);
+        var node = JSON.parse(json);
+        $(".new-elements input").each(function() {
             value = $( this ).val();
             name = $( this ).attr("name");
             if(value != "Submit"){
@@ -274,8 +276,7 @@ Template.DataModeling.events({
             i = i + 1;
         });
         currentNode.data('node',node);
-        currentNode = "";
-    }
+    },
 
 });
 
