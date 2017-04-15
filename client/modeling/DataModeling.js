@@ -1,22 +1,22 @@
 Template.DataModeling.onCreated(function(){
-	var self = this;
-	self.autorun(function(){
+    var self = this;
+    self.autorun(function(){
         var id = FlowRouter.getParam('id');
         console.log(id);
-		self.subscribe('single_project',id);
-		Session.set('projectId', id);	
-	});
+        self.subscribe('single_project',id);
+        Session.set('projectId', id);   
+    });
 
 });
 
 Template.DataModeling.onRendered(function(){
-	$('.each-tab').each(function(){
-		$(this).removeClass('active');
-		$(this).addClass('disabled');
-	});
-	$('#modeladoTab').addClass('active');
-	$('#modeladoTab').removeClass('disabled');
-	/*********************************/
+    $('.each-tab').each(function(){
+        $(this).removeClass('active');
+        $(this).addClass('disabled');
+    });
+    $('#modeladoTab').addClass('active');
+    $('#modeladoTab').removeClass('disabled');
+    /*********************************/
     //console.log("Starting basic example for jquery.ui.nodeEditor.js");
     $('<div></div>')
         .addClass('nodeEditor')
@@ -60,6 +60,7 @@ Template.DataModeling.onRendered(function(){
                         {
                             label: 'dataset',
                             fn: function(inputs, properties) {
+
                                 var d = $.Deferred();
                                 d.resolve(5);
                                 return d.promise();
@@ -70,7 +71,6 @@ Template.DataModeling.onRendered(function(){
                 {
                     label: 'Arbol de decision',
                     id: 'id arbol',
-                    // parametros: [],
                     inputs: [
                         {
                             id: 'dataset',
@@ -92,32 +92,19 @@ Template.DataModeling.onRendered(function(){
                         },
                         {
                             key: 'cp',
-                            value : [
-                                {
-                                    name:"opcion 1",
-                                    selected: 0,
-
-                                },
-                                {
-                                    name:"opcion 2",
-                                    selected: 0,
-
-                                },
-                                {
-                                    name:"opcion 3",
-                                    selected: 1,
-
-                                },
-                            ] 
+                            value : ["opcion 1", "opcion 2", "opcion 3"] 
                         }
                     ],
                     outputs: [
                         {
                             label: 'Rtest2',
                             fn: function(nodeState) {
-                                console.log("NODESTATE ES: "+Object.keys(nodeState));
+                                // console.log("NODESTATE ES: "+Object.keys(nodeState));
+                                // console.log("NODESTATE ES: "+Object.keys(nodeState.inputs));
+                                // console.log("NODESTATE ES: "+nodeState.inputs.dataset);
+                                // console.log("NODESTATE ES: "+Object.keys(nodeState.properties));
+                                console.log("nodeState: "+JSON.stringify(nodeState));
                                 var d = $.Deferred();
-                            
                                 var out;
                                 ruta = "hdfs:////user/hadoop/datasets/iris1491518914745.csv";
                                 Meteor.call('example3',ruta,function(error, result){
@@ -155,9 +142,9 @@ Template.DataModeling.onRendered(function(){
                     outputs: [
                         {
                             label: 'Rtest',
-                           	fn: function(nodeState) {
+                            fn: function(nodeState) {
                                 console.group('Sum fn()');
-                                //console.log(nodeState);
+                                console.log(JSON.stringify(nodeState));
                                 var d = $.Deferred();
                                 if (typeof nodeState === 'undefined') {
                                     console.error('Node state undefined de RRRRRRR');
@@ -171,17 +158,17 @@ Template.DataModeling.onRendered(function(){
                                 inputs.B = inputs.B || 0;
                                 var out;
 
-							    Meteor.call('example1', inputs.A, inputs.B, function(error, result){
-							       	if(error){
-							            // console.log(error);
-							        } else {
-							            // console.log(result);
-							            //out = JSON.stringify(result);
-							            out = result;
-							            //console.log("salidaaaaaaaaaaaa,  "+JSON.stringify(result));
-							            // console.log("salidaaaaaaaaaaaa,  "+result);
-							        }
-							    });
+                                Meteor.call('example1', inputs.A, inputs.B, function(error, result){
+                                    if(error){
+                                        // console.log(error);
+                                    } else {
+                                        // console.log(result);
+                                        //out = JSON.stringify(result);
+                                        out = result;
+                                        //console.log("salidaaaaaaaaaaaa,  "+JSON.stringify(result));
+                                        // console.log("salidaaaaaaaaaaaa,  "+result);
+                                    }
+                                });
 
                                 //console.log('Sum fn() A:' + inputs.A + '  B:' + inputs.B);
                                 //var out = parseInt(inputs.A + inputs.B);
@@ -196,40 +183,45 @@ Template.DataModeling.onRendered(function(){
                 }
             ]
         });
-	/**********************************/
+    /**********************************/
 });
 
 Template.DataModeling.helpers({
-	project:()=> {
+    project:()=> {
         var id = FlowRouter.getParam('id');
-		return Projects.findOne({_id:id});
-	},
+        return Projects.findOne({_id:id});
+    },
 
-	algorithms:()=> {
+    algorithms:()=> {
         var algorithms = [
-        	{name: "algoritmo 1", desc: "desc de algoritmo 1"}, 
-        	{name: "algoritmo 2", desc: "desc de algoritmo 2"}, 
-        	{name:"algoritmo 3", desc: "desc de algoritmo 3"}, 
-        	{name:"algoritmo 4", desc: "desc de algoritmo 4"}
+            {name: "algoritmo 1", desc: "desc de algoritmo 1"}, 
+            {name: "algoritmo 2", desc: "desc de algoritmo 2"}, 
+            {name:"algoritmo 3", desc: "desc de algoritmo 3"}, 
+            {name:"algoritmo 4", desc: "desc de algoritmo 4"}
         ];
-		return algorithms;
-	},
+        return algorithms;
+    },
 
-	dataInfo:()=> {
+    dataInfo:()=> {
         var dataInfo = 
-        	{name: "Datos preparados", desc: "desc de data preparada"};
-		return dataInfo;
-	}
+            {name: "Datos preparados", desc: "desc de data preparada"};
+        return dataInfo;
+    }
 });
 
 Template.DataModeling.events({
-	'click #drop-node': function(e) {
+    'click #drop-node': function(e) {
         // $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire').remove();
         var numberOfParentChildren = $(e.currentTarget).closest('.ui-droppable').children().length;
         var numberOfConnections = $(e.currentTarget).parent().children().length-2;
         var numberOfCurrentBox = $(e.currentTarget).parent().index()+1;
         var cont = 0;
+        console.log("# Parent children: "+numberOfParentChildren);
+        console.log("# of my connections: "+numberOfConnections);
+        console.log("current position Box: "+numberOfCurrentBox);
+        console.log("############################");
         while (cont != numberOfConnections) {
+            console.log("DENTRO DEL WHILE");
             $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire:first').remove();
             cont++; 
         }
@@ -314,15 +306,10 @@ Template.DataModeling.events({
                 } else {
                     node.parametros[i].value = value;
                 }
-
             }
-
-            i = i + 1;
+            i++;
         });
         currentNode.data('node',node);
-        console.log("currentNode[0] : "+Object.keys(currentNode[0]));
-        console.log(currentNode.data());
-        console.log(currentNode.outputs);
     },
 
 });

@@ -165,7 +165,6 @@ $.widget("ui.nodeEditor", {
                 .addClass('ui-nodeEditor-nodeOutputConnector')
                 .appendTo(outputDiv);
 
-        node.parametros = node.parametros || [];
             //console.log('built output connector');
             //console.log(output);
         });
@@ -181,32 +180,25 @@ $.widget("ui.nodeEditor", {
 
         node.state = {
             inputs: {},
-            parametros: {},
-            properties: {}
+            properties: {},
+            parametros: {}
         };
         this._updateTip(element, node);
 
         node.update = function(updateMap) {
 
-            //console.group('node.update() ' + node.label);
-            //console.log(updateMap);
-
             if (updateMap && updateMap.inputs) {
                 for (input in updateMap.inputs) {
                     node.state.inputs[input] = updateMap.inputs[input];
                 }
-            }            
-            /******************/
-            if (updateMap && updateMap.parametros) {
-                for (parametro in updateMap.parametros) {
-                    node.state.parametros[parametro] = updateMap.parametros[parametro];
-                }
             }
-            /******************/
             if (updateMap && updateMap.properties) {
                 for (prop in updateMap.properties) {
                     node.state.properties[prop] = updateMap.properties[prop];
                 }
+            }
+            if(node.parametros){
+                node.state.parametros = node.parametros;
             }
 
             that._updateTip(element, node);
@@ -405,8 +397,7 @@ $.widget("ui.nodeEditor", {
 
         this.nodeField.on('mouseup', '.ui-nodeEditor-nodeConnector', function(ev) {
 
-            console.log("MOUSE UPPPPPPPPPPP");
-
+            
             if ($(this).hasClass('ui-nodeEditor-nodeInputConnector')) {
                 // console.log('mouseup on input');
                 var oldWire = $(this).data('wire');
