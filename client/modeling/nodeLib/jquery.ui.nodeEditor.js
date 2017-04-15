@@ -180,14 +180,12 @@ $.widget("ui.nodeEditor", {
 
         node.state = {
             inputs: {},
-            properties: {}
+            properties: {},
+            parametros: {}
         };
         this._updateTip(element, node);
 
         node.update = function(updateMap) {
-
-            //console.group('node.update() ' + node.label);
-            //console.log(updateMap);
 
             if (updateMap && updateMap.inputs) {
                 for (input in updateMap.inputs) {
@@ -198,6 +196,9 @@ $.widget("ui.nodeEditor", {
                 for (prop in updateMap.properties) {
                     node.state.properties[prop] = updateMap.properties[prop];
                 }
+            }
+            if(node.parametros){
+                node.state.parametros = node.parametros;
             }
 
             that._updateTip(element, node);

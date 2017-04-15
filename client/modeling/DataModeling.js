@@ -60,6 +60,7 @@ Template.DataModeling.onRendered(function(){
                         {
                             label: 'dataset',
                             fn: function(inputs, properties) {
+
                                 var d = $.Deferred();
                                 d.resolve(5);
                                 return d.promise();
@@ -70,7 +71,6 @@ Template.DataModeling.onRendered(function(){
                 {
                     label: 'Arbol de decision',
                     id: 'id arbol',
-                    // parametros: [],
                     inputs: [
                         {
                             id: 'dataset',
@@ -103,9 +103,8 @@ Template.DataModeling.onRendered(function(){
                                 // console.log("NODESTATE ES: "+Object.keys(nodeState.inputs));
                                 // console.log("NODESTATE ES: "+nodeState.inputs.dataset);
                                 // console.log("NODESTATE ES: "+Object.keys(nodeState.properties));
-
+                                console.log("nodeState: "+JSON.stringify(nodeState));
                                 var d = $.Deferred();
-                            
                                 var out;
                                 ruta = "hdfs:////user/hadoop/datasets/iris1491518914745.csv";
                                 Meteor.call('example3',ruta,function(error, result){
@@ -145,7 +144,7 @@ Template.DataModeling.onRendered(function(){
                             label: 'Rtest',
                            	fn: function(nodeState) {
                                 console.group('Sum fn()');
-                                //console.log(nodeState);
+                                console.log(JSON.stringify(nodeState));
                                 var d = $.Deferred();
                                 if (typeof nodeState === 'undefined') {
                                     console.error('Node state undefined de RRRRRRR');
@@ -307,10 +306,8 @@ Template.DataModeling.events({
                 } else {
                     node.parametros[i].value = value;
                 }
-
             }
-
-            i = i + 1;
+            i++;
         });
         currentNode.data('node',node);
     },
