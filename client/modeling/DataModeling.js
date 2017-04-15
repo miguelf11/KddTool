@@ -37,7 +37,23 @@ Template.DataModeling.onRendered(function(){
                         },
                         {
                             key: 'cp',
-                            value : ["opcion 1", "opcion 2", "opcion 3"] 
+                            value : [
+                                {
+                                    name:"opcion 1",
+                                    selected: 0,
+
+                                },
+                                {
+                                    name:"opcion 2",
+                                    selected: 0,
+
+                                },
+                                {
+                                    name:"opcion 3",
+                                    selected: 1,
+
+                                },
+                            ] 
                         }
                     ],
                     outputs: [
@@ -245,12 +261,22 @@ Template.DataModeling.events({
                 name = parametros[i].key;
                 value = parametros[i].value;
                 if ( Array.isArray(value) ) {
-                    var input = "<select id="+name+" name="+name+"/>";
+                    var select = "<select id="+name+" name="+name+"/>";
                     $(".form")
-                        .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
+                        .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+select+"</td></tr>");
+
                     $.each(value, function(a,b) {
-                        $(".form #"+name).append($("<option/>").attr("value", b).text(b));
-                    });          
+                        if (b.selected == 1){
+                            $(".form #"+name).append($("<option/>").attr({
+                                                    "value": b.name,
+                                                    "selected": true
+                                                }).text(b.name));
+                        } else {
+                            $(".form #"+name).append($("<option/>").attr("value", b.name).text(b.name));
+                        }
+                        
+                    });       
+
                 } else {
                     var input = "<input type='text' name="+name+" value="+value+">";                    
                     $(".form")
@@ -263,18 +289,27 @@ Template.DataModeling.events({
 
     'click #submit': function(e) {
         var i = 0 ;
+        var parametros = currentNode.data('node').parametros;
         var node = currentNode.data('node');
         var json = JSON.stringify(node);
         var node = JSON.parse(json);
-        $(".new-elements input, .new-elements select option:selected").each(function() {
+        $(".new-elements input, .new-elements select").each(function() {
             value = $( this ).val();
             name = $( this ).attr("name");
-            console.log("$( this ).attr(type) :"+ $( this ).attr('type'));
-            console.log("value :"+ value);
             if(value != "Actualizar parámetros"){
-                node.parametros[i].value = value;
-                console.log("node.parametros :"+ node.parametros[i].value);
+                if ($( this).attr('type') != 'text') {
+                    for (var j in node.parametros[i].value) {
+                        node.parametros[i].value[j].selected = 0;
+                        if ( node.parametros[i].value[j].name == value ) {
+                            node.parametros[i].value[j].selected = 1;
+                        }
+                    }
+                } else {
+                    node.parametros[i].value = value;
+                }
+
             }
+
             i = i + 1;
         });
         currentNode.data('node',node);
