@@ -54,32 +54,31 @@ Template.DataModeling.onRendered(function(){
                 {
                     label: 'Arbol de decision',
                     id: 'id arbol',
-                    parametros: [],
+                    // parametros: [],
                     inputs: [
                         {
                             id: 'dataset',
                             label: 'dataset',
-                            attrs: ["atributo1", "atributo2", "atributo3"]
                         }
                     ],
-                    // parametros : [
-                    //     {
-                    //         key: 'deep',
-                    //         value : 5
-                    //     },
-                    //     {
-                    //         key: 'down',
-                    //         value : 7
-                    //     },
-                    //     {
-                    //         key: 'luz',
-                    //         value : 12
-                    //     },
-                    //     {
-                    //         key: 'cp',
-                    //         value : ["opcion 1", "opcion 2", "opcion 3"] 
-                    //     }
-                    // ],
+                    parametros : [
+                        {
+                            key: 'deep',
+                            value : 5
+                        },
+                        {
+                            key: 'down',
+                            value : 7
+                        },
+                        {
+                            key: 'luz',
+                            value : 12
+                        },
+                        {
+                            key: 'cp',
+                            value : ["opcion 1", "opcion 2", "opcion 3"] 
+                        }
+                    ],
                     outputs: [
                         {
                             label: 'Rtest2',
@@ -258,7 +257,7 @@ Template.DataModeling.events({
                         .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
                 }
             }
-            $(".form").append("<br><input type='submit' id='submit' value='Submit'>");
+            $(".form").append("<br><input type='submit' id='submit' value='Actualizar parámetros'>");
         }
     },
 
@@ -267,11 +266,14 @@ Template.DataModeling.events({
         var node = currentNode.data('node');
         var json = JSON.stringify(node);
         var node = JSON.parse(json);
-        $(".new-elements input").each(function() {
+        $(".new-elements input, .new-elements select option:selected").each(function() {
             value = $( this ).val();
             name = $( this ).attr("name");
-            if(value != "Submit"){
+            console.log("$( this ).attr(type) :"+ $( this ).attr('type'));
+            console.log("value :"+ value);
+            if(value != "Actualizar parámetros"){
                 node.parametros[i].value = value;
+                console.log("node.parametros :"+ node.parametros[i].value);
             }
             i = i + 1;
         });
