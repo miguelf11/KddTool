@@ -15,6 +15,7 @@ Template.DataVisualitation.onRendered(function(){
 	});
 	$('#visualizacionTab').addClass('active');
 	$('#visualizacionTab').removeClass('disabled');
+
 });
 
 Template.DataVisualitation.helpers({
@@ -24,4 +25,14 @@ Template.DataVisualitation.helpers({
 	}
 });
 
-//Luego de realizar cualquier tarea en esta etapa se debe modificar el stage de la coleccion projecto y se debe colocar 'visualizacion' para que al volver a ingresar al proyecto lo redirija a la ultima etapa que realizó alguna tarea.
+Template.DataVisualitation.events({
+	'click .btn': function() {
+		$('.visualization-box').show().css('min-height', "300px");
+		$('.btn').attr('disabled', 'true');
+	}
+});
+
+//Luego de realizar cualquier tarea en esta etapa se debe 
+// modificar el stage de la coleccion projecto y se debe colocar 
+// 'visualizacion' para que al volver a ingresar al proyecto lo 
+// redirija a la ultima etapa que realizó alguna tarea.

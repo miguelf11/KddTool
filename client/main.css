@@ -664,10 +664,6 @@ a:focus {
         font-size: 30px;
     }
 
-    .buttons-progress-span > i{
-        color: #44a2d6;
-    }
-
     .buttons-progress-span > i:hover{
         color: #fff;
     }
