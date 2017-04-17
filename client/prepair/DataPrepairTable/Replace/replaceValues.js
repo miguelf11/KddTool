@@ -12,12 +12,13 @@ Template.DataPrepairTable.events({
 		var init 			= $('.initVal').val();
 		var post 			= $('.postVal').val();
 		var id 				= FlowRouter.getParam('id');
-		var column 			= $('#replaceSubmit').data('column');
+		var column 			= $('#replaceSubmit').attr('data-column');
 		var project 		= Projects.findOne({_id:id});
 		var old_version_address = project.current_version_address;
 		var new_version_address = project.address;
 		new_version_address = new_version_address+"/version"+Date.now();
 		var order = Session.get('data_keys');
+		console.log(column);
 
 		Meteor.call('replaceValues',new_version_address,old_version_address, column, init, post, order.toString(), (err,res)=> {
 			console.log(res);
@@ -26,7 +27,7 @@ Template.DataPrepairTable.events({
 				versions.unshift(new_version_address);
 				console.log(versions);
 				var actions = Projects.findOne({_id:id}).actions;
-				var new_action = 'Reemplazar en '+column+': '+initVal+' por '+postVal;
+				var new_action = 'Reemplazar en '+column+': '+init+' por '+post;
 
 				if(actions){
 					actions.push(new_action);  

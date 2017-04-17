@@ -2,43 +2,89 @@
 	<div id="datasetsContainer" class="padding-left-super padding-right-double-2">
 		<div class="row">
 			<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
-				{{#if Template.subscriptionsReady}}		
-				<div class="row">
-					{{#each datasets}}
-					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 padding-bottom-complete">
-						<div class="each-project-section" id="{{_id}}">
-							{{#if isOwner _id}}
-							<ul class="actions">
-								<li><a href="" class="view-dataset" data-toggle="modal" data-target="#viewModal" data-id="{{_id}}" title="Ver Detalle"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
-								<li><a href="/datasets/{{_id}}" class="edit-dataset" data-toggle="tooltip" title="Editar conjunto"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-								<li><a href="" class="delete-dataset" title="Eliminar conjunto" data-toggle="modal" data-target="#deleteModal" data-id="{{_id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
-							</ul>
-							{{/if}}
-							<h4 class="no-margin-top capitalize no-margin-bottom cutted-text" style="margin-right: 45px;">Nombre: {{name}}</h4>
-							<p class="text-small cutted-text no-margin-bottom">Descripción: {{desc}}</p>
-							<span class="text-small">Número de Campos: </span><span class="text-bold text-small">{{num_fields}}</span><br>
-							<span class="text-small">Número de Registros: </span><span class="text-bold text-small">{{num_rows}}</span><br>
-							{{#if isPrivate _id}}
-								<span><i class="fa fa-user-circle-o" aria-hidden="true"></i> Privado</span><br>
+				
+				<div class="row search-row hidden">
+					<div class="col-lg-3 col-md-6 col-sm-8 col-xs-12 padding-bottom-half">
+						<div class="input-group login-form">
+					      <input id="clue" type="text" class="form-control" placeholder="Buscar Conjunto">
+					      <span class="input-group-btn">
+					        <button id="searchBtn" class="btn btn-default" type="button" style="border-radius: 0px; color: #337ab7;"><i class="fa fa-search" aria-hidden="true"></i></button>
+					      </span>
+					    </div>
+					    <a href="" class="padding-left-half-plus padding-top-mini show-all-datasets">Atrás</a>
+				    </div>
+				</div>		
+				{{#if Template.subscriptionsReady}}
+					{{#if isSearching}}	
+						<div class="row">
+							{{#each searchDatasets}}
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 padding-bottom-complete">
+								<div class="each-project-section" id="{{_id}}">
+									{{#if isOwner _id}}
+									<ul class="actions">
+										<li><a href="" class="view-dataset" data-toggle="modal" data-target="#viewModal" data-id="{{_id}}" title="Ver Detalle"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
+										<li><a href="/datasets/{{_id}}" class="edit-dataset" data-toggle="tooltip" title="Editar conjunto"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+										<li><a href="" class="delete-dataset" title="Eliminar conjunto" data-toggle="modal" data-target="#deleteModal" data-id="{{_id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+									</ul>
+									{{/if}}
+									<h4 class="no-margin-top capitalize no-margin-bottom cutted-text" style="margin-right: 45px;">Nombre: {{name}}</h4>
+									<p class="text-small cutted-text no-margin-bottom">Descripción: {{desc}}</p>
+									<span class="text-small">Número de Campos: </span><span class="text-bold text-small">{{num_fields}}</span><br>
+									<span class="text-small">Número de Registros: </span><span class="text-bold text-small">{{num_rows}}</span><br>
+									{{#if isPrivate _id}}
+										<span><i class="fa fa-user-circle-o" aria-hidden="true"></i> Privado</span><br>
+									{{else}}
+										<span><i class="fa fa-globe" aria-hidden="true"></i> Público</span>
+									{{/if}}
+								</div>
+							</div>	
 							{{else}}
-								<span><i class="fa fa-globe" aria-hidden="true"></i> Público</span>
-							{{/if}}
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<h4>No existen conjuntos de datos en el clúster</h4>
+							</div>					
+							{{/each}}
 						</div>
-					</div>	
 					{{else}}
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<h4>No existen conjuntos de datos en el clúster</h4>
-					</div>					
-					{{/each}}
-				</div>
+						<div class="row">
+							{{#each datasets}}
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 padding-bottom-complete">
+								<div class="each-project-section" id="{{_id}}">
+									{{#if isOwner _id}}
+									<ul class="actions">
+										<li><a href="" class="view-dataset" data-toggle="modal" data-target="#viewModal" data-id="{{_id}}" title="Ver Detalle"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
+										<li><a href="/datasets/{{_id}}" class="edit-dataset" data-toggle="tooltip" title="Editar conjunto"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+										<li><a href="" class="delete-dataset" title="Eliminar conjunto" data-toggle="modal" data-target="#deleteModal" data-id="{{_id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+									</ul>
+									{{/if}}
+									<h4 class="no-margin-top capitalize no-margin-bottom cutted-text" style="margin-right: 45px;">Nombre: {{name}}</h4>
+									<p class="text-small cutted-text no-margin-bottom">Descripción: {{desc}}</p>
+									<span class="text-small">Número de Campos: </span><span class="text-bold text-small">{{num_fields}}</span><br>
+									<span class="text-small">Número de Registros: </span><span class="text-bold text-small">{{num_rows}}</span><br>
+									{{#if isPrivate _id}}
+										<span><i class="fa fa-user-circle-o" aria-hidden="true"></i> Privado</span><br>
+									{{else}}
+										<span><i class="fa fa-globe" aria-hidden="true"></i> Público</span>
+									{{/if}}
+								</div>
+							</div>	
+							{{else}}
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<h4>No existen conjuntos de datos en el clúster</h4>
+							</div>					
+							{{/each}}
+						</div>
+					{{/if}}
 				{{else}}
 					<p>Cargando...</p>
 				{{/if}}	
 			</div>
 			<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 add-btn">
 				<div class="row text-right">
-					<a href="nuevo-dataset" title="Añadir Dataset">
-						<i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i>
+					<a href="#" title="Buscar Conjunto" class="search-dataset">
+						<i class="fa fa-search fa-2x" aria-hidden="true"></i>
+					</a>
+					<a href="nuevo-dataset" title="Añadir Conjunto">
+						<i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
 					</a>
 				</div>
 			</div>

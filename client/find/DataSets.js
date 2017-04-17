@@ -3,8 +3,10 @@ Template.DataSets.onCreated(function(){
 	self.autorun(function(){
 		self.subscribe('all_datasets');
 	});
-	// $('.delete-dataset').tooltip();
-	// $('.edit-dataset').tooltip();
+
+	// var datasets = DataSets.find();
+	// Session.set('all_datasets',datasets);
+
 });
 
 Template.DataSets.onRendered(function(){
@@ -13,12 +15,23 @@ Template.DataSets.onRendered(function(){
 	});	
 
 	$("#datasetsTabli").addClass('active');
+	$('[data-toggle="popover"]').popover();
 
+	// var datasets = DataSets.find()._id;
+	// Session.set('datasets_test',datasets);
 });
 
 Template.DataSets.helpers({
 	datasets:()=> {
-		return DataSets.find({});
+		return DataSets.find();
+	},
+
+	searchDatasets:()=> {
+		var clue = Session.get('clue');
+		console.log(clue);
+		var regex = new RegExp( clue, 'i' );
+		// console.log(regex);
+		return DataSets.find({name:regex});
 	},
 
 	isPrivate:(id)=> {
@@ -38,6 +51,10 @@ Template.DataSets.helpers({
 		}else{
 			return false;
 		}
+	},
+
+	isSearching:()=> {
+		return Session.get('searching');
 	},
 });
 
@@ -104,5 +121,27 @@ Template.DataSets.events({
 			$('#private').css('display', 'none');
 			$('#public').css('display', 'block');
 		}
-	}
+	},
+	'click .search-dataset' (event) {
+		console.log('buscar');
+		$('.search-row').removeClass('hidden');
+	},
+	'click #searchBtn' (event) {
+		Session.set('searching',true);
+		Session.set('clue',$('#clue').val());
+	},
+	'keypress #clue':function(event) {
+		// console.log('enter');
+		// console.log(event);
+		if (event.which === 13) {
+			Session.set('searching',true);
+			Session.set('clue',$('#clue').val());
+		}   
+     },
+	'click .show-all-datasets' (event) {
+		$('#clue').val(null);
+		$('.search-row').addClass('hidden');
+		Session.set('searching',false);
+	},
+
 });
