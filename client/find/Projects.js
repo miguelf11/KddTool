@@ -19,6 +19,15 @@ Template.Projects.onRendered(function(){
 Template.Projects.helpers({
 	projects:()=> {
 		return Projects.find({});
+	},
+	fecha: (date) => {
+		let day = date.getDate();
+		let month = date.getMonth();
+		let year = date.getFullYear();
+
+		date = day+"/"+month+"/"+year;
+
+		return date;
 	}
 });
 
@@ -81,5 +90,14 @@ Template.Projects.events({
 		$('#pjName').text(that.name);
 		$('#pjDataset').text(ds.name);
 		$('#pjDesc').text(that.desc);
+
+		let date = that.createdAt;
+		let day = date.getDate();
+		let month = date.getMonth();
+		let year = date.getFullYear();
+
+		date = day+"/"+month+"/"+year;
+
+		$('#pjDate').text(date);
 	}
 });

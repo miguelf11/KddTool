@@ -22,7 +22,10 @@
 						</ul>
 					</li>
 					<li>
-						<a tabindex="-1" href="#" class="filter" value={{this}} data-toggle="modal" data-target="#filterModal" data-id="{{this}}" data-type="{{data_type_drill this}}"><i class="fa fa-filter" aria-hidden="true"></i> Filtrar por...</a>
+						<a tabindex="-1" href="#" class="filter" value={{this}} data-toggle="modal" data-target="#filterModal" data-id="{{this}}" data-type="{{data_type_drill this}}"><i class="fa fa-filter" aria-hidden="true"></i> Filtrar</a>
+					</li>
+					<li>
+						<a tabindex="-1" href="#" class="filter" value={{this}} data-toggle="modal" data-target="#replaceModal" data-id="{{this}}" ><i class="fa fa-arrows-h" aria-hidden="true"></i> Reemplazar valores</a>
 					</li>
 					{{#if typeOfModalNumber this}}
 					<li><a href="#" class="explore-number" value="{{this}}" data-toggle="modal" data-target="#exploreModalNumber" data-id="{{this}}" data-type="{{data_type_drill this}}"><i class="fa fa-search" aria-hidden="true"></i> Explorar</a></li>
@@ -34,7 +37,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="#" value="{{this}}" class="change-type" rel="Entero" data-name="{{this}}">Entero</a></li> 
 							<li><a href="#" value="{{this}}" class="change-type" rel="Decimal" data-name="{{this}}">Decimal</a></li>
-							<li><a href="#" value="{{this}}" class="change-type" rel="Caractéres" data-name="{{this}}">Caractéres</a></li>
+							<li><a href="#" value="{{this}}" class="change-type" rel="String" data-name="{{this}}">Caractéres</a></li>
 							<li class='disabled'><a href="#" value="{{this}}" class="change-type" rel="Fecha" data-name="{{this}}">Fecha</a></li>
 						</ul>
 					</li>
@@ -69,6 +72,7 @@
 {{> exploreModalNumber}}
 {{> exploreModalString}}
 {{> filterModal}}
+{{> replaceModal}}
 
 <div class="backdrop" style="display: none;">
 	{{> Loader}}
