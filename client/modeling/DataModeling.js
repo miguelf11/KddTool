@@ -264,10 +264,10 @@ Template.DataModeling.events({
         $('#Aparams').text(label);
 
 
-        $(".attrs-table")
-            .append("<tr class='new-elements'><td><form class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
 
         if(parametros[0]) {
+            $(".attrs-table")
+                .append("<tr class='new-elements'><td><form class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
             for(var i in parametros) {   
                 name = parametros[i].key;
                 value = parametros[i].value;
@@ -294,7 +294,11 @@ Template.DataModeling.events({
                         .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
                 }
             }
-            $(".form").append("<br><input type='submit' id='submit' value='Actualizar parámetros'>");
+            $(".form").append("<br><input id='submit' type='submit' class='btn btn-primary' value='Actualizar parámetros'>");
+        } else {
+            $(".attrs-table")
+                .append("<tr class='new-elements'><td>No hay parámetros para este elemento</td></tr>");
+
         }
     },
 
