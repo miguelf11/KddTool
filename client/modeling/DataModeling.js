@@ -28,32 +28,8 @@ Template.DataModeling.onRendered(function(){
                     id: 'id de datos',
                     parametros : [
                         {
-                            key: 'deep',
-                            value : 5
-                        },
-                        {
-                            key: 'down',
-                            value : 7
-                        },
-                        {
-                            key: 'cp',
-                            value : [
-                                {
-                                    name:"opcion 1",
-                                    selected: 0,
-
-                                },
-                                {
-                                    name:"opcion 2",
-                                    selected: 0,
-
-                                },
-                                {
-                                    name:"opcion 3",
-                                    selected: 1,
-
-                                },
-                            ] 
+                            key: 'dataset',
+                            value : "hdfs:dsdsdsd"
                         }
                     ],
                     outputs: [
@@ -79,7 +55,7 @@ Template.DataModeling.onRendered(function(){
                     ],
                     parametros : [
                         {
-                            key: 'deep',
+                            key: 'dataset',
                             value : 5
                         },
                         {
@@ -87,12 +63,24 @@ Template.DataModeling.onRendered(function(){
                             value : 7
                         },
                         {
-                            key: 'luz',
-                            value : 12
-                        },
-                        {
                             key: 'cp',
-                            value : ["opcion 1", "opcion 2", "opcion 3"] 
+                            value : [
+                                {
+                                    name:"opcion 1",
+                                    selected: 0,
+
+                                },
+                                {
+                                    name:"opcion 2",
+                                    selected: 0,
+
+                                },
+                                {
+                                    name:"opcion 3",
+                                    selected: 1,
+
+                                },
+                            ] 
                         }
                     ],
                     outputs: [
@@ -210,6 +198,30 @@ Template.DataModeling.helpers({
 });
 
 Template.DataModeling.events({
+    'click .execute': function(e) {
+        var numberOfParentChildren = $('.ui-droppable .dropped').length;
+        var arrayLindo = []
+        console.log(numberOfParentChildren);
+        var i = 0;
+        $('.ui-droppable .dropped').each(function() {
+            var data = $(this).data('node'); 
+            arrayLindo[i] = data;
+            i++;
+        });
+        console.log(arrayLindo);
+        Meteor.call('example10', arrayLindo, function(error, result){
+            if(error){
+                console.log(error);
+            } else {
+                // console.log(result);
+                //out = JSON.stringify(result);
+                out = result;
+                // console.log("salidaaaaaaaaaaaa,  "+JSON.stringify(result));
+                console.log("salidaaaaaaaaaaaa,  "+result);
+            }
+        });
+    },
+
     'click #drop-node': function(e) {
         // $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire').remove();
         var numberOfParentChildren = $(e.currentTarget).closest('.ui-droppable').children().length;
