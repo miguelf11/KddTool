@@ -29,7 +29,9 @@ Template.DataModeling.onRendered(function(){
                     parametros : [
                         {
                             key: 'dataset',
-                            value : "hdfs:////user/vit/datasets/iris.csv"
+                            value : "hdfs:////user/vit/datasets/iris.csv",
+                            type: 'url'
+
                         }
                     ],
                     outputs: [
@@ -57,11 +59,13 @@ Template.DataModeling.onRendered(function(){
                     parametros : [
                         {
                             key: 'dataset',
-                            value : 5
+                            value : 5,
+                            type: 'number'
                         },
                         {
                             key: 'down',
-                            value : 7
+                            value : 'prueba',
+                            type: 'text'
                         },
                         {
                             key: 'cp',
@@ -81,7 +85,8 @@ Template.DataModeling.onRendered(function(){
                                     selected: 1,
 
                                 },
-                            ] 
+                            ],
+                            type:''
                         }
                     ],
                     outputs: [
@@ -143,22 +148,6 @@ Template.DataModeling.helpers({
     project:()=> {
         var id = FlowRouter.getParam('id');
         return Projects.findOne({_id:id});
-    },
-
-    algorithms:()=> {
-        var algorithms = [
-            {name: "algoritmo 1", desc: "desc de algoritmo 1"}, 
-            {name: "algoritmo 2", desc: "desc de algoritmo 2"}, 
-            {name:"algoritmo 3", desc: "desc de algoritmo 3"}, 
-            {name:"algoritmo 4", desc: "desc de algoritmo 4"}
-        ];
-        return algorithms;
-    },
-
-    dataInfo:()=> {
-        var dataInfo = 
-            {name: "Datos preparados", desc: "desc de data preparada"};
-        return dataInfo;
     }
 });
 
@@ -229,13 +218,14 @@ Template.DataModeling.events({
         $('#Aparams').text(label);
 
 
-        $(".attrs-table")
-            .append("<tr class='new-elements'><td><form class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
 
         if(parametros[0]) {
+            $(".attrs-table")
+                .append("<tr class='new-elements'><td><form class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
             for(var i in parametros) {   
                 name = parametros[i].key;
                 value = parametros[i].value;
+                type = parametros[i].type;
                 if ( Array.isArray(value) ) {
                     var select = "<select id="+name+" name="+name+"/>";
                     $(".form")
@@ -254,12 +244,16 @@ Template.DataModeling.events({
                     });       
 
                 } else {
-                    var input = "<input type='text' name="+name+" value="+value+">";                    
+                    var input = "<input id="+type+" type="+type+" name="+type+" value="+value+">";                    
                     $(".form")
                         .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
                 }
             }
-            $(".form").append("<br><input type='submit' id='submit' value='Actualizar parámetros'>");
+            $(".form").append("<br><input id='submit' type='submit' class='btn btn-primary' value='Actualizar parámetros'>");
+        } else {
+            $(".attrs-table")
+                .append("<tr class='new-elements'><td>No hay parámetros para este elemento</td></tr>");
+
         }
     },
 
@@ -291,6 +285,34 @@ Template.DataModeling.events({
 
 });
 
+$(document).ready(function() {
+    $('.form').validate({
+        rules: {
+            number: {
+                required: true,
+                minlength: 1,
+                number: true,
+            },
+            text: {
+                required: true,
+                minlength: 1,
+                text: true,
+            },
+        },
+        messages: {
+            number: {
+                required: "Este campo es requerido",
+                minlength: "Introduzca al menos un número",
+                number: "El valor debe ser de tipo numérico",
+            },
+            text: {
+                required: "Este campo es requerido",
+                minlength: "Introduzca al menos un caracter",
+                text: "El valor debe ser de tipo texto",
+            },
+        }
+    });
+});
 // Luego de realizar cualquier tarea en esta etapa se debe modificar el stage 
 // de la coleccion projecto y se debe colocar 'modelado' para que al volver a 
 // ingresar al proyecto lo redirija a la ultima etapa que realizó alguna tarea.
