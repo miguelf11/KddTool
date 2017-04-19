@@ -301,7 +301,7 @@ Template.DataModeling.events({
             value = $( this ).val();
             name = $( this ).attr("name");
             if(value != "Actualizar parámetros"){
-                if ($( this).attr('type') != 'text') {
+                if ($( this).attr('type') != 'text' && $( this).attr('type') != 'number') {
                     for (var j in node.parametros[i].value) {
                         node.parametros[i].value[j].selected = 0;
                         if ( node.parametros[i].value[j].name == value ) {
@@ -319,34 +319,34 @@ Template.DataModeling.events({
 
 });
 
-$(document).ready(function() {
-    $('.form').validate({
-        rules: {
-            number: {
-                required: true,
-                minlength: 1,
-                number: true,
-            },
-            text: {
-                required: true,
-                minlength: 1,
-                text: true,
-            },
-        },
-        messages: {
-            number: {
-                required: "Este campo es requerido",
-                minlength: "Introduzca al menos un número",
-                number: "El valor debe ser de tipo numérico",
-            },
-            text: {
-                required: "Este campo es requerido",
-                minlength: "Introduzca al menos un caracter",
-                text: "El valor debe ser de tipo texto",
-            },
-        }
-    });
-});
+// $(document).ready(function() {
+//     $('.form').validate({
+//         rules: {
+//             number: {
+//                 required: true,
+//                 minlength: 1,
+//                 number: true,
+//             },
+//             text: {
+//                 required: true,
+//                 minlength: 1,
+//                 text: true,
+//             },
+//         },
+//         messages: {
+//             number: {
+//                 required: "Este campo es requerido",
+//                 minlength: "Introduzca al menos un número",
+//                 number: "El valor debe ser de tipo numérico",
+//             },
+//             text: {
+//                 required: "Este campo es requerido",
+//                 minlength: "Introduzca al menos un caracter",
+//                 text: "El valor debe ser de tipo texto",
+//             },
+//         }
+//     });
+// });
 // Luego de realizar cualquier tarea en esta etapa se debe modificar el stage 
 // de la coleccion projecto y se debe colocar 'modelado' para que al volver a 
 // ingresar al proyecto lo redirija a la ultima etapa que realizó alguna tarea.
