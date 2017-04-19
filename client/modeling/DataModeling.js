@@ -31,14 +31,12 @@ Template.DataModeling.onRendered(function(){
                             key: 'dataset',
                             value : "hdfs:////user/vit/datasets/iris.csv",
                             type: 'url'
-
                         }
                     ],
                     outputs: [
                         {
                             label: 'dataset',
                             fn: function(nodeState) {
-
                                 console.log(JSON.stringify(nodeState));
                                 var d = $.Deferred();
                                 d.resolve(5);
@@ -94,10 +92,11 @@ Template.DataModeling.onRendered(function(){
                             label: 'Rtest2',
                             fn: function(nodeState) {
                                 var d = $.Deferred();
+                                inputs = nodeState.inputs || {};
                                 var out;
                                 d.resolve(out);
                                 return d.promise();
-                            }                              
+                            }                             
                         }
                         
                     ]
@@ -111,7 +110,18 @@ Template.DataModeling.onRendered(function(){
                             label: 'B'
                         }
                     ],
-                    parametros: [],
+                    parametros: [
+                        {
+                            key: 'testing',
+                            value :0.6,
+                            type: 'number'
+                        },
+                        {
+                            key: 'training',
+                            value : 0.4,
+                            type: 'number'
+                        },
+                    ],
                     outputs: [
                         {
                             label: 'Testing',
@@ -160,20 +170,22 @@ Template.DataModeling.events({
         $('.ui-droppable .dropped').each(function() {
             var data = $(this).data('node'); 
             arrayLindo[i] = data;
+            console.log(JSON.stringify(arrayLindo));
             i++;
         });
         console.log(arrayLindo);
-        Meteor.call('example10', arrayLindo, function(error, result){
-            if(error){
-                console.log(error);
-            } else {
-                // console.log(result);
-                //out = JSON.stringify(result);
-                out = result;
-                console.log("salidaaaaaaaaaaaa,  "+JSON.stringify(result));
-                console.log("salidaaaaaaaaaaaa,  "+result);
-            }
-        });
+        // console.log(arrayLindo);
+        // Meteor.call('example10', arrayLindo, function(error, result){
+        //     if(error){
+        //         console.log(error);
+        //     } else {
+        //         // console.log(result);
+        //         //out = JSON.stringify(result);
+        //         out = result;
+        //         console.log("salidaaaaaaaaaaaa,  "+JSON.stringify(result));
+        //         console.log("salidaaaaaaaaaaaa,  "+result);
+        //     }
+        // });
     },
 
     'click #drop-node': function(e) {
@@ -240,11 +252,13 @@ Template.DataModeling.events({
                         } else {
                             $(".form #"+name).append($("<option/>").attr("value", b.name).text(b.name));
                         }
-                        
                     });       
-
                 } else {
-                    var input = "<input id="+type+" type="+type+" name="+type+" value="+value+">";                    
+                    if(type == "number"){
+                        var input = "<input id="+type+" type="+type+" name="+type+" value="+value+" step='0.01'>" ;
+                    }else{
+                        var input = "<input id="+type+" type="+type+" name="+type+" value="+value+">";
+                    }             
                     $(".form")
                         .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
                 }
@@ -280,39 +294,40 @@ Template.DataModeling.events({
             }
             i++;
         });
+        console.log(JSON.stringify(node));
         currentNode.data('node',node);
     },
 
 });
 
-$(document).ready(function() {
-    $('.form').validate({
-        rules: {
-            number: {
-                required: true,
-                minlength: 1,
-                number: true,
-            },
-            text: {
-                required: true,
-                minlength: 1,
-                text: true,
-            },
-        },
-        messages: {
-            number: {
-                required: "Este campo es requerido",
-                minlength: "Introduzca al menos un número",
-                number: "El valor debe ser de tipo numérico",
-            },
-            text: {
-                required: "Este campo es requerido",
-                minlength: "Introduzca al menos un caracter",
-                text: "El valor debe ser de tipo texto",
-            },
-        }
-    });
-});
+// $(document).ready(function() {
+//     $('.form').validate({
+//         rules: {
+//             number: {
+//                 required: true,
+//                 minlength: 1,
+//                 number: true,
+//             },
+//             text: {
+//                 required: true,
+//                 minlength: 1,
+//                 text: true,
+//             },
+//         },
+//         messages: {
+//             number: {
+//                 required: "Este campo es requerido",
+//                 minlength: "Introduzca al menos un número",
+//                 number: "El valor debe ser de tipo numérico",
+//             },
+//             text: {
+//                 required: "Este campo es requerido",
+//                 minlength: "Introduzca al menos un caracter",
+//                 text: "El valor debe ser de tipo texto",
+//             },
+//         }
+//     });
+// });
 // Luego de realizar cualquier tarea en esta etapa se debe modificar el stage 
 // de la coleccion projecto y se debe colocar 'modelado' para que al volver a 
 // ingresar al proyecto lo redirija a la ultima etapa que realizó alguna tarea.
