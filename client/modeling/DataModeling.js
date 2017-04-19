@@ -281,7 +281,7 @@ Template.DataModeling.events({
             value = $( this ).val();
             name = $( this ).attr("name");
             if(value != "Actualizar parámetros"){
-                if ($( this).attr('type') != 'text') {
+                if ($( this).attr('type') != 'text' && $( this).attr('type') != 'number') {
                     for (var j in node.parametros[i].value) {
                         node.parametros[i].value[j].selected = 0;
                         if ( node.parametros[i].value[j].name == value ) {
