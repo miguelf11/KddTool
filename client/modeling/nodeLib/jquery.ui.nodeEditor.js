@@ -183,6 +183,11 @@ $.widget("ui.nodeEditor", {
             properties: {},
             parametros: {}
         };
+
+        if(node.parametros){
+            node.state.parametros = node.parametros;
+        }
+        
         this._updateTip(element, node);
 
         node.update = function(updateMap) {
