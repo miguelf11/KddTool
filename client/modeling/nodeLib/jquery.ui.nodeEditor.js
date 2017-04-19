@@ -462,6 +462,13 @@ $.widget("ui.nodeEditor", {
                     to.data('update')(data);
                 });
             }
+
+            /* Disable executor prevent R Serve calls */
+            if ( $('.ui-nodeEditor-wire').length > 0) {
+                $('.execute').attr("disabled", false);
+            } else{
+                $('.execute').attr("disabled", true);
+            }
         });
 
         this.nodeField.on('mouseup', function() {
@@ -469,6 +476,13 @@ $.widget("ui.nodeEditor", {
                 // console.log('releasing wire');
 
                 $('.ui-nodeEditor-activeWire').empty().remove();
+            }
+
+            /* Disable executor prevent R Serve calls */
+            if ( $('.ui-nodeEditor-wire').length > 0 ) {
+                $('.execute').attr("disabled", false);
+            } else {
+                $('.execute').attr("disabled", true);
             }
         });
     }
