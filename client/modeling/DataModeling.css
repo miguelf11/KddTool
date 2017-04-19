@@ -1,7 +1,3 @@
-#attrs {
-	/* display: none; */
-}
-
 .data-modeling-table {
     width: 100%;
 }
@@ -74,4 +70,17 @@
 	border-radius: 5px;
 	width: 75%;
 	padding: 5px 2px;
+}
+
+#submit-success, 
+#submit-error {
+	display:none;
+}
+
+#submit-success {
+	color: green
+} 
+
+#submit-error, label.error {
+	color: red;
 }
