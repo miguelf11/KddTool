@@ -274,7 +274,6 @@ Template.DataModeling.events({
             },
             invalidHandler: function(event, validator) {
                 // 'this' refers to the form
-                console.log("INCORRECTO");
                 var errors = validator.numberOfInvalids();
                 if (errors) {
                     var message = errors == 1
