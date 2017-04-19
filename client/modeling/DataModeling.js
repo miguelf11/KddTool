@@ -170,22 +170,21 @@ Template.DataModeling.events({
         $('.ui-droppable .dropped').each(function() {
             var data = $(this).data('node'); 
             arrayLindo[i] = data;
-            console.log(JSON.stringify(arrayLindo));
+            // console.log(JSON.stringify(arrayLindo));
             i++;
         });
         console.log(arrayLindo);
-        // console.log(arrayLindo);
-        // Meteor.call('example10', arrayLindo, function(error, result){
-        //     if(error){
-        //         console.log(error);
-        //     } else {
-        //         // console.log(result);
-        //         //out = JSON.stringify(result);
-        //         out = result;
-        //         console.log("salidaaaaaaaaaaaa,  "+JSON.stringify(result));
-        //         console.log("salidaaaaaaaaaaaa,  "+result);
-        //     }
-        // });
+        Meteor.call('example10', arrayLindo, function(error, result){
+            if(error){
+                console.log(error);
+            } else {
+                // console.log(result);
+                //out = JSON.stringify(result);
+                out = result;
+                console.log("salidaaaaaaaaaaaa,  "+JSON.stringify(result));
+                console.log("salidaaaaaaaaaaaa,  "+result);
+            }
+        });
     },
 
     'click #drop-node': function(e) {
@@ -294,7 +293,6 @@ Template.DataModeling.events({
             }
             i++;
         });
-        console.log(JSON.stringify(node));
         currentNode.data('node',node);
     },
 
