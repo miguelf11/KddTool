@@ -31,14 +31,12 @@ Template.DataModeling.onRendered(function(){
                             key: 'dataset',
                             value : "hdfs:////user/vit/datasets/iris.csv",
                             type: 'url'
-
                         }
                     ],
                     outputs: [
                         {
                             label: 'dataset',
                             fn: function(nodeState) {
-
                                 console.log(JSON.stringify(nodeState));
                                 var d = $.Deferred();
                                 d.resolve(5);
@@ -94,10 +92,11 @@ Template.DataModeling.onRendered(function(){
                             label: 'Rtest2',
                             fn: function(nodeState) {
                                 var d = $.Deferred();
+                                inputs = nodeState.inputs || {};
                                 var out;
                                 d.resolve(out);
                                 return d.promise();
-                            }                              
+                            }                             
                         }
                         
                     ]
@@ -111,7 +110,18 @@ Template.DataModeling.onRendered(function(){
                             label: 'B'
                         }
                     ],
-                    parametros: [],
+                    parametros: [
+                        {
+                            key: 'testing',
+                            value :0.6,
+                            type: 'number'
+                        },
+                        {
+                            key: 'training',
+                            value : 0.4,
+                            type: 'number'
+                        },
+                    ],
                     outputs: [
                         {
                             label: 'Testing',
@@ -252,11 +262,13 @@ Template.DataModeling.events({
                         } else {
                             $(".form #"+name).append($("<option/>").attr("value", b.name).text(b.name));
                         }
-                        
                     });       
-
                 } else {
-                    var input = "<input id="+type+" type="+type+" name="+type+" value="+value+">";                    
+                    if(type == "number"){
+                        var input = "<input id="+type+" type="+type+" name="+type+" value="+value+" step='0.01'>" ;
+                    }else{
+                        var input = "<input id="+type+" type="+type+" name="+type+" value="+value+">";
+                    }             
                     $(".form")
                         .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
                 }
