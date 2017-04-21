@@ -26,6 +26,7 @@ Template.DataModeling.onRendered(function(){
                 {
                     label: 'datos',
                     id: 'id de datos',
+                    type:"dataset",
                     parametros : [
                         {
                             key: 'dataset',
@@ -48,6 +49,7 @@ Template.DataModeling.onRendered(function(){
                 {
                     label: 'Arbol de decision',
                     id: 'id arbol',
+                    type : 'algoritmoCS',
                     inputs: [
                         {
                             id: 'dataset',
@@ -104,10 +106,11 @@ Template.DataModeling.onRendered(function(){
                 {
                     label: 'Split',
                     id: 'id R',
+                    type: 'algoritmoSS',
                     inputs: [
                         {
-                            id: 'B',
-                            label: 'B'
+                            id: 'Input',
+                            label: 'Input'
                         }
                     ],
                     parametros: [
@@ -139,13 +142,10 @@ Template.DataModeling.onRendered(function(){
                             label: 'Training',
                             fn: function(nodeState) {
                                 var d = $.Deferred();
-                                inputs = nodeState.inputs || {};
-                                inputs.A = inputs.A || 0;
-                                inputs.B = inputs.B || 0;
                                 var out;
                                 d.resolve(out);
                                 return d.promise();
-                            }                             
+                            }                            
                         }
                     ]
                 }
@@ -173,11 +173,13 @@ Template.DataModeling.events({
             arrayOfParams[i] = data;
             i++;
         });
-        Meteor.call('example10', arrayOfParams, function(error, result){
+        console.log(arrayOfParams);
+        Meteor.call('example', arrayOfParams, function(error, result){
             if(error){
                 console.log(error);
             } else {
                 out = result;
+                console.log(out);
             }
         });
     },
@@ -219,7 +221,6 @@ Template.DataModeling.events({
         currentNode = $(e.currentTarget);
         var label = currentNode.data('node').label;
         var id = currentNode.data('node').id;
-
         var parametros = currentNode.data('node').parametros;
         var labelOutput = currentNode.data('node').outputs[0].label;
 
@@ -249,17 +250,24 @@ Template.DataModeling.events({
                         }
                     });       
                 } else {
-                    if(type == "number"){
+                    if(type == "number") {
                         var input = "<input id="+type+" type="+type+" name="+type+" value="+value+" step='0.01'>" ;
+                        $(".form")
+                                .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
                     }else{
-                        var input = "<input id="+type+" type="+type+" name="+type+" value="+value+">";
+                        if(type != "url") {
+                            var input = "<input id="+type+" type="+type+" name="+type+" value="+value+">";
+                            $(".form")
+                                .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
+                        } 
                     }             
-                    $(".form")
-                        .append("<tr class='new-elements'><td><label for="+name+">"+name+"</label><br>"+input+"</td></tr>");
                 }
             }
-            $(".form").append("<br><input id='submit' type='submit' name='submit' class='btn btn-primary' value='Actualizar parámetros'>");
-            $(".form").append("<br><label id='submit-success' for='submit'>Parámetros actualizados correctamente!</label>");
+            if(type != "url"){
+                $(".form").append("<br><input id='submit' type='submit' name='submit' class='btn btn-primary' value='Actualizar parámetros'>");
+                $(".form").append("<br><label id='submit-success' for='submit'>Parámetros actualizados correctamente!</label>");
+            }
+            
         } else {
             $(".attrs-table")
                 .append("<tr class='new-elements'><td>No hay parámetros para este elemento</td></tr>");
@@ -318,7 +326,6 @@ Template.DataModeling.events({
         jQuery.validator.addMethod("lettersonly", function(value, element) {
             return this.optional(element) || /^[a-z]+$/i.test(value);
         }, "Letters only please"); 
-
     },
 
     /* submit form function */
@@ -347,8 +354,6 @@ Template.DataModeling.events({
         });
         currentNode.data('node',node);
     },
-
-
 });
 
 // Luego de realizar cualquier tarea en esta etapa se debe modificar el stage 
