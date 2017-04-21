@@ -190,16 +190,31 @@ Template.DataModeling.events({
         var numberOfParentChildren = $(e.currentTarget).closest('.ui-droppable').children().length;
         var numberOfConnections = $(e.currentTarget).parent().children().length-2;
         var numberOfCurrentBox = $(e.currentTarget).parent().index()+1;
-        var cont = 0;
+        // var cont = 0;
 
-        /* Delete all wires mades after deleted node, FIX */
-        while (cont != numberOfConnections) {
-            $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire:first').remove();
-            cont++; 
-        }
+        /* Delete conected wires after deleted node */
+
+        $(".ui-nodeEditor-wire").each(function() {
+            wire = $( this ); 
+            to = $( this ).data("to")[0];
+            from = $( this ).data("from")[0];
+            $(e.currentTarget).parent()
+                .find('.ui-nodeEditor-nodeIO .ui-nodeEditor-nodeConnector')
+                .each(function() {
+                    if ( to == $(this)[0] || from == $(this)[0]) { 
+                        wire.remove(); 
+                    } 
+            });
+        });
+
         $(e.currentTarget).parent().fadeOut(300, function() {
             $(this).remove();
         });
+
+        /*while (cont != numberOfConnections) {
+            $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire:first').remove();
+            cont++; 
+        }*/
 
         /* Remove text from attrs table */
         if ($('#Aparams').text() == $(e.currentTarget).parent().data('node').label || !$('#Aparams').text()) {
