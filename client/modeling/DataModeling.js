@@ -293,20 +293,20 @@ Template.DataModeling.events({
 
         /* Characteristics selector*/
         if (typeOfNode == 'algoritmoCS' ) {
-            var check = "<input type='checkbox' name="+typeOfNode+">";
-            var titleChar = "<tr class='new-elements'><td><h3>Características</h3><br></td></tr>";
+            var titleChar = "<tr class='new-charac'><td><h3>Características</h3><br></td></tr>";
             var i = 0;
             $(".attrs-table")
-                .append("<tr class='new-elements'><td><form id='form-char' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
+                .append("<tr class='new-charac'><td><form id='form-char' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
             $("#form-char")
                 .append(titleChar);
             while (i < 5) {
                 $("#form-char")
-                    .append("<tr class='new-elements'><td>Elemento: "+i+" "+check+"</td></tr>");
+                    .append("<tr class='new-charac'><td>Elemento: "+i+" <input type='checkbox' value='Elemento "+i+"' name='checkboxlist'></td></tr>");
                 i++;
             }
-            $("#form-char").append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");
-                
+            $("#form-char")
+                .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");  
+
         }
 
         /* jQuery form validator */
@@ -388,6 +388,18 @@ Template.DataModeling.events({
             }
             i++;
         });
+        currentNode.data('node',node);
+    }, 
+
+    'click #submit-char': function(e) {
+        var properties = currentNode.data('node').properties;
+        var node = currentNode.data('node');
+        $(".new-charac input[name=checkboxlist]:checked").each(function() {
+            console.log("checkbox: "+ $(this).val());
+            properties.push($(this).val());
+        });
+        console.log("properties: "+ properties);
+        console.log("properties: "+ typeof(properties));
         currentNode.data('node',node);
     },
 });
