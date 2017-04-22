@@ -243,6 +243,7 @@ Template.DataModeling.events({
         var labelOutput = currentNode.data('node').outputs[0].label;
 
         $('.new-elements').remove();
+        $('.new-charac').remove();
         $('#Aparams').text(label);
 
         if(parametros[0]) {
@@ -299,6 +300,9 @@ Template.DataModeling.events({
                 .append("<tr class='new-charac'><td><form id='form-char' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
             $("#form-char")
                 .append(titleChar);
+            $("#form-char")
+                .append("<tr class='new-charac'><td>Seleccionar Todo:<input id='select_all' type='checkbox' name='checkboxlist'></td></tr>");
+              
             while (i < 5) {
                 $("#form-char")
                     .append("<tr class='new-charac'><td>Elemento: "+i+" <input type='checkbox' value='Elemento "+i+"' name='checkboxlist'></td></tr>");
@@ -306,6 +310,16 @@ Template.DataModeling.events({
             }
             $("#form-char")
                 .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");  
+       
+
+            $('#select_all').change(function() {
+                var checkboxes = $(this).closest('form').find(':checkbox');
+                if($(this).is(':checked')) {
+                    checkboxes.prop('checked', true);
+                } else {
+                    checkboxes.prop('checked', false);
+                }
+            });
 
         }
 
@@ -395,8 +409,8 @@ Template.DataModeling.events({
         var properties = currentNode.data('node').properties;
         var node = currentNode.data('node');
         $(".new-charac input[name=checkboxlist]:checked").each(function() {
-            console.log("checkbox: "+ $(this).val());
-            properties.push($(this).val());
+            if ($(this).attr('id') != 'select_all')
+                properties.push($(this).val());
         });
         console.log("properties: "+ properties);
         console.log("properties: "+ typeof(properties));
