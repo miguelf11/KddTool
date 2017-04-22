@@ -89,6 +89,7 @@ Template.DataModeling.onRendered(function(){
                             type:''
                         }
                     ],
+                    properties: [],
                     outputs: [
                         {
                             label: 'Rtest2',
@@ -237,6 +238,8 @@ Template.DataModeling.events({
         var label = currentNode.data('node').label;
         var id = currentNode.data('node').id;
         var parametros = currentNode.data('node').parametros;
+        var propiedades = currentNode.data('node').properties;
+        var typeOfNode = currentNode.data('node').type;
         var labelOutput = currentNode.data('node').outputs[0].label;
 
         $('.new-elements').remove();
@@ -282,10 +285,28 @@ Template.DataModeling.events({
                 $(".form").append("<br><input id='submit' type='submit' name='submit' class='btn btn-primary' value='Actualizar parámetros'>");
                 $(".form").append("<br><label id='submit-success' for='submit'>Parámetros actualizados correctamente!</label>");
             }
-            
+
         } else {
             $(".attrs-table")
                 .append("<tr class='new-elements'><td>No hay parámetros para este elemento</td></tr>");
+        }
+
+        /* Characteristics selector*/
+        if (typeOfNode == 'algoritmoCS' ) {
+            var check = "<input type='checkbox' name="+typeOfNode+">";
+            var titleChar = "<tr class='new-elements'><td><h3>Características</h3><br></td></tr>";
+            var i = 0;
+            $(".attrs-table")
+                .append("<tr class='new-elements'><td><form id='form-char' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
+            $("#form-char")
+                .append(titleChar);
+            while (i < 5) {
+                $("#form-char")
+                    .append("<tr class='new-elements'><td>Elemento: "+i+" "+check+"</td></tr>");
+                i++;
+            }
+            $("#form-char").append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");
+                
         }
 
         /* jQuery form validator */
