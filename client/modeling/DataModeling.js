@@ -221,6 +221,7 @@ Template.DataModeling.events({
         if ($('#Aparams').text() == $(e.currentTarget).parent().data('node').label || !$('#Aparams').text()) {
             $('#Aparams').text("");
             $('.new-elements').remove();
+            $('.new-charac').remove();
         }
 
         /* Disable executor prevent R Serve calls */
@@ -294,24 +295,40 @@ Template.DataModeling.events({
 
         /* Characteristics selector*/
         if (typeOfNode == 'algoritmoCS' ) {
-            var titleChar = "<tr class='new-charac'><td><h3>Características</h3><br></td></tr>";
-            var i = 0;
-            $(".attrs-table")
-                .append("<tr class='new-charac'><td><form id='form-char' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
-            $("#form-char")
-                .append(titleChar);
-            $("#form-char")
-                .append("<tr class='new-charac'><td>Seleccionar Todo:<input id='select_all' type='checkbox' name='checkboxlist'></td></tr>");
-              
-            while (i < 5) {
+                console.log(propiedades);
+                var titleChar = "<tr class='new-charac'><td><h3>Características</h3><br></td></tr>";
+                var i = 0;
+                $(".attrs-table")
+                    .append("<tr class='new-charac'><td><form id='form-char' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
                 $("#form-char")
-                    .append("<tr class='new-charac'><td>Elemento: "+i+" <input type='checkbox' value='Elemento "+i+"' name='checkboxlist'></td></tr>");
-                i++;
-            }
-            $("#form-char")
-                .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");  
-       
+                    .append(titleChar);
+                $("#form-char")
+                    .append("<tr class='new-charac'><td>Seleccionar Todo:<input id='select_all' type='checkbox' name='checkboxlist'></td></tr>");
+                  
+                while (i < 5) {                     
+                    $("#form-char")
+                        .append("<tr class='new-charac'><td>Elemento: "+i+" <input type='checkbox' value='Elemento "+i+"' name='checkboxlist'></td></tr>");
+                    i++;
+                }
+                $("#form-char")
+                    .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");  
+                
+                if (propiedades.length == $(".new-charac input[name=checkboxlist]").length-1) {
+                    $(".new-charac input[name=checkboxlist]").each(function() {
+                        $(this).prop('checked', true);
+                    });
+                } else {
+                    for (var j in propiedades ) {
+                        $(".new-charac input[name=checkboxlist]").each(function() {
+                            if ($(this).val() == propiedades[j])
+                                $(this).prop('checked', true);
+                        });
+                    }
 
+                }
+        }
+
+            /* Select all checkboxes */
             $('#select_all').change(function() {
                 var checkboxes = $(this).closest('form').find(':checkbox');
                 if($(this).is(':checked')) {
@@ -321,8 +338,7 @@ Template.DataModeling.events({
                 }
             });
 
-        }
-
+        
         /* jQuery form validator */
         $('#form').validate({
             submitHandler: function (form) {
@@ -406,14 +422,18 @@ Template.DataModeling.events({
     }, 
 
     'click #submit-char': function(e) {
-        var properties = currentNode.data('node').properties;
+        // var properties = currentNode.data('node').properties;
+        // var properties = [];
         var node = currentNode.data('node');
+        var json = JSON.stringify(node);
+        var node = JSON.parse(json);
+        node.properties = [];
         $(".new-charac input[name=checkboxlist]:checked").each(function() {
             if ($(this).attr('id') != 'select_all')
-                properties.push($(this).val());
+                node.properties.push($(this).val());
         });
-        console.log("properties: "+ properties);
-        console.log("properties: "+ typeof(properties));
+        console.log("properties: "+ node.properties);
+        console.log("properties: "+ typeof(node.properties));
         currentNode.data('node',node);
     },
 });
