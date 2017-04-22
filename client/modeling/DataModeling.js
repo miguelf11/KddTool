@@ -187,11 +187,9 @@ Template.DataModeling.events({
 
     /* Delete nodes */
     'click #drop-node': function(e) {
-        // $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire').remove();
         var numberOfParentChildren = $(e.currentTarget).closest('.ui-droppable').children().length;
         var numberOfConnections = $(e.currentTarget).parent().children().length-2;
         var numberOfCurrentBox = $(e.currentTarget).parent().index()+1;
-        // var cont = 0;
 
         /* Delete conected wires after deleted node */
 
@@ -211,11 +209,6 @@ Template.DataModeling.events({
         $(e.currentTarget).parent().fadeOut(300, function() {
             $(this).remove();
         });
-
-        /*while (cont != numberOfConnections) {
-            $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire:first').remove();
-            cont++; 
-        }*/
 
         /* Remove text from attrs table */
         if ($('#Aparams').text() == $(e.currentTarget).parent().data('node').label || !$('#Aparams').text()) {
@@ -293,7 +286,7 @@ Template.DataModeling.events({
                 .append("<tr class='new-elements'><td>No hay parámetros para este elemento</td></tr>");
         }
 
-        /* Characteristics selector*/
+        /* Features selector*/
         if (typeOfNode == 'algoritmoCS' ) {
                 console.log(propiedades);
                 var titleChar = "<tr class='new-charac'><td><h3>Características</h3><br></td></tr>";
@@ -313,6 +306,7 @@ Template.DataModeling.events({
                 $("#form-char")
                     .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");  
                 
+                /* Features marker when click node*/
                 if (propiedades.length == $(".new-charac input[name=checkboxlist]").length-1) {
                     $(".new-charac input[name=checkboxlist]").each(function() {
                         $(this).prop('checked', true);
@@ -422,8 +416,6 @@ Template.DataModeling.events({
     }, 
 
     'click #submit-char': function(e) {
-        // var properties = currentNode.data('node').properties;
-        // var properties = [];
         var node = currentNode.data('node');
         var json = JSON.stringify(node);
         var node = JSON.parse(json);
@@ -432,8 +424,6 @@ Template.DataModeling.events({
             if ($(this).attr('id') != 'select_all')
                 node.properties.push($(this).val());
         });
-        console.log("properties: "+ node.properties);
-        console.log("properties: "+ typeof(node.properties));
         currentNode.data('node',node);
     },
 });
