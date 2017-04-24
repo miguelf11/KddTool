@@ -288,38 +288,38 @@ Template.DataModeling.events({
 
         /* Features selector*/
         if (typeOfNode == 'algoritmoCS' ) {
-                console.log(propiedades);
-                var titleChar = "<tr class='new-charac'><td><h3>Características</h3><br></td></tr>";
-                var i = 0;
-                $(".attrs-table")
-                    .append("<tr class='new-charac'><td><form id='form-char' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
+            console.log(propiedades);
+            var titleChar = "<tr class='new-charac'><td><h3>Características</h3><br></td></tr>";
+            var i = 0;
+            $(".attrs-table")
+                .append("<tr class='new-charac'><td><form id='form-char' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
+            $("#form-char")
+                .append(titleChar);
+            $("#form-char")
+                .append("<tr class='new-charac'><td>Seleccionar Todo:<input id='select_all' type='checkbox' name='checkboxlist'></td></tr>");
+              
+            while (i < 5) {                     
                 $("#form-char")
-                    .append(titleChar);
-                $("#form-char")
-                    .append("<tr class='new-charac'><td>Seleccionar Todo:<input id='select_all' type='checkbox' name='checkboxlist'></td></tr>");
-                  
-                while (i < 5) {                     
-                    $("#form-char")
-                        .append("<tr class='new-charac'><td>Elemento: "+i+" <input type='checkbox' value='Elemento "+i+"' name='checkboxlist'></td></tr>");
-                    i++;
-                }
-                $("#form-char")
-                    .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");  
-                
-                /* Features marker when click node*/
-                if (propiedades.length == $(".new-charac input[name=checkboxlist]").length-1) {
+                    .append("<tr class='new-charac'><td>Elemento: "+i+" <input type='checkbox' value='Elemento "+i+"' name='checkboxlist'></td></tr>");
+                i++;
+            }
+            $("#form-char")
+                .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");  
+            
+            /* Features marker when click node*/
+            if (propiedades.length == $(".new-charac input[name=checkboxlist]").length-1) {
+                $(".new-charac input[name=checkboxlist]").each(function() {
+                    $(this).prop('checked', true);
+                });
+            } else {
+                for (var j in propiedades ) {
                     $(".new-charac input[name=checkboxlist]").each(function() {
-                        $(this).prop('checked', true);
+                        if ($(this).val() == propiedades[j])
+                            $(this).prop('checked', true);
                     });
-                } else {
-                    for (var j in propiedades ) {
-                        $(".new-charac input[name=checkboxlist]").each(function() {
-                            if ($(this).val() == propiedades[j])
-                                $(this).prop('checked', true);
-                        });
-                    }
-
                 }
+
+            }
         }
 
             /* Select all checkboxes */
