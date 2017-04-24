@@ -240,6 +240,7 @@ Template.DataModeling.events({
         $('.new-charac').remove();
         $('#Aparams').text(label);
 
+
         if(parametros[0]) {
             $(".attrs-table")
                 .append("<tr class='new-elements'><td><form id='form' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
