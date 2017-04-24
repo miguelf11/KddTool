@@ -246,6 +246,7 @@ Template.DataModeling.events({
         $('.new-charac').remove();
         $('#Aparams').text(label);
 
+
         if(parametros[0]) {
             $(".attrs-table")
                 .append("<tr class='new-elements'><td><form id='form' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
@@ -294,6 +295,20 @@ Template.DataModeling.events({
 
         /* Characteristics selector*/
         if (typeOfNode == 'algoritmoCS' ) {
+
+            Meteor.call('queryPrueba', arrayOfParams, function(error, result){
+                if(error){
+                    console.log("error en queryPrueba");
+                } else {
+                    columns = res.data.columns;
+                    console.log(columns);
+                    for (var i=0;i<columns.length;i++){
+
+                    }
+                }
+            });
+
+
             var titleChar = "<tr class='new-charac'><td><h3>Características</h3><br></td></tr>";
             var i = 0;
             $(".attrs-table")
