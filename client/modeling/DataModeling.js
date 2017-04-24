@@ -187,11 +187,9 @@ Template.DataModeling.events({
 
     /* Delete nodes */
     'click #drop-node': function(e) {
-        // $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire').remove();
         var numberOfParentChildren = $(e.currentTarget).closest('.ui-droppable').children().length;
         var numberOfConnections = $(e.currentTarget).parent().children().length-2;
         var numberOfCurrentBox = $(e.currentTarget).parent().index()+1;
-        // var cont = 0;
 
         /* Delete conected wires after deleted node */
 
@@ -212,15 +210,11 @@ Template.DataModeling.events({
             $(this).remove();
         });
 
-        /*while (cont != numberOfConnections) {
-            $(e.currentTarget).parent().nextAll('.ui-nodeEditor-wire:first').remove();
-            cont++; 
-        }*/
-
         /* Remove text from attrs table */
         if ($('#Aparams').text() == $(e.currentTarget).parent().data('node').label || !$('#Aparams').text()) {
             $('#Aparams').text("");
             $('.new-elements').remove();
+            $('.new-charac').remove();
         }
 
         /* Disable executor prevent R Serve calls */
@@ -293,40 +287,52 @@ Template.DataModeling.events({
                 .append("<tr class='new-elements'><td>No hay parámetros para este elemento</td></tr>");
         }
 
-        /* Characteristics selector*/
+        /* Features selector*/
         if (typeOfNode == 'algoritmoCS' ) {
-
-            Meteor.call('queryPrueba', arrayOfParams, function(error, result){
-                if(error){
-                    console.log("error en queryPrueba");
-                } else {
-                    columns = res.data.columns;
-                    console.log(columns);
-                    for (var i=0;i<columns.length;i++){
-
-                    }
-                }
-            });
-
-
-            var titleChar = "<tr class='new-charac'><td><h3>Características</h3><br></td></tr>";
-            var i = 0;
-            $(".attrs-table")
-                .append("<tr class='new-charac'><td><form id='form-char' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
-            $("#form-char")
-                .append(titleChar);
-            $("#form-char")
-                .append("<tr class='new-charac'><td>Seleccionar Todo:<input id='select_all' type='checkbox' name='checkboxlist'></td></tr>");
-              
-            while (i < 5) {
                 $("#form-char")
-                    .append("<tr class='new-charac'><td>Elemento: "+i+" <input type='checkbox' value='Elemento "+i+"' name='checkboxlist'></td></tr>");
-                i++;
-            }
-            $("#form-char")
-                .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");  
-       
+                    .append(titleChar);
+                $("#form-char")
+                    .append("<tr class='new-charac'><td>Seleccionar Todo:<input id='select_all' type='checkbox' name='checkboxlist'></td></tr>");
+                  
 
+                // Meteor.call('queryPrueba', arrayOfParams, function(error, result){
+                //     if(error){
+                //         console.log("error en queryPrueba");
+                //     } else {
+                //         columns = res.data.columns;
+                //         console.log(columns);
+                //         for (var i=0;i<columns.length;i++){
+
+                //         }
+                //     }
+                // });
+                i = 0;
+                while (i < 5) {
+                    console.log("hola");                 
+                    $("#form-char")
+                        .append("<tr class='new-charac'><td>Elemento: "+i+" <input type='checkbox' value='Elemento "+i+"' name='checkboxlist'></td></tr>");
+                    i++;
+                }
+                $("#form-char")
+                    .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");  
+                
+                /* Features marker when click node*/
+                if (propiedades.length == $(".new-charac input[name=checkboxlist]").length-1) {
+                    $(".new-charac input[name=checkboxlist]").each(function() {
+                        $(this).prop('checked', true);
+                    });
+                } else {
+                    for (var j in propiedades ) {
+                        $(".new-charac input[name=checkboxlist]").each(function() {
+                            if ($(this).val() == propiedades[j])
+                                $(this).prop('checked', true);
+                        });
+                    }
+
+                }
+        }
+
+            /* Select all checkboxes */
             $('#select_all').change(function() {
                 var checkboxes = $(this).closest('form').find(':checkbox');
                 if($(this).is(':checked')) {
@@ -336,8 +342,7 @@ Template.DataModeling.events({
                 }
             });
 
-        }
-
+        
         /* jQuery form validator */
         $('#form').validate({
             submitHandler: function (form) {
@@ -421,14 +426,14 @@ Template.DataModeling.events({
     }, 
 
     'click #submit-char': function(e) {
-        var properties = currentNode.data('node').properties;
         var node = currentNode.data('node');
+        var json = JSON.stringify(node);
+        var node = JSON.parse(json);
+        node.properties = [];
         $(".new-charac input[name=checkboxlist]:checked").each(function() {
             if ($(this).attr('id') != 'select_all')
-                properties.push($(this).val());
+                node.properties.push($(this).val());
         });
-        console.log("properties: "+ properties);
-        console.log("properties: "+ typeof(properties));
         currentNode.data('node',node);
     },
 });
