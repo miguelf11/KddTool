@@ -1,3 +1,28 @@
+Template.newDataset.onCreated(function(){
+	// var self = this;
+	// self.autorun(function(){
+	// 	self.subscribe('all_datasets');
+	// });
+
+	// var datasets = DataSets.find();
+	// Session.set('all_datasets',datasets);
+
+	// $('[data-toggle="popover"]').popover();
+
+});
+
+Template.newDataset.onRendered(function(){
+	// $(".nav-tabs-projects > li").each(function() {
+	// 	$(this).removeClass("active");
+	// });	
+
+	// $("#datasetsTabli").addClass('active');
+	$('[data-toggle="popover"]').popover();
+
+	// var datasets = DataSets.find()._id;
+	// Session.set('datasets_test',datasets);
+});
+
 Template.newDataset.helpers({
 	completeName: function() {
 		if(Meteor.user()){
@@ -117,6 +142,16 @@ Template.newDataset.events({
 	'click .btn-back' (event, template) {
 		event.preventDefault();
 		FlowRouter.go('datasets');
+	},
+
+	'focus #localAddress' (event) {
+		event.preventDefault();
+		$("[data-toggle='popover']").popover('show');
+	},
+
+	'keyup #localAddress' (event) {
+		event.preventDefault();
+		$("[data-toggle='popover']").popover('hide');
 	},
 });
 

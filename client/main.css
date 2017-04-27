@@ -276,6 +276,7 @@ header > h1{
     float: left;
     padding-left: 20px;
     font-weight: 600;
+    margin-top: 16px !important;
 }
 
 header > div{
@@ -758,4 +759,20 @@ transition: 0.1s ease-in-out;*/
     left: 0;
     background: rgba(0,0,0,0.8);
     z-index: 100000;
+}
+
+.info-dataset{
+    position: absolute;
+    float: left;
+}
+
+.popover{
+    border-radius: 0px;
+}
+
+.popover-title{
+    background-color: #44a2d6;
+    border-radius: 0px;
+    color: #ffffff;
+    font-weight: 700;
 }
