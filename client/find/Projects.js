@@ -21,9 +21,9 @@ Template.Projects.helpers({
 		return Projects.find({});
 	},
 	fecha: (date) => {
-		let day = date.getDate();
-		let month = date.getMonth();
-		let year = date.getFullYear();
+		var day = date.getDate();
+		var month = date.getMonth();
+		var year = date.getFullYear();
 
 		date = day+"/"+month+"/"+year;
 
@@ -43,8 +43,8 @@ Template.Projects.events({
    		// console.log('delete project');
    		// console.log(this.address);
    		// console.log(this._id);
-   		let id_project = $("#delete").data("target");
-   		let that = Projects.findOne(id_project);
+   		var id_project = $("#delete").data("target");
+   		var that = Projects.findOne(id_project);
 
    		Meteor.call('removeHdfsFolder', that.address, function(err,res){
    			console.log(res);
@@ -74,27 +74,27 @@ Template.Projects.events({
    	},
 
    	'show.bs.modal #deleteModal' (event) {
-   		let button = $(event.relatedTarget);
-   		let target = button.data('id');
+   		var button = $(event.relatedTarget);
+   		var target = button.data('id');
 		// console.log(target);
 		// let modal = $(this);
 		$("#delete").data("target", target);
 	},
 
 	'show.bs.modal #viewModal' (event) {
-		let button 		= $(event.relatedTarget);
-		let id_project 	= button.data('id');
-		let that 		= Projects.findOne(id_project);
-		let ds 			= DataSets.findOne(that.dataset);
+		var button 		= $(event.relatedTarget);
+		var id_project 	= button.data('id');
+		var that 		= Projects.findOne(id_project);
+		var ds 			= DataSets.findOne(that.dataset);
 
 		$('#pjName').text(that.name);
 		$('#pjDataset').text(ds.name);
 		$('#pjDesc').text(that.desc);
 
-		let date = that.createdAt;
-		let day = date.getDate();
-		let month = date.getMonth();
-		let year = date.getFullYear();
+		var date = that.createdAt;
+		var day = date.getDate();
+		var month = date.getMonth();
+		var year = date.getFullYear();
 
 		date = day+"/"+month+"/"+year;
 

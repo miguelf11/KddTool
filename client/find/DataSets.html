@@ -20,13 +20,15 @@
 							{{#each searchDatasets}}
 							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 padding-bottom-complete">
 								<div class="each-project-section" id="{{_id}}">
-									{{#if isOwner _id}}
+									
 									<ul class="actions">
 										<li><a href="" class="view-dataset" data-toggle="modal" data-target="#viewModal" data-id="{{_id}}" title="Ver Detalle"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
+										{{#if isOwner _id}}
 										<li><a href="/datasets/{{_id}}" class="edit-dataset" data-toggle="tooltip" title="Editar conjunto"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
 										<li><a href="" class="delete-dataset" title="Eliminar conjunto" data-toggle="modal" data-target="#deleteModal" data-id="{{_id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+										{{/if}}
 									</ul>
-									{{/if}}
+									
 									<h4 class="no-margin-top capitalize no-margin-bottom cutted-text" style="margin-right: 45px;">Nombre: {{name}}</h4>
 									<p class="text-small cutted-text no-margin-bottom">Descripción: {{desc}}</p>
 									<span class="text-small">Número de Campos: </span><span class="text-bold text-small">{{num_fields}}</span><br>

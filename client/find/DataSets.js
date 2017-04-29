@@ -60,8 +60,8 @@ Template.DataSets.helpers({
 
 Template.DataSets.events({
 	'click #delete'() {
-		let id_dataset = $("#delete").data("target");
-		let that = DataSets.findOne(id_dataset);
+		var id_dataset = $("#delete").data("target");
+		var that = DataSets.findOne(id_dataset);
 		Meteor.call('removeHdfsFolder', that.hdfs_address, function(err,res){
    			// console.log(res);
    			if(res.statusCode == 200){
@@ -98,16 +98,16 @@ Template.DataSets.events({
    		});
 	},
 	'show.bs.modal #deleteModal' (event) {
-		let button = $(event.relatedTarget);
-		let target = button.data('id');
+		var button = $(event.relatedTarget);
+		var target = button.data('id');
 		// console.log(target);
 		$("#delete").data("target", target);
 	},
 	
 	'show.bs.modal #viewModal' (event) {
-		let button 		= $(event.relatedTarget);
-		let id_dataset 	= button.data('id');
-		let that 		= DataSets.findOne(id_dataset);
+		var button 		= $(event.relatedTarget);
+		var id_dataset 	= button.data('id');
+		var that 		= DataSets.findOne(id_dataset);
 
 		$('#dsName').text(that.name);
 		$('#dsNfields').text(that.num_fields);
