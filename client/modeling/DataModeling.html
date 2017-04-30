@@ -1,58 +1,42 @@
 <template name='DataModeling'>
 	<div class='project-title uppercase'><h2>{{project.name}}: Modelado</h2></div>
 	<div class="data-modeling-content padding-top-double">
-		{{#if Template.subscriptionsReady}}
-
-		{{else}}
-			{{> Loader}}
-		{{/if}}
-	</div>
-
-
-
-			<div class="row">
-				<div class="col-md-9 ">
-					<table class="data-modeling-table">
-						<tr class="row">
-							<th class="col-md-2">
-								<h3>Algoritmos</h3>
-
-							</th>
-							<th class="col-md-10">
-								<h3>Espacio de trabajo</h3>
-							</th>
-						</tr>
-						<tr class="row">
-							<td colspan="2" class="workspace col-md-12">
-								
-							</td>
-						</tr>
-					</table>
-				</div>
-				<div class="col-md-3">
-					<table class="data-modeling-table attrs-table">
-						<tr>
-							<th>
-								<h3>Atributos</h3>
-							</th>
-						</tr>
-						<tr>
-							<td id="Aparams">
-								
-							</td>
-						</tr>
-					</table>
-					<table class="data-modeling-table">
-						<tr>
-							<th>			
-								<button class="execute btn btn-success" disabled>Ejecutar</button>
-							</th>
-						</tr>
-					</table>
-				</div>
+		<div class="row">
+			<div class="col-md-9 ">
+				<table class="data-modeling-table">
+					<tr class="row">
+						<th class="col-md-2">
+							<h3>Algoritmos</h3>
+						</th>
+						<th class="col-md-10">
+							<h3>Espacio de trabajo</h3>
+						</th>
+					</tr>
+					<tr class="row">
+						<td colspan="2" class="workspace col-md-12"></td>
+					</tr>
+				</table>
 			</div>
-
-
-	
+			<div class="col-md-3">
+				<table class="data-modeling-table attrs-table">
+					<tr>
+						<th>
+							<h3>Atributos</h3>
+						</th>
+					</tr>
+					<tr>
+						<td id="Aparams"></td>
+					</tr>
+				</table>
+				<table class="data-modeling-table">
+					<tr>
+						<th>			
+							<button class="execute btn btn-success" disabled>Ejecutar</button>
+						</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
 </template>		
 

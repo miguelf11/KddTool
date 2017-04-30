@@ -77,7 +77,8 @@
 	display:none;
 }
 
-#submit-success {
+#submit-success,
+#feature-success {
 	color: green
 } 
 
