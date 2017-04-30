@@ -1,136 +1,42 @@
 <template name='DataModeling'>
 	<div class='project-title uppercase'><h2>{{project.name}}: Modelado</h2></div>
 	<div class="data-modeling-content padding-top-double">
-		{{#if Template.subscriptionsReady}}
-		<!-- todo el contenido de modelado -->
-		{{else}}
-			{{> Loader}}
-		{{/if}}
-	</div>
-	
-	<div class="row">
-		<div class="col-md-9 ">
-			<table class="data-modeling-table">
-				<tr class="row">
-					<th class="col-md-2">
-						<h3>Algoritmos</h3>
-
-					</th>
-					<th class="col-md-10">
-						<h3>Espacio de trabajo</h3>
-					</th>
-				</tr>
-				<tr class="row">
-					<td colspan="2" class="workspace col-md-12">
-						
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="col-md-3">
-			<table class="data-modeling-table attrs-table">
-				<tr>
-					<th>
-						<h3>Atributos</h3>
-						<!-- <span id='closeAttrs'>x</span> -->
-					</th>
-				</tr>
-				<tr>
-					<td id="Aparams">
-						
-					</td>
-				</tr>
-			</table>
-			<table class="data-modeling-table">
-				<tr>
-					<th>			
-						<button class="execute btn btn-success" disabled>Ejecutar</button>
-					</th>
-				</tr>
-			</table>
-		</div>
-	</div>
-</template>
-
-
-<!--
-	<script type="text/javascript">
-	$( function() {
-	    $( ".draggable" ).draggable({
-	       cursorAt: { 
-	       		top: 0 
-	       	},
-	       	revert : function(event, ui) {
-	            $(this).data("uiDraggable").originalPosition = {
-	                top : 0,
-	                left : 0
-	            };
-	            // return boolean
-	            return !event;
-        	}    		
-	    });
-
-	     $( "#droppable" ).droppable({
-	    	accept: ".draggable",
-	    });
-
-
-	} );
-	</script>
-	-->
-	<!--
-	<div class="row">
-		<div class="col-md-2">
-			<table class="data-modeling-table">
-				<tr>
-					<th>
-						<h3>Algoritmos</h3>
-					</th>
-				</tr>
-				{{#each algorithms}}
-						<tr class="data-modeling-table">
-							<td class="draggable ui-state-default">
-								{{name}}
-							</td>
-						</tr>				
-				{{else}}
-					<tr class="data-modeling-table">
-						<td>
-							No existen algoritmos disponibles por el momento
-						</td>
-					</tr>				
-				{{/each}}
-			</table>				 
-
-		</div>
-		<div id="workspace" class="col-md-8">
-			<table class="data-modeling-table">
-				<tr>
-					<th>
-						<h3>Espacio de Trabajo</h3> 
-					</th>
-				</tr>
-			</table>
-			<div id="droppable">
-				<div id="preparedData">
-					{{dataInfo.name}}
-				</div>  
+		<div class="row">
+			<div class="col-md-9 ">
+				<table class="data-modeling-table">
+					<tr class="row">
+						<th class="col-md-2">
+							<h3>Algoritmos</h3>
+						</th>
+						<th class="col-md-10">
+							<h3>Espacio de trabajo</h3>
+						</th>
+					</tr>
+					<tr class="row">
+						<td colspan="2" class="workspace col-md-12"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-3">
+				<table class="data-modeling-table attrs-table">
+					<tr>
+						<th>
+							<h3>Atributos</h3>
+						</th>
+					</tr>
+					<tr>
+						<td id="Aparams"></td>
+					</tr>
+				</table>
+				<table class="data-modeling-table">
+					<tr>
+						<th>			
+							<button class="execute btn btn-success" disabled>Ejecutar</button>
+						</th>
+					</tr>
+				</table>
 			</div>
 		</div>
-		<div id="attrs" class="col-md-2">
-			<table class="data-modeling-table">
-				<tr>
-					<th>
-						<h3>Atributos</h3>
-						<span id='closeAttrs'>x</span>
-					</th>
-				</tr>
-				<tr>
-					<td id="Aparams">
-						
-					</td>
-				</tr>
-			</table>
-		</div>
 	</div>
-	-->
+</template>		
+
