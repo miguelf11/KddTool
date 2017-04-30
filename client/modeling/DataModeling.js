@@ -101,7 +101,6 @@ Template.DataModeling.events({
         // defining global for accesing from the next event
         currentNode = $(e.currentTarget);
         var label = currentNode.data('node').label;
-        var id = currentNode.data('node').id;
         var parametros = currentNode.data('node').parametros;
         var propiedades = currentNode.data('node').properties;
         var typeOfNode = currentNode.data('node').type;
@@ -116,7 +115,7 @@ Template.DataModeling.events({
             $(".attrs-table")
                 .append("<tr class='new-elements'><td><form id='form' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
             for(var i in parametros) {   
-                name = parametros[i].key;
+                name = parametros[i].name;
                 value = parametros[i].value;
                 type = parametros[i].type;
                 if ( Array.isArray(value) ) {

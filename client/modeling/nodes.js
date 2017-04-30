@@ -2,11 +2,10 @@ module.exports.nodes =
 	[
         {
             label: 'datos',
-            id: 'id de datos',
             type:"dataset",
             parametros : [
                 {
-                    key: 'dataset',
+                    name: 'dataset',
                     value : "hdfs:////user/vit/datasets/iris.csv",
                     type: 'url'
                 }
@@ -25,7 +24,6 @@ module.exports.nodes =
         },
         {
             label: 'Arbol de decision',
-            id: 'id arbol',
             type : 'algoritmoCS',
             inputs: [
                 {
@@ -35,17 +33,17 @@ module.exports.nodes =
             ],
             parametros : [
                 {
-                    key: 'dataset',
+                    name: 'dataset',
                     value : 5,
                     type: 'number'
                 },
                 {
-                    key: 'down',
+                    name: 'down',
                     value : 'prueba',
                     type: 'text'
                 },
                 {
-                    key: 'cp',
+                    name: 'cp',
                     value : [
                         {
                             name:"opcion 1",
@@ -83,7 +81,6 @@ module.exports.nodes =
         },
         {
             label: 'Split',
-            id: 'id R',
             type: 'algoritmoSS',
             inputs: [
                 {
@@ -93,12 +90,12 @@ module.exports.nodes =
             ],
             parametros: [
                 {
-                    key: 'testing',
+                    name: 'testing',
                     value :0.6,
                     type: 'number'
                 },
                 {
-                    key: 'training',
+                    name: 'training',
                     value : 0.4,
                     type: 'number'
                 },
