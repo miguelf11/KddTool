@@ -298,12 +298,23 @@ Template.DataModeling.events({
                 .append(titleChar);
             $("#form-char")
                 .append("<tr class='new-charac'><td>Seleccionar Todo:<input id='select_all' type='checkbox' name='checkboxlist'></td></tr>");
-              
-            while (i < 5) {                     
-                $("#form-char")
-                    .append("<tr class='new-charac'><td>Elemento: "+i+" <input type='checkbox' value='Elemento "+i+"' name='checkboxlist'></td></tr>");
-                i++;
-            }
+
+            console.log("typeOfNode");
+            Meteor.call('queryPrueba',function(err,res){
+                if(res.statusCode == 200){
+                    columns = res.data.columns;
+                    for (var i=0;i<columns.length;i++){
+                        $("#form-char")
+                            .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='Elemento "+i+"' name='checkboxlist'></td></tr>");
+                    }
+                }else{
+                    $('#maxValue').text('Error');
+                }
+                if(err){
+                    alert("Error en columna!");
+                }
+            });
+
             $("#form-char")
                 .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");  
             
