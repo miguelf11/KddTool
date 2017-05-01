@@ -220,10 +220,17 @@ Template.DataModeling.events({
                 $('#submit-error').hide();
                 $('#submit-success').fadeIn("slow");
                 setTimeout(function(){
-                    $('#submit-success').fadeOut("slow");
+                    $('#submit-success').fadeOut("slow", function() {
+                        $(this).remove();
+                    });
                 }, 3000);
                 form.submit();
             },
+
+
+
+
+
             invalidHandler: function(event, validator) {
                 // 'this' refers to the form
                 var errors = validator.numberOfInvalids();
@@ -310,16 +317,18 @@ Template.DataModeling.events({
             if ($(this).attr('id') != 'select_all')
                 node.properties.push($(this).val());
         });
-            $("#form-char")
-                .append("<br><label id='feature-success' hidden>Características seleccionadas correctamente!</label>");  
-            $('#feature-success').fadeIn("slow");
-                setTimeout(function(){
-                    $('#feature-success').fadeOut("slow");
-            }, 3000);       
+        $("#form-char")
+            .append("<br><label id='feature-success' hidden>Características seleccionadas correctamente!</label>");  
+        $('#feature-success').fadeIn("slow");
+        setTimeout(function(){
+            $('#feature-success').fadeOut("slow", function() {
+                $(this).remove();
+            });
+        }, 3000);       
         currentNode.data('node',node);
     },
 });
 
 // Luego de realizar cualquier tarea en esta etapa se debe modificar el stage 
-// de la coleccion projecto y se debe colocar 'modelado' para que al volver a 
+// de la coleccion proyecto y se debe colocar 'modelado' para que al volver a 
 // ingresar al proyecto lo redirija a la ultima etapa que realizó alguna tarea.
