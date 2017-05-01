@@ -173,8 +173,17 @@ Template.DataModeling.events({
                 if(res.statusCode == 200){
                     columns = res.data.columns;
                     for (var i=0;i<columns.length;i++){
-                        $("#form-char")
-                            .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='Elemento "+i+"' name='checkboxlist'></td></tr>");
+                        console.log(propiedades);
+                        var pos = jQuery.inArray(columns[i], propiedades);
+                        console.log("existe o no: "+jQuery.inArray(columns[i], propiedades));
+                        if(pos == -1) {
+                            $("#form-char")
+                                .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxlist'></td></tr>");
+                        }else{
+                            $("#form-char")
+                                .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxlist' checked= 'true'></td></tr>");
+                        }
+                        
                     }
                 }else{
                     $('#maxValue').text('Error');

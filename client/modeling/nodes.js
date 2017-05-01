@@ -13,12 +13,6 @@ module.exports.nodes =
             outputs: [
                 {
                     label: 'dataset',
-                    fn: function(nodeState) {
-                        console.log(JSON.stringify(nodeState));
-                        var d = $.Deferred();
-                        d.resolve(5);
-                        return d.promise();
-                    }
                 }
             ]
         },
@@ -67,14 +61,7 @@ module.exports.nodes =
             properties: [],
             outputs: [
                 {
-                    label: 'Rtest2',
-                    fn: function(nodeState) {
-                        var d = $.Deferred();
-                        inputs = nodeState.inputs || {};
-                        var out;
-                        d.resolve(out);
-                        return d.promise();
-                    }                             
+                    label: 'output',                          
                 }
                 
             ]
@@ -102,26 +89,70 @@ module.exports.nodes =
             ],
             outputs: [
                 {
-                    label: 'Testing',
-                    fn: function(nodeState) {
-                        var d = $.Deferred();
-                        inputs = nodeState.inputs || {};
-                        inputs.A = inputs.A || 0;
-                        inputs.B = inputs.B || 0;
-                        var out;
-                        d.resolve(out);
-                        return d.promise();
-                    }                             
+                    label: 'Testing'                          
                 },
                 {
-                    label: 'Training',
-                    fn: function(nodeState) {
-                        var d = $.Deferred();
-                        var out;
-                        d.resolve(out);
-                        return d.promise();
-                    }                            
+                    label: 'Training'                         
                 }
+            ]
+        },
+        {
+            label: 'Seleccionar',
+            type : 'algoritmoCS',
+            inputs: [
+                {
+                    id: 'dataset',
+                    label: 'dataset',
+                }
+            ],
+            parametros : [],
+            properties: [],
+            outputs: [
+                {
+                    label: 'output',                          
+                }
+                
+            ]
+        },
+        {
+            label: 'Comparar',
+            type : 'algoritmoSS',
+            inputs: [
+                {
+                    id: 'modelo',
+                    label: 'modelo',
+                },
+                {
+                    id: 'testing',
+                    label: 'testing',
+                }
+
+            ],
+            parametros : [],
+            properties: [],
+            outputs: [
+                {
+                    label: 'output',                          
+                }
+                
+            ]
+        },
+        {
+            label: 'Visualizar',
+            type : 'algoritmoSS',
+            inputs: [
+                {
+                    id: 'modelo',
+                    label: 'modelo',
+                }
+            ],
+            parametros : [],
+            properties: [],
+            outputs: [
+                {
+                    label: 'output',                          
+                }
+                
             ]
         }
     ] 
