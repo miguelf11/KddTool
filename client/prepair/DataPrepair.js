@@ -3,8 +3,8 @@ import { ReactiveVar } from 'meteor/reactive-var';
 Template.DataPrepair.onCreated(function(){
 	var self = this;
 	self.autorun(function(){
-        var id = FlowRouter.getParam('id');
-        console.log(id);
+		var id = FlowRouter.getParam('id');
+		console.log(id);
 		self.subscribe('single_project',id);
 		Session.set('projectId', id);
 		Session.set('data_project','');
@@ -25,7 +25,7 @@ Template.DataPrepair.onRendered(function(){
 
 Template.DataPrepair.helpers({
 	project:()=> {
-        var id = FlowRouter.getParam('id');
+		var id = FlowRouter.getParam('id');
 		return Projects.findOne({_id:id});
 	},
 	num_rows:()=> {
@@ -40,10 +40,27 @@ Template.DataPrepair.helpers({
 });
 
 Template.DataPrepair.events({
-	// 'click .undo-btn' (event, template) {
-	// 	console.log('deshacer');      
+	'click .MVGenerator' (event, template) {
+		console.log("Generar vista minable");
+		$(".backdrop").css('display','block');
 
- //    },
+		var project_id = FlowRouter.getParam('id');
+		var project_address = Projects.findOne({_id:project_id}).current_version_address;
+
+		Meteor.call('test',project_address,function(err,res){
+			if(res.statusCode == 200){
+				$(".backdrop").css('display','none');
+				// TRANSLADARSE A SUS ETAPAS O DESBLOQUEAR LA ETAPA SIGUIENTE
+			}else{
+				$(".backdrop").css('display','none');
+				alert("No se puedo generar la vista minable, vuelva a intentarlo");
+			}
+			if(err){
+				$(".backdrop").css('display','none');
+				alert("No se puedo generar la vista minable, vuelva a intentarlo");
+			}
+		});
+	}
 });
 
 //Luego de realizar cualquier tarea en esta etapa se debe modificar el stage de la coleccion projecto y se debe colocar 'preparacion' para que al volver a ingresar al proyecto lo redirija a la ultima etapa que realizó alguna tarea.

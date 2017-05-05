@@ -31,22 +31,24 @@
 				<div class="col-lg-12 col-md-12">
 					<ul class='padding-left-half-plus'>
 						{{#each project_actions}}
-							<li>{{this}}</li>
+						<li>{{this}}</li>
 						{{/each}}
 					</ul>
 				</div>
 			</div>
 			<div class="row padding-top-complete generate-mining-view text-center">
 				<div class="col-lg-12 col-md-12">
-					<a href="" data-toggle="tooltip" data-placement="bottom" title="Generar Vista Minable"><i class="fa fa-table" aria-hidden="true"></i></a>
-					<!-- <a href="" data-toggle="tooltip" data-placement="bottom" title="Generar Vista Minable"><img src="/images/mining_view.svg"></a> -->
+					<button class="MVGenerator">
+						<i class="fa fa-table" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Generar Vista Minable"></i> Generar vista minable
+						<!-- <a href="" data-toggle="tooltip" data-placement="bottom" title="Generar Vista Minable"><img src="/images/mining_view.svg"></a> -->
+					</button>
 				</div>
 			</div>
 		</div>
 	</div>	
 	{{else}}
-		<div class="margin-top-double row">
-			{{> Loader}}
-		</div>
+	<div class="margin-top-double row">
+		{{> Loader}}
+	</div>
 	{{/if}}
 </template>
