@@ -5,8 +5,7 @@ Template.DataPrepairTable.events({
       console.log('Campos del proyecto:');
       console.log(Session.get('data_keys'));
 
-      $("<i class='fa fa-circle-o-notch fa-spin sort-inserted' aria-hidden='true'></i>").insertAfter("#"+column+" > label");
-      $( "body").unbind( "click" );
+      $(".backdrop").css('display','block');
 
       var fields = Session.get('data_keys');
       var fields_final = '';
@@ -52,25 +51,27 @@ Template.DataPrepairTable.events({
                 Session.set('num_rows',res.data.rows.length);
                 Session.set('num_fields',res.data.columns.length);
                 Session.set('project_actions',actions);
-                $( "body").bind( "click" );
+                $(".backdrop").css('display','none');
                 // alert("Se han eliminado los registros exitosamente!!!");
                 // $(".fa-spinner").remove();
               }
               if(err){
+                $(".backdrop").css('display','none');
                 alert("No se ha podido eliminar el campo!!!");
               }
             });
           }else{
-            $( "body").bind( "click" );
+            $(".backdrop").css('display','none');
             alert("No se ha podido eliminar el campo!!!");
           }
           
           // $("#deleteModal").modal('hide');
         }else{
-          $( "body").bind( "click" );
+          $(".backdrop").css('display','none');
           alert("No se ha podido eliminar el campo!!!");
         }
         if(err){
+          $(".backdrop").css('display','none');
           alert("No se ha podido eliminar el campo!!!");
         }
       });

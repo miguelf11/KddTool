@@ -8,8 +8,7 @@ Template.DataPrepairTable.events({
       });
 
       if (selected != ''){
-        $("<i class='fa fa-circle-o-notch fa-spin sort-inserted' aria-hidden='true'></i>").insertAfter("#row_num");
-        $( "body").unbind( "click" );
+        $(".backdrop").css('display','block');
         selected = selected.substring(0, selected.length - 1);
 
         console.log(selected);
@@ -52,21 +51,20 @@ Template.DataPrepairTable.events({
                   Session.set('num_fields',res.data.columns.length);
                   Session.set('project_actions',actions);
                   // alert("Se han eliminado los registros exitosamente!!!");
-                  $(".fa-circle-o-notch").remove();
-                  $( "body").bind( "click" );
+                  $(".backdrop").css('display','none');
                 }
                 if(err){
                   alert("No se han podido eliminar los registros!!!");
                 }
               });
             }else{
-              $( "body").bind( "click" );
+              $(".backdrop").css('display','none');
               alert("No se han podido eliminar los registros!!!");
             }
             
             // $("#deleteModal").modal('hide');
           }else{
-            $( "body").bind( "click" );
+            $(".backdrop").css('display','none');
             alert("No se han podido eliminar los registros!!!");
           }
           if(err){
