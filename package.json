@@ -11,7 +11,6 @@
     "csv-stringify": "^1.0.4",
     "meteor-node-stubs": "^0.2.6",
     "thrift": "^0.10.0",
-    "thrift-hive": "0.0.7",
     "webhdfs": "^1.1.1"
   }
 }
