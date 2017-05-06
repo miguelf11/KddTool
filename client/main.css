@@ -647,61 +647,70 @@ a:focus {
 }
 
 
-.buttons-progress-span > i{
+.buttons-progress-span > i {
     color: #fff;
 }
 
-    .add-btn{
-        margin: 0 0 15px 0;
-    }
+.modal-header  .close {
+    color: #fff;
+    opacity: 0.7;
+}
 
-    .buttons-progress{
-        position:fixed; 
-        bottom:0;
-    }
+.modal-dialog {
+    width: 1200px;
+}
 
-    .buttons-progress-span{
-        font-size: 30px;
-    }
+.add-btn {
+    margin: 0 0 15px 0;
+}
 
-    .buttons-progress-span > i:hover{
-        color: #fff;
-    }
+.buttons-progress {
+    position:fixed; 
+    bottom:0;
+}
 
-    .capitalize{
-        text-transform:capitalize;
-    }
+.buttons-progress-span {
+    font-size: 30px;
+}
 
-    body {
-        background-color: #f5f5f5;
-    }
+.buttons-progress-span > i:hover {
+    color: #fff;
+}
 
-    .loader {
-      border: 10px solid #f3f3f3;
-      border-radius: 50%;
-      border-top: 10px solid #44a2d6;
-      width: 90px;
-      height: 90px;
-      -webkit-animation: spin 2s linear infinite;
-      animation: spin 2s linear infinite;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-left: -45px;
-      margin-top: -45px;
-  }
+.capitalize {
+    text-transform:capitalize;
+}
 
-  @-webkit-keyframes spin {
-      0% { -webkit-transform: rotate(0deg); }
-      100% { -webkit-transform: rotate(360deg); }
-  }
+body {
+    background-color: #f5f5f5;
+}
 
-  @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-  }
+.loader {
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid #44a2d6;
+  width: 90px;
+  height: 90px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -45px;
+  margin-top: -45px;
+}
 
-  .project-title{
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.project-title{
     text-align: center;
     color: #31708f;
     border-bottom: rgba(0,0,0, 0.4) solid 3px;
@@ -737,7 +746,7 @@ a:focus {
     display: inline;
 }
 
-.modal-header{
+.modal-header {
     background: #44a2d6;
     color: white;
 }
