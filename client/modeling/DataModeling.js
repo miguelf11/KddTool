@@ -235,11 +235,6 @@ Template.DataModeling.events({
                 }, 3000);
                 form.submit();
             },
-
-
-
-
-
             invalidHandler: function(event, validator) {
                 // 'this' refers to the form
                 var errors = validator.numberOfInvalids();

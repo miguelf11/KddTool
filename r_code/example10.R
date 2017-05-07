@@ -1,9 +1,9 @@
-require(RJSONIO)
 library(sparklyr)
 library(dplyr)
-library(DBI)
 library(ggplot2)
-library(tidyr);
+require(RJSONIO)
+
+Sys.setenv("JAVA_HOME" = "/usr/local/jdk1.8.0_131")
 
 
 test <- function (data) {

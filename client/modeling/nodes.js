@@ -6,7 +6,7 @@ module.exports.nodes =
             parametros : [
                 {
                     name: 'dataset',
-                    value : "hdfs:////user/vit/datasets/iris.csv",
+                    value : "/user/hadoop/datasets/iris1493583755334.csv",
                     type: 'url'
                 }
             ],
@@ -17,7 +17,7 @@ module.exports.nodes =
             ]
         },
         {
-            label: 'Arbol de decision',
+            label: 'arbol de decision',
             type : 'algoritmoCS',
             inputs: [
                 {
@@ -67,7 +67,7 @@ module.exports.nodes =
             ]
         },
         {
-            label: 'Split',
+            label: 'split',
             type: 'algoritmoSS',
             inputs: [
                 {
@@ -97,7 +97,7 @@ module.exports.nodes =
             ]
         },
         {
-            label: 'Seleccionar',
+            label: 'seleccionar',
             type : 'algoritmoCS',
             inputs: [
                 {
@@ -115,7 +115,7 @@ module.exports.nodes =
             ]
         },
         {
-            label: 'Comparar',
+            label: 'comparar',
             type : 'algoritmoSS',
             inputs: [
                 {
@@ -138,7 +138,7 @@ module.exports.nodes =
             ]
         },
         {
-            label: 'Visualizar',
+            label: 'visualizar',
             type : 'algoritmoSS',
             inputs: [
                 {
