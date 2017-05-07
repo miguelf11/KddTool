@@ -6,7 +6,23 @@ Template.DataModeling.onCreated(function(){
         self.subscribe('single_project',id);
         Session.set('projectId', id);   
     });
-
+    toastr.options = { 
+        "closeButton": false, 
+        "debug": false, 
+        "newestOnTop": false, 
+        "progressBar": true, 
+        "positionClass": "toast-bottom-right", 
+        "preventDuplicates": false, 
+        "onclick": null, 
+        "showDuration": "300", 
+        "hideDuration": "1000", 
+        "timeOut": "5000", 
+        "extendedTimeOut": "3000", 
+        "showEasing": "swing", 
+        "hideEasing": "linear", 
+        "showMethod": "fadeIn", 
+        "hideMethod": "fadeOut" 
+    }
 });
 
 Template.DataModeling.onRendered(function(){
@@ -149,7 +165,6 @@ Template.DataModeling.events({
             }
             if(type != "url"){
                 $(".form").append("<br><input id='submit' type='submit' name='submit' class='btn btn-primary' value='Actualizar parámetros'>");
-                $(".form").append("<br><label id='submit-success' for='submit'>Parámetros actualizados correctamente!</label>");
             }
 
         } else {
@@ -166,7 +181,7 @@ Template.DataModeling.events({
             $("#form-char")
                 .append(titleChar);
             $("#form-char")
-                .append("<tr class='new-charac'><td>Seleccionar Todo:<input id='select_all' type='checkbox' name='checkboxlist'></td></tr>");
+                .append("<tr class='new-charac checkboxlist'><td>Seleccionar Todo:<input id='select_all' type='checkbox' name='checkboxlist'></td></tr>");
 
             // Call to server side method to execute drill query
             Meteor.call('queryPrueba',function(err,res){
@@ -177,11 +192,11 @@ Template.DataModeling.events({
                         var pos = jQuery.inArray(columns[i], propiedades);
                         console.log("existe o no: "+jQuery.inArray(columns[i], propiedades));
                         if(pos == -1) {
-                            $("#form-char")
+                            $(".checkboxlist")
                                 .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxlist'></td></tr>");
                         }else{
-                            $("#form-char")
-                                .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxlist' checked= 'true'></td></tr>");
+                            $(".checkboxlist")
+                                .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxlist' checked='true'></td></tr>");
                         }
                         
                     }
@@ -212,27 +227,21 @@ Template.DataModeling.events({
             }
         }
 
-            /* Select all checkboxes */
-            $('#select_all').change(function() {
-                var checkboxes = $(this).closest('form').find(':checkbox');
-                if($(this).is(':checked')) {
-                    checkboxes.prop('checked', true);
-                } else {
-                    checkboxes.prop('checked', false);
-                }
-            });
+        /* Select all checkboxes */
+        $('#select_all').change(function() {
+            var checkboxes = $(this).closest('form').find(':checkbox');
+            if($(this).is(':checked')) {
+                checkboxes.prop('checked', true);
+            } else {
+                checkboxes.prop('checked', false);
+            }
+        });
 
         
         /* jQuery form validator */
         $('#form').validate({
             submitHandler: function (form) {
-                $('#submit-error').hide();
-                $('#submit-success').fadeIn("slow");
-                setTimeout(function(){
-                    $('#submit-success').fadeOut("slow", function() {
-                        $(this).remove();
-                    });
-                }, 3000);
+                toastr["success"]("Parámetros actualizados correctamente!", "Correcto");
                 form.submit();
             },
             invalidHandler: function(event, validator) {
@@ -240,16 +249,9 @@ Template.DataModeling.events({
                 var errors = validator.numberOfInvalids();
                 if (errors) {
                     var message = errors == 1
-                        ? '<br><label id="submit-error" for="submit">Parámetros no actualizados, existe un error en algun campo</label>'
-                        : '<br><label id="submit-error" for="submit">Parámetros no actualizados, existen '+errors+' errores en el formulario</label>';
-                    $(".form").append(message);
-                    $('#submit-success').hide();
-                    $('#submit-error').show();
-                    setTimeout(function(){
-                        $('#submit-error').hide();
-                    }, 3000);
-                } else {
-                    $('#submit-error').hide();
+                        ? 'Parámetros no actualizados, existe un error en algun campo'
+                        : 'Parámetros no actualizados, existen '+errors+' errores en el formulario'
+                    toastr["error"](message, "Error");
                 }
             },
 
@@ -280,12 +282,14 @@ Template.DataModeling.events({
             },
         });
 
+        // Validate non-numeric characters only 
         jQuery.validator.addMethod("lettersonly", function(value, element) {
             return this.optional(element) || /^[a-z]+$/i.test(value);
-        }, "Letters only please"); 
+        }, "Sólo se aceptan caracteres no numéricos"); 
     },
 
-    /* submit form function */
+
+    /* submit form function for params */
     'click #submit': function(e) {
         var i = 0 ;
         var parametros = currentNode.data('node').parametros;
@@ -312,24 +316,22 @@ Template.DataModeling.events({
         currentNode.data('node',node);
     }, 
 
+    /* submit form function for params */
     'click #submit-char': function(e) {
         var node = currentNode.data('node');
         var json = JSON.stringify(node);
         var node = JSON.parse(json);
         node.properties = [];
-        $(".new-charac input[name=checkboxlist]:checked").each(function() {
-            if ($(this).attr('id') != 'select_all')
-                node.properties.push($(this).val());
-        });
-        $("#form-char")
-            .append("<br><label id='feature-success' hidden>Características seleccionadas correctamente!</label>");  
-        $('#feature-success').fadeIn("slow");
-        setTimeout(function(){
-            $('#feature-success').fadeOut("slow", function() {
-                $(this).remove();
-            });
-        }, 3000);       
-        currentNode.data('node',node);
+        if ($(".new-charac input[name=checkboxlist]:checked").length > 0) {
+            $(".new-charac input[name=checkboxlist]:checked").each(function() {
+                if ($(this).attr('id') != 'select_all')
+                    node.properties.push($(this).val());
+            });            
+            toastr["success"]("Características seleccionadas correctamente!", "Correcto");   
+            currentNode.data('node',node);
+        } else {
+            toastr["warning"]("Al menos una característica debe ser seleccionada", "Alerta");   
+        }
     },
 });
 
