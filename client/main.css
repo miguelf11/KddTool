@@ -776,3 +776,11 @@ transition: 0.1s ease-in-out;*/
     color: #ffffff;
     font-weight: 700;
 }
+
+.dropdown{
+    text-align: center;
+}
+
+.dropdown label{
+    float: left;
+}
