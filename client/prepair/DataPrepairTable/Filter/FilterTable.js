@@ -53,6 +53,7 @@ Template.DataPrepairTable.events({
 					Meteor.call('queryDataDrill',new_version_address, function(err,res){
 						if(res.statusCode == 200){
 							$("#filterModal").modal('hide');
+							$('#filter_numeric_value').val("");
 							$('#filterModal #numeric').css('display', 'none');
 
 							Session.set('data_project',res.data.rows);
@@ -114,6 +115,7 @@ Template.DataPrepairTable.events({
 						if(res.statusCode == 200){
 							$("#filterModal").modal('hide');
 							$('#filterModal #double').css('display', 'none');
+							$('#filter_double_value').val("");
 
 							Session.set('data_project',res.data.rows);
 							Session.set('data_keys',res.data.columns);
@@ -191,6 +193,7 @@ Template.DataPrepairTable.events({
 						if(res.statusCode == 200){
 							$("#filterModal").modal('hide');
 							$('#filterModal #string').css('display', 'none');
+							$('#filter_string_value').val("");
 
 							Session.set('data_project',res.data.rows);
 							Session.set('data_keys',res.data.columns);
