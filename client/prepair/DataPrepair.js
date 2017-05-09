@@ -45,9 +45,11 @@ Template.DataPrepair.events({
 		$(".backdrop").css('display','block');
 
 		var project_id = FlowRouter.getParam('id');
-		var project_address = Projects.findOne({_id:project_id}).current_version_address;
+		var project = Projects.findOne({_id:project_id});
+		var address = project.address;
+		var project_address = project.current_version_address;
 
-		Meteor.call('test',project_address,function(err,res){
+		Meteor.call('test',address,project_address,function(err,res){
 			if(res.statusCode == 200){
 				$(".backdrop").css('display','none');
 				// TRANSLADARSE A SUS ETAPAS O DESBLOQUEAR LA ETAPA SIGUIENTE
