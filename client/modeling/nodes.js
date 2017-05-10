@@ -18,7 +18,7 @@ module.exports.nodes =
         },
         {
             label: 'arbol de decision',
-            type : 'algoritmoCS',
+            type : 'algoritmoML',
             inputs: [
                 {
                     id: 'dataset',
@@ -59,6 +59,7 @@ module.exports.nodes =
                 }
             ],
             properties: [],
+            target: [],
             outputs: [
                 {
                     label: 'output',                          

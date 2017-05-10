@@ -64,10 +64,11 @@ Template.DataModeling.events({
             i++;
         });
         // Call of a server side method to execute the stack of node operations 
-        Meteor.call('example', arrayOfParams, function(error, result){
+        Meteor.call('example10', arrayOfParams, function(error, result){
             if(error){
             } else {
                 out = result;
+
             }
         });
     },
@@ -119,6 +120,7 @@ Template.DataModeling.events({
         var label = currentNode.data('node').label;
         var parametros = currentNode.data('node').parametros;
         var propiedades = currentNode.data('node').properties;
+        var target = currentNode.data('node').target;
         var typeOfNode = currentNode.data('node').type;
         var labelOutput = currentNode.data('node').outputs[0].label;
 
@@ -172,63 +174,111 @@ Template.DataModeling.events({
                 .append("<tr class='new-elements'><td>No hay parámetros para este elemento</td></tr>");
         }
 
-        /* Features selector*/
-        if (typeOfNode == 'algoritmoCS' ) {
+        /* Features selector algoritmoCS and algoritmoML*/
+        if (typeOfNode == 'algoritmoCS' || typeOfNode == 'algoritmoML') {
             var titleChar = "<tr class='new-charac'><td><h3>Características</h3><br></td></tr>";
-            var i = 0;
             $(".attrs-table")
                 .append("<tr class='new-charac'><td><form id='form-char' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
             $("#form-char")
                 .append(titleChar);
             $("#form-char")
-                .append("<tr class='new-charac checkboxlist'><td>Seleccionar Todo:<input id='select_all' type='checkbox' name='checkboxlist'></td></tr>");
+                .append("<tr class='new-charac checkboxlist'></tr>");
+            $(".checkboxlist")
+                .append("<tr><td>Seleccionar Todo:<input id='select_all' type='checkbox' name='checkboxlist'></td></tr>");
+            $("#form-char")
+                    .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");
+
+            if (typeOfNode == 'algoritmoML') {
+                var titleTarget = "<tr class='new-charac'><td><h3>Características Target</h3><br></td></tr>";
+                $(".attrs-table")
+                    .append("<tr class='new-charac'><td><form id='form-target' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
+                $("#form-target")
+                    .append(titleTarget);
+                $("#form-target")
+                    .append("<tr class='new-charac checkboxtarget'></tr>");
+                $(".checkboxtarget")
+                    .append("<tr><td>Seleccionar Todo:<input id='select_all_target' type='checkbox' name='checkboxtarget'></td></tr>");
+                $("#form-target")
+                    .append("<br><input id='submit-target' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Objetivo'>");
+            }
 
             // Call to server side method to execute drill query
-            Meteor.call('queryPrueba',function(err,res){
-                if(res.statusCode == 200){
+            Meteor.call('queryPrueba',function(err,res) {
+                if(res.statusCode == 200) {
                     columns = res.data.columns;
-                    for (var i=0;i<columns.length;i++){
-                        console.log(propiedades);
+                    for (var i=0;i<columns.length;i++) {
                         var pos = jQuery.inArray(columns[i], propiedades);
-                        console.log("existe o no: "+jQuery.inArray(columns[i], propiedades));
                         if(pos == -1) {
                             $(".checkboxlist")
                                 .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxlist'></td></tr>");
                         }else{
                             $(".checkboxlist")
-                                .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxlist' checked='true'></td></tr>");
-                        }
-                        
+                                .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxlist' checked='true'></td></tr>");  
+                        }   
+                        if (typeOfNode == 'algoritmoML') {
+                            var posTarget = jQuery.inArray(columns[i], target);
+                            if(posTarget == -1) {
+                                    $(".checkboxtarget")
+                                        .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxtarget'></td></tr>");
+                            }else{
+                                $(".checkboxtarget")
+                                    .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxtarget' checked='true'></td></tr>");
+                            } 
+                        }    
                     }
-                }else{
+                }else {
                     $('#maxValue').text('Error');
                 }
-                if(err){
+
+                if(err) {
                     alert("Error en columna!");
                 }
             });
 
-            $("#form-char")
-                .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");  
             
-            /* Features marker when click node*/
-            if (propiedades.length == $(".new-charac input[name=checkboxlist]").length-1) {
-                $(".new-charac input[name=checkboxlist]").each(function() {
-                    $(this).prop('checked', true);
-                });
-            } else {
-                for (var j in propiedades ) {
-                    $(".new-charac input[name=checkboxlist]").each(function() {
-                        if ($(this).val() == propiedades[j])
-                            $(this).prop('checked', true);
-                    });
-                }
+            
+            // /* Features marker when click node*/
+            // if (propiedades.length == $(".new-charac input[name=checkboxlist]").length-1) {
+            //     $(".new-charac input[name=checkboxlist]").each(function() {
+            //         $(this).prop('checked', true);
+            //     });
+            // } else {
+            //     for (var j in propiedades ) {
+            //         $(".new-charac input[name=checkboxlist]").each(function() {
+            //             if ($(this).val() == propiedades[j])
+            //                 $(this).prop('checked', true);
+            //         });
+            //     }
+            // }
 
-            }
+            // /* target marker when click node*/
+            // if (target.length == $(".new-charac input[name=checkboxtarget]").length-1) {
+            //     $(".new-charac input[name=checkboxtarget]").each(function() {
+            //         $(this).prop('checked', true);
+            //     });
+            // } else {
+            //     for (var j in target ) {
+            //         $(".new-charac input[name=checkboxtarget]").each(function() {
+            //             if ($(this).val() == target[j])
+            //                 $(this).prop('checked', true);
+            //         });
+            //     }
+            // }
         }
+        /* END Features selector algoritmoCS - algoritmoML*/
 
         /* Select all checkboxes */
-        $('#select_all').change(function() {
+        $('body').on('change' ,'#select_all',function() {
+            var checkboxes = $(this).closest('form').find(':checkbox');
+            if($(this).is(':checked')) {
+                checkboxes.prop('checked', true);
+            } else {
+                checkboxes.prop('checked', false);
+            }
+        }); 
+
+        /* Select all checkboxes */
+        $('body').on('change' ,'#select_all_target',function() {
             var checkboxes = $(this).closest('form').find(':checkbox');
             if($(this).is(':checked')) {
                 checkboxes.prop('checked', true);
@@ -331,6 +381,24 @@ Template.DataModeling.events({
             currentNode.data('node',node);
         } else {
             toastr["warning"]("Al menos una característica debe ser seleccionada", "Alerta");   
+        }
+    },
+
+     /* submit form function for params */
+    'click #submit-target': function(e) {
+        var node = currentNode.data('node');
+        var json = JSON.stringify(node);
+        var node = JSON.parse(json);
+        node.target = [];
+        if ($(".new-charac input[name=checkboxtarget]:checked").length > 0) {
+            $(".new-charac input[name=checkboxtarget]:checked").each(function() {
+                if ($(this).attr('id') != 'select_all_target')
+                    node.target.push($(this).val());
+            });            
+            toastr["success"]("Objetivo seleccionados correctamente!", "Correcto");   
+            currentNode.data('node',node);
+        } else {
+            toastr["warning"]("Al menos un objetivo debe ser seleccionado", "Alerta");   
         }
     },
 });
