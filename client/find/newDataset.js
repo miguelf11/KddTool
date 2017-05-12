@@ -184,7 +184,7 @@ Template.newDataset.events({
 				} else if (double >= factor) {
 					results[columns[i]] = "Decimal";
 				} else {
-					results[columns[i]] = "String";
+					results[columns[i]] = "Caracteres";
 				}
 
 				let column =
