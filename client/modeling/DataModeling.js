@@ -201,7 +201,7 @@ Template.DataModeling.events({
                     .append("<tr class='new-charac checkboxtarget'></tr>");
                 $(".checkboxtarget")
                     .append("<tr><td>Seleccionar Todo:<input id='select_all_target' type='checkbox' name='checkboxtarget'></td></tr>");
-                $(".checkboxtarge").append(loaderVar);
+                $(".checkboxtarget").append(loaderVar);
                 $("#form-target")
                     .append("<br><input id='submit-target' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Objetivo'>");
             }
