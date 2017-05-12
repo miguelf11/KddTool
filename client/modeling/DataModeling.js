@@ -63,6 +63,7 @@ Template.DataModeling.events({
             arrayOfParams[i] = data;
             i++;
         });
+
         // Call of a server side method to execute the stack of node operations 
         Meteor.call('example10', arrayOfParams, function(error, result){
             if(error){
@@ -123,6 +124,8 @@ Template.DataModeling.events({
         var target = currentNode.data('node').target;
         var typeOfNode = currentNode.data('node').type;
         var labelOutput = currentNode.data('node').outputs[0].label;
+        var loaderVar = "<tr class='row-loader'><td><div class='loader-features'></div></td></tr>";
+
 
         $('.new-elements').remove();
         $('.new-charac').remove();
@@ -179,12 +182,12 @@ Template.DataModeling.events({
             var titleChar = "<tr class='new-charac'><td><h3>Características</h3><br></td></tr>";
             $(".attrs-table")
                 .append("<tr class='new-charac'><td><form id='form-char' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
-            $("#form-char")
-                .append(titleChar);
+            $("#form-char").append(titleChar);
             $("#form-char")
                 .append("<tr class='new-charac checkboxlist'></tr>");
             $(".checkboxlist")
                 .append("<tr><td>Seleccionar Todo:<input id='select_all' type='checkbox' name='checkboxlist'></td></tr>");
+            $(".checkboxlist").append(loaderVar);
             $("#form-char")
                     .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");
 
@@ -198,31 +201,35 @@ Template.DataModeling.events({
                     .append("<tr class='new-charac checkboxtarget'></tr>");
                 $(".checkboxtarget")
                     .append("<tr><td>Seleccionar Todo:<input id='select_all_target' type='checkbox' name='checkboxtarget'></td></tr>");
+                $(".checkboxtarge").append(loaderVar);
                 $("#form-target")
                     .append("<br><input id='submit-target' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Objetivo'>");
             }
 
+
             // Call to server side method to execute drill query
             Meteor.call('queryPrueba',function(err,res) {
                 if(res.statusCode == 200) {
+                    $(".row-loader").remove();
                     columns = res.data.columns;
+                    $('tr .dynamic').remove();
                     for (var i=0;i<columns.length;i++) {
                         var pos = jQuery.inArray(columns[i], propiedades);
                         if(pos == -1) {
                             $(".checkboxlist")
-                                .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxlist'></td></tr>");
+                                .append("<tr class='new-charac dynamic'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxlist'></td></tr>");
                         }else{
                             $(".checkboxlist")
-                                .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxlist' checked='true'></td></tr>");  
+                                .append("<tr class='new-charac dynamic'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxlist' checked='true'></td></tr>");  
                         }   
                         if (typeOfNode == 'algoritmoML') {
                             var posTarget = jQuery.inArray(columns[i], target);
                             if(posTarget == -1) {
                                     $(".checkboxtarget")
-                                        .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxtarget'></td></tr>");
+                                        .append("<tr class='new-charac dynamic'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxtarget'></td></tr>");
                             }else{
                                 $(".checkboxtarget")
-                                    .append("<tr class='new-charac'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxtarget' checked='true'></td></tr>");
+                                    .append("<tr class='new-charac dynamic'><td>"+columns[i]+"<input type='checkbox' value='"+columns[i]+"' name='checkboxtarget' checked='true'></td></tr>");
                             } 
                         }    
                     }
@@ -234,8 +241,6 @@ Template.DataModeling.events({
                     alert("Error en columna!");
                 }
             });
-
-            
             
             // /* Features marker when click node*/
             // if (propiedades.length == $(".new-charac input[name=checkboxlist]").length-1) {
@@ -310,11 +315,12 @@ Template.DataModeling.events({
                     required: true,
                     minlength: 1,
                     number: true,
+                    splitValidator: true,
                 },
                 text: {
                     required: true,
                     minlength: 1,
-                    lettersonly: true
+                    lettersonly: true,
                 },
             },
 
@@ -323,6 +329,7 @@ Template.DataModeling.events({
                     required: "Este campo es requerido",
                     minlength: "Introduzca al menos un número",
                     number: "El valor debe ser de tipo numérico",
+                    splitValidator: "La suma de testing y training debe sumar 1",
                 },
                 text: {
                     required: "Este campo es requerido",
@@ -336,6 +343,13 @@ Template.DataModeling.events({
         jQuery.validator.addMethod("lettersonly", function(value, element) {
             return this.optional(element) || /^[a-z]+$/i.test(value);
         }, "Sólo se aceptan caracteres no numéricos"); 
+
+        jQuery.validator.addMethod("splitValidator", function(value, element) {
+            if ($('#Aparams')[0].innerHTML == 'split' && (parseFloat($('#form input#number')[0].value) + parseFloat($('#form input#number')[1].value)) == 1) {
+                return true;
+            }
+            return false;
+        }); 
     },
 
 

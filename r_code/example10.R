@@ -20,7 +20,13 @@ test <- function (data) {
 	print("hola2")
 	ruta.base = "hdfs://127.0.1.1:40010"
 
+	setwd("/home/vit/Escritorio/Restudio/")
+	resp = fromJSON(data)
+	json = toJSON(resp, pretty=TRUE)
+	write(json, "example10.json")
+
 	for(i in resp ) {
+
 
 	  if(i$label == "datos") {
 	    ruta = paste(i$parametros[[1]][2])
@@ -41,6 +47,7 @@ test <- function (data) {
 
 	  if(i$label == "seleccionar") {
 	    print("Inicioseleccion")
+	    print(i$properties)
 	    features.select = i$properties
 	    tidy_data <- tbl(sc,"spark_data_training") %>% select(one_of(features.select))
 	    print("Finseleccion")
@@ -48,6 +55,7 @@ test <- function (data) {
 
 	  if(i$label == "arbol de decision"){
 	    print("InicioArbol")
+	    print(i$properties)
 	    features = i$properties
 	    model_data <- tidy_data %>% ml_decision_tree (response="Species", features=features)
 	    print("FinArbol")
@@ -64,9 +72,16 @@ test <- function (data) {
 	  }
 
 	  if(i$label == "visualizar"){
-	    png(filename="testeo.png", width = 480, height = 480)
+	  	filename <- tempfile("plot", fileext = ".png")
+	    png(filename)
 	    p <- pred_data %>% inner_join(data.frame(prediction=0:2, lab=model_data$model.parameters$labels)) %>% ggplot(aes(PetalLength, PetalWidth, col=lab)) +geom_point()
 	    print(p)
+	    dev.off()
+		spark_disconnect_all()
+		image <- readBin(filename, "raw", 29999)
+	    unlink(filename)
+	    print("hola")
+    	return (image)
 	  }
 	}
 }

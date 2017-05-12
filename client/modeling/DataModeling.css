@@ -8,6 +8,10 @@
     padding: 8px;
 }
 
+.features-table {
+  height: 590px;
+  overflow-y: scroll;
+}
 
 .draggable {
 	background: #8ac3e0;
@@ -20,7 +24,7 @@
 
 #droppable {
 	background: #dddddd;
-	min-height: 500px;
+	height: 500px;
 	overflow: auto;
 }
 
@@ -112,4 +116,15 @@
 
 #toast-container > .toast-success {
    background-color: #2F96B4;
+}
+
+.loader-features {
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #44a2d6;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    margin: auto;
 }

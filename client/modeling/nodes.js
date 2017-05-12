@@ -27,31 +27,31 @@ module.exports.nodes =
             ],
             parametros : [
                 {
-                    name: 'dataset',
-                    value : 5,
-                    type: 'number'
-                },
-                {
-                    name: 'down',
-                    value : 'prueba',
+                    name: 'max.bins',
+                    value : '32L',
                     type: 'text'
                 },
                 {
-                    name: 'cp',
+                    name: 'max.depth',
+                    value : '5L',
+                    type: 'text'
+                },
+                {
+                    name: 'type',
                     value : [
                         {
-                            name:"opcion 1",
-                            selected: 0,
-
-                        },
-                        {
-                            name:"opcion 2",
-                            selected: 0,
-
-                        },
-                        {
-                            name:"opcion 3",
+                            name:"auto",
                             selected: 1,
+
+                        },
+                        {
+                            name:"regression",
+                            selected: 0,
+
+                        },
+                        {
+                            name:"classification",
+                            selected: 0,
 
                         },
                     ],
@@ -78,12 +78,12 @@ module.exports.nodes =
             ],
             parametros: [
                 {
-                    name: 'testing',
+                    name: 'Testing',
                     value :0.6,
                     type: 'number'
                 },
                 {
-                    name: 'training',
+                    name: 'Training',
                     value : 0.4,
                     type: 'number'
                 },
@@ -149,12 +149,6 @@ module.exports.nodes =
             ],
             parametros : [],
             properties: [],
-            outputs: [
-                {
-                    label: 'output',                          
-                }
-                
-            ]
         }
     ] 
 
