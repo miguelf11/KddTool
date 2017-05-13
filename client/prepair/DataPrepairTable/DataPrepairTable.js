@@ -6,26 +6,33 @@ Template.DataPrepairTable.onCreated(function(){
 		self.subscribe('single_project',id);
 		Session.set('projectId', id);
 		Session.set('data_project','');
-		Session.set('data_keys',''); 	
+		Session.set('data_keys','');
+		Session.set('num_rows','');
+		Session.set('num_fields',''); 	
 	});
 
 	var id = FlowRouter.getParam('id');
-	var project_address = Projects.findOne({_id:id}).address;
+	var project_address = Projects.findOne({_id:id}).current_version_address;
+	var project_actions = Projects.findOne({_id:id}).actions;
 	Meteor.call('queryDataDrill',project_address, function(err,res){
 		if(res.statusCode == 200){
-			// console.log(res.data.rows);
-			// console.log(res.data.columns);
+			console.log("cantidad de registros: "+res.data.rows.length);
+			console.log("cantidad de columnas: "+res.data.columns.length);
 			// response = res.data.rows[0].apellido;
 			Session.set('data_project',res.data.rows);
 			// Session.set('data_keys',Object.keys(res.data.rows[0]));
 			Session.set('data_keys',res.data.columns);
+			Session.set('num_rows',res.data.rows.length);
+			Session.set('num_fields',res.data.columns.length);
+			if(project_actions){
+				Session.set('project_actions',project_actions);
+			}
+
 		}
 		if(err){
 			alert("no data");
 		}
-	});	
-
-
+	});
 });
 
 Template.DataPrepairTable.helpers({
@@ -46,9 +53,20 @@ Template.DataPrepairTable.helpers({
 	    var row = [];
 	    var header = Session.get('data_keys');
 	    for (var key in header) {
-	      row.push(document[header[key]] || "");
+	    	if (key == 0){
+	    		row.isFirst = true;
+	    	}
+	      	row.push(document[header[key]] || "");
 	    }
 	    return row;
+	},
+
+	isFirst:(index)=>{
+		if(index == 0){
+			return true;
+		}else{
+			return false;
+		}
 	},
 
   data_type_name:(column_name)=>{
@@ -82,7 +100,7 @@ Template.DataPrepairTable.helpers({
       if(data_types[i].name == column_name && data_types[i].active == true){
         data_type_final = data_types[i].type;
         switch(data_type_final){
-        	case 'Carácteres':
+        	case 'Caracteres':
         		data_type_final_true = 'VARCHAR';
         		break;
         	case 'Entero':
@@ -99,11 +117,35 @@ Template.DataPrepairTable.helpers({
     return data_type_final_true;
   },
 
+  	typeOfModalNumber:(column_name)=>{
+		var project_id = FlowRouter.getParam('id');
+	    var data_types = Projects.findOne({_id:project_id},{fields: {'data_types':1}});
+	    // console.log(data_types.data_types[0].name);
+	    data_types = data_types.data_types;
+	    var data_type_final = '';
+	    for (var i=0;i<data_types.length;i++){
+	      if(data_types[i].name == column_name && data_types[i].active == true){
+	        data_type_final = data_types[i].type;
+	        break;
+	      }
+	    }
+
+	    if (data_type_final == 'Entero' || data_type_final == 'Decimal'){
+	    	return true;
+	    }else{
+	    	return false;
+	    } 
+	},
+
+
 
 });
 
 Template.DataPrepairTable.events({
+	// 'click .undo-btn' (event, template) {
+	// 	console.log('deshacer');      
 
+ //    },
 
 });
 

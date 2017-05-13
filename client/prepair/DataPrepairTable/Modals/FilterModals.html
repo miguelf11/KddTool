@@ -1,0 +1,80 @@
+<template name='filterModal'>
+	<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exploreModal">
+		<div class="modal-dialog" role="document" style="transform: translate(0, 50%);">
+			<div class="modal-content" id="numeric" style="display: none;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title text-bold">Filtrar</h4>
+				</div>
+				<div class="modal-body row">
+					<!-- <p>Todos los datos del campo a explorar</p> -->
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<select name="filterBy" id="filter_numeric_by">
+							<option value=">">Mayor que</option>
+							<option value="<">Menor que</option>
+							<option value="=">Igual a</option>
+						</select>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<input type="text" name="filterValue" id="filter_numeric_value">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default closeFilter" data-dismiss="modal">Cancelar</button>
+					<button id="filter_numeric" data-column="" type="button" class="btn btn-primary">Filtrar</button>
+				</div>
+			</div>
+
+			<div class="modal-content" id="double" style="display: none;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title text-bold">Filtrar</h4>
+				</div>
+				<div class="modal-body row">
+					<!-- <p>Todos los datos del campo a explorar</p> -->
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<select name="filterBy" id="filter_double_by">
+							<option value=">">Mayor que</option>
+							<option value="<">Menor que</option>
+							<option value="=">Igual a</option>
+						</select>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<input type="text" name="filterValue" id="filter_double_value">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default closeFilter" data-dismiss="modal">Cancelar</button>
+					<button id="filter_double" data-column="" type="button" class="btn btn-primary">Filtrar</button>
+				</div>
+			</div>
+
+
+			<div class="modal-content" id="string" style="display: none;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title text-bold">Filtrar</h4>
+				</div>
+				<div class="modal-body row">
+					<!-- <p>Todos los datos del campo a explorar</p> -->
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<select name="filterBy" id="filter_string_by">
+							<option value="SW">Inicie con</option>
+							<option value="EW">Termine con</option>
+							<option value="EQ">Igual a</option>
+							<option value="CT">Contenga</option>
+						</select>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<input type="text" name="filterValue" id="filter_string_value">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default closeFilter" data-dismiss="modal">Cancelar</button>
+					<button id="filter_string" data-column="" type="button" class="btn btn-primary">Filtrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</template>

@@ -3,22 +3,35 @@ Template.DataSets.onCreated(function(){
 	self.autorun(function(){
 		self.subscribe('all_datasets');
 	});
-	// $('.delete-dataset').tooltip();
-	// $('.edit-dataset').tooltip();
+
+	// var datasets = DataSets.find();
+	// Session.set('all_datasets',datasets);
+
 });
 
 Template.DataSets.onRendered(function(){
 	$(".nav-tabs-projects > li").each(function() {
-	  $(this).removeClass("active");
+		$(this).removeClass("active");
 	});	
 
 	$("#datasetsTabli").addClass('active');
+	$('[data-toggle="popover"]').popover();
 
+	// var datasets = DataSets.find()._id;
+	// Session.set('datasets_test',datasets);
 });
 
 Template.DataSets.helpers({
 	datasets:()=> {
-		return DataSets.find({});
+		return DataSets.find();
+	},
+
+	searchDatasets:()=> {
+		var clue = Session.get('clue');
+		console.log(clue);
+		var regex = new RegExp( clue, 'i' );
+		// console.log(regex);
+		return DataSets.find({name:regex});
 	},
 
 	isPrivate:(id)=> {
@@ -39,40 +52,96 @@ Template.DataSets.helpers({
 			return false;
 		}
 	},
+
+	isSearching:()=> {
+		return Session.get('searching');
+	},
 });
 
 Template.DataSets.events({
 	'click #delete'() {
-		let id_dataset = $("#delete").data("target");
-		let that = DataSets.findOne(id_dataset);
+		var id_dataset = $("#delete").data("target");
+		var that = DataSets.findOne(id_dataset);
 		Meteor.call('removeHdfsFolder', that.hdfs_address, function(err,res){
    			// console.log(res);
    			if(res.statusCode == 200){
    				Meteor.call('removeDataset',id_dataset, function(err2,res2){
 					// console.log(res2);
 					if(res2){
-						alert("El conjunto ha sido eliminado exitosamente!!!");
-						$("#deleteModal").modal('hide');
+						Meteor.call('removeColumn', id_dataset, function (err, res) {
+							if (res) {
+								$("#deleteModal").modal('hide');
+								// alert("El conjunto ha sido eliminado exitosamente!!!");
+							}
+							if (err) {
+								console.log(err);
+							}
+							
+						});
 					}else{
+						$("#deleteModal").modal('hide');
 						alert("No se ha podido eliminar el conjunto!!!");
 					}
 					if(err2){
+						$("#deleteModal").modal('hide');
 						alert("No se ha podido eliminar el conjunto!!!");
 					}
 				});	
    			}else{
+   				$("#deleteModal").modal('hide');
    				alert("No se ha podido eliminar el conjunto!!!");
    			}
    			if(err){
+   				$("#deleteModal").modal('hide');
    				alert("No se ha podido eliminar el conjunto!!!");
    			}
    		});
 	},
 	'show.bs.modal #deleteModal' (event) {
-		let button = $(event.relatedTarget);
-		let target = button.data('id');
+		var button = $(event.relatedTarget);
+		var target = button.data('id');
 		// console.log(target);
-		let modal = $(this);
 		$("#delete").data("target", target);
-	}
+	},
+	
+	'show.bs.modal #viewModal' (event) {
+		var button 		= $(event.relatedTarget);
+		var id_dataset 	= button.data('id');
+		var that 		= DataSets.findOne(id_dataset);
+
+		$('#dsName').text(that.name);
+		$('#dsNfields').text(that.num_fields);
+		$('#dsNrows').text(that.num_rows);
+		$('#dsDesc').text(that.desc);
+
+		if (that.dataset_type == 'privado'){
+			$('#public').css('display', 'none');
+			$('#private').css('display', 'block');
+		}else{
+			$('#private').css('display', 'none');
+			$('#public').css('display', 'block');
+		}
+	},
+	'click .search-dataset' (event) {
+		console.log('buscar');
+		$('.search-row').removeClass('hidden');
+	},
+	'click #searchBtn' (event) {
+		Session.set('searching',true);
+		Session.set('clue',$('#clue').val());
+	},
+	'keypress #clue':function(event) {
+		// console.log('enter');
+		// console.log(event);
+		if (event.which === 13) {
+			Session.set('searching',true);
+			Session.set('clue',$('#clue').val());
+		}   
+     },
+	'click .show-all-datasets' (event) {
+		$('#clue').val(null);
+		$('.search-row').addClass('hidden');
+		Session.set('searching',false);
+	},
+
 });

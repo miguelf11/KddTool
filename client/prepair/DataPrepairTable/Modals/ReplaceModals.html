@@ -1,0 +1,39 @@
+<template name="replaceModal">
+	<div class="modal fade" id="replaceModal" tabindex="-1" role="dialog" aria-labelledby="exploreModal">
+		<div class="modal-dialog" role="document" style="transform: translate(0, 50%);">
+			<div class="modal-content" id="numeric">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title text-bold">Reemplazar</h4>
+				</div>
+				<div class="modal-body row">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<label class="">Valor inicial:</label>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<label class="">Reemplazar con:</label>
+					</div>
+
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<input type="text" name="initVal" class="initVal">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<input type="text" name="postVal" class="postVal">
+					</div>
+
+<!-- 					<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+						<div class="row text-right">
+							<a href="#" title="Otro valor">
+								<i class="fa fa-plus-circle fa-3x" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div> -->
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default closeReplace" data-dismiss="modal">Cancelar</button>
+					<button id="replaceSubmit" data-column="" type="button" class="btn btn-primary">Reemplazar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

@@ -1,0 +1,9 @@
+.table-explore-content{
+	/*overflow-y: scroll;
+	white-space: nowrap;
+	max-height: 60vh;*/
+}
+
+#exploreModalString > .modal-dialog > .modal-content{
+    border-radius: 0px;
+}

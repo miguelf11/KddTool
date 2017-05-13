@@ -27,26 +27,22 @@ DataTypesSchema = new SimpleSchema({
 	}
 });
 
-ActionsSchema = new SimpleSchema({
-	name:{
-		type: String,
-		label:'name'
-	},
-	over:{
-		type: String,
-		label:'over'
-	},
-	createdAt:{
-		type: Date,
-		label: 'CreatedAt',
-		autoValue: function(){
-			return new Date()
-		},
-		// autoform:{
-		// 	type: 'hidden'
-		// }
-	},
-});
+// ActionsSchema = new SimpleSchema({
+// 	name:{
+// 		type: String,
+// 		label:'name'
+// 	},
+// 	createdAt:{
+// 		type: Date,
+// 		label: 'CreatedAt',
+// 		autoValue: function(){
+// 			return new Date()
+// 		},
+// 		// autoform:{
+// 		// 	type: 'hidden'
+// 		// }
+// 	},
+// });
 
 ProjectsSchema = new SimpleSchema({
 	name:{
@@ -103,8 +99,16 @@ ProjectsSchema = new SimpleSchema({
 		// 	type: 'hidden'
 		// }
 	},
+	modifiedAt:{
+		type: Date,
+		label: 'ModifiedAt',
+		optional: true
+		// autoform:{
+		// 	type: 'hidden'
+		// }
+	},
 	actions:{
-		type: [ActionsSchema],
+		type: [String],
 		label: 'acciones de preparacion',
 		optional: true
 		// autoform:{
@@ -130,6 +134,14 @@ ProjectsSchema = new SimpleSchema({
 	mining_view_address:{
 		type: String,
 		label: 'direccion de vista minable',
+		optional: true
+		// autoform:{
+		// 	type: 'hidden'
+		// }
+	},
+	current_version_address:{
+		type: String,
+		label: 'direccion de version actual',
 		optional: true
 		// autoform:{
 		// 	type: 'hidden'

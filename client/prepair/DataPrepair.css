@@ -5,6 +5,7 @@
     overflow-y: scroll;
     white-space: nowrap;
     max-height: 75vh;
+    min-height: 15vh;
     border-right: rgba(0,0,0, 0.4) solid 2px;
     /*height: auto;*/
 }
@@ -57,13 +58,13 @@
 
 }
 
-.popover{
+/*.popover{
     z-index: 1000;
-    /*color: #000 !important;*/
+    color: #000 !important;
     border-radius: 0px !important;
-}
+}*/
 
-.popover > .popover-title{
+/*.popover > .popover-title{
     background-color: #0da938;
     color: #FFF !important;
     border-radius: 0px !important;
@@ -73,12 +74,18 @@
 
 .popover > .popover-content{
     color: #000 !important;
-}
+}*/
 
 .data-prepair-table > thead > th{
     /*min-width: 180px !important;*/
     width: 100%;
     min-width: 20em;
+}
+
+.data-prepair-table > thead > .checkbox-field{
+    /*min-width: 180px !important;*/
+    width: 100%;
+    min-width: 2em !important;
 }
 
 .data-prepair-table > thead > th > div > a{
@@ -95,6 +102,12 @@
     min-width: 20em;
 }
 
+.data-prepair-table > tbody > tr > .checkbox-field{
+    /*min-width: 180px !important;*/
+    width: 100%;
+    min-width: 2em !important;
+}
+
 .prepair-actions-content{
     border-bottom: rgba(0,0,0, 0.4) solid 2px;
 }
@@ -109,8 +122,18 @@
     min-height: 12vh;
 }
 
+.generate-mining-view > div > a > img:hover{
+    color:#0da938;
+}
+
 .generate-mining-view > div > a > i:hover{
     color:#0da938;
+}
+
+.generate-mining-view > div > a > img{
+    color:#0da938;
+    height: 75px;
+    width: 75px;
 }
 
 .dropdown-menu-first:before {
@@ -204,4 +227,24 @@
 
 .BIGINT{
     background-color: #8642a9 !important;
+}
+
+input,select{
+    background: #FFF;
+    border: solid 2px #EEE;
+    border-radius: 0px; 
+    padding: 6px 10px;
+    margin-bottom: 10px; 
+}
+
+.modal-content{
+    border-radius: 0px;   
+}
+
+.modal-content > .modal-footer > button{
+    border-radius: 0px;
+}
+
+#filter_numeric_value{
+    width: 100%;
 }

@@ -2,6 +2,7 @@ Template.newProject.onCreated(function(){
 	var self = this;
 	self.autorun(function(){
 		self.subscribe('all_datasets');
+		self.subscribe('all_columns');
 	});
 });
 
@@ -34,6 +35,7 @@ Template.newProject.events({
 	    console.log(dataset_address);
 
     	var HDFSProjectFolderName = name.replace(/\s/g, "");
+    	HDFSProjectFolderName = HDFSProjectFolderName+Date.now();
     	var HDFSUserFolderName = Meteor.user().emails[0].address;
 		Meteor.call('createHdfsFolderProject',HDFSUserFolderName,HDFSProjectFolderName,function(error, result){
 			console.log(result);
@@ -47,7 +49,7 @@ Template.newProject.events({
 					if(result2.statusCode == 200){
 						console.log('dataset copied into project folder');
 						var columns = '';
-						Meteor.call('queryDataDrill',folder_project, function(err,res){
+						Meteor.call('queryDataDrill', folder_project, function(err,res){
 							if(res.statusCode == 200){
 								
 								// Session.set('data_keys',res.data.columns);
@@ -57,12 +59,18 @@ Template.newProject.events({
 								// console.log(columns);
 								var data_types =[];
 
-								for (var i=0;i<columns.length;i++){
-									var each_column = {name:columns[i],type:'Caractéres',active:true};
-									// console.log(each_column);
-									data_types.push(each_column);
+								for (var i=1;i<columns.length;i++){
+									var column = Columns.findOne({datasetId: dataset, name: columns[i]});
+									console.log(column);
+									if(column != undefined){
+										var each_column = {name:columns[i],type:column.dataType, active:true};
+										// console.log(each_column);
+										data_types.push(each_column);
+									}
 								}
 								// console.log(data_types);
+								var prepair_versions = [];
+								prepair_versions[0] = folder_project+"/raw";
 							    var project =
 								    {
 								    	name: name,
@@ -70,7 +78,9 @@ Template.newProject.events({
 										// num_rows: nRows,
 										// num_fields: nFields,
 										address: folder_project,
+										current_version_address: folder_project+"/raw",
 										dataset: dataset,
+										prepair_versions: prepair_versions,
 										last_stage: stage,
 										data_types:data_types
 								    };
@@ -110,6 +120,6 @@ Template.newProject.events({
   	},
 	'click .btn-back' (event, template) {
     	event.preventDefault();
-   		FlowRouter.go('datasets');
+   		FlowRouter.go('proyectos');
   	},
 })

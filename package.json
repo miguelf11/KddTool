@@ -9,10 +9,11 @@
     "bcrypt": "^1.0.2",
     "jquery": "^1.12.4",
     "jquery-validation": "^1.16.0",
+    "csv-parse": "^1.2.0",
+    "csv-stringify": "^1.0.4",
     "meteor-node-stubs": "^0.2.6",
     "rio": "^2.4.1",
     "thrift": "^0.10.0",
-    "thrift-hive": "0.0.7",
     "webhdfs": "^1.1.1"
   }
 }
