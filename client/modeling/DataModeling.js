@@ -67,6 +67,7 @@ Template.DataModeling.events({
         // Call of a server side method to execute the stack of node operations 
         Meteor.call('example10', arrayOfParams, function(error, result){
             if(error){
+                toastr["error"]("Error en ejecución", "Error");
             } else {
                 out = result;
 
@@ -271,6 +272,56 @@ Template.DataModeling.events({
             // }
         }
         /* END Features selector algoritmoCS - algoritmoML*/
+
+        // on change on features 
+        $('#form-char').on('change' ,'input:checkbox',function() { 
+            if ($(this).is(':checked')) {
+                if($(this).attr("id") == "select_all") {
+                    $("#form-target input:checkbox").attr("disabled", true);
+                }
+                var aux = $(this).attr("value");
+                $("#form-target input:checkbox").each(function() { 
+                    if ($(this).attr("value") == aux) {
+                        $(this).attr("disabled", true);
+                    }
+                });
+            } else {
+                if($(this).attr("id") == "select_all") {
+                    $("#form-target input:checkbox").attr("disabled", false);
+                }
+                var aux = $(this).attr("value");
+                $("#form-target input:checkbox").each(function() { 
+                    if ($(this).attr("value") == aux) {
+                        $(this).attr("disabled", false);
+                    }
+                });
+            }
+        });        
+
+        // on change on features target
+        $('#form-target').on('change' ,'input:checkbox',function() { 
+            if ($(this).is(':checked')) {
+                if($(this).attr("id") == "select_all_target") {
+                    $("#form-char input:checkbox").attr("disabled", true);
+                }                
+                var aux = $(this).attr("value");
+                $("#form-char input:checkbox").each(function() { 
+                    if ($(this).attr("value") == aux) {
+                        $(this).attr("disabled", true);
+                    }
+                });
+            } else {
+                if($(this).attr("id") == "select_all_target") {
+                    $("#form-char input:checkbox").attr("disabled", false);
+                }                     
+                var aux = $(this).attr("value");
+                $("#form-char input:checkbox").each(function() { 
+                    if ($(this).attr("value") == aux) {
+                        $(this).attr("disabled", false);
+                    }
+                });
+            }
+        });
 
         /* Select all checkboxes */
         $('body').on('change' ,'#select_all',function() {
