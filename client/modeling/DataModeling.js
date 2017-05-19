@@ -405,7 +405,7 @@ Template.DataModeling.events({
                     required: "Este campo es requerido",
                     minlength: "Introduzca al menos un número",
                     number: "El valor debe ser de tipo numérico",
-                    splitValidator: "La suma de testing y training debe sumar 1",
+                    splitValidator: "La suma de prueba y entrenamiento debe sumar 1",
                 },
                 text: {
                     required: "Este campo es requerido",
@@ -421,7 +421,7 @@ Template.DataModeling.events({
         }, "Sólo se aceptan caracteres no numéricos"); 
 
         jQuery.validator.addMethod("splitValidator", function(value, element) {
-            if ($('#Aparams')[0].innerHTML == 'split' && (parseFloat($('#form input#number')[0].value) + parseFloat($('#form input#number')[1].value)) == 1) {
+            if ($('#Aparams')[0].innerHTML == 'separar' && (parseFloat($('#form input#number')[0].value) + parseFloat($('#form input#number')[1].value)) == 1) {
                 return true;
             }
             return false;

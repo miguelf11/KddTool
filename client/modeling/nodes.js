@@ -12,7 +12,7 @@ module.exports.nodes =
             ],
             outputs: [
                 {
-                    label: 'dataset',
+                    label: 'datos',
                 }
             ]
         },
@@ -22,7 +22,7 @@ module.exports.nodes =
             inputs: [
                 {
                     id: 'dataset',
-                    label: 'dataset',
+                    label: 'datos',
                 }
             ],
             parametros : [
@@ -62,38 +62,38 @@ module.exports.nodes =
             target: [],
             outputs: [
                 {
-                    label: 'output',                          
+                    label: 'salida',                          
                 }
                 
             ]
         },
         {
-            label: 'split',
+            label: 'separar',
             type: 'algoritmoSS',
             inputs: [
                 {
                     id: 'Input',
-                    label: 'Input'
+                    label: 'entrada'
                 }
             ],
             parametros: [
                 {
-                    name: 'Testing',
+                    name: 'Prueba',
                     value :0.6,
                     type: 'number'
                 },
                 {
-                    name: 'Training',
+                    name: 'Entrenamiento',
                     value : 0.4,
                     type: 'number'
                 },
             ],
             outputs: [
                 {
-                    label: 'Testing'                          
+                    label: 'prueba'                          
                 },
                 {
-                    label: 'Training'                         
+                    label: 'entrenamiento'                         
                 }
             ]
         },
@@ -103,29 +103,30 @@ module.exports.nodes =
             inputs: [
                 {
                     id: 'dataset',
-                    label: 'dataset',
+                    label: 'entrada',
                 }
             ],
             parametros : [],
             properties: [],
             outputs: [
                 {
-                    label: 'output',                          
+                    label: 'salida',                          
                 }
                 
             ]
         },
         {
-            label: 'comparar',
+            label: 'evaluar',
             type : 'algoritmoSS',
             inputs: [
                 {
-                    id: 'modelo',
-                    label: 'modelo',
+                    
+                    id: 'prueba',
+                    label: 'prueba',
                 },
                 {
-                    id: 'testing',
-                    label: 'testing',
+                    id: 'modelo',
+                    label: 'modelo', 
                 }
 
             ],
@@ -133,7 +134,7 @@ module.exports.nodes =
             properties: [],
             outputs: [
                 {
-                    label: 'output',                          
+                    label: 'salida',                          
                 }
                 
             ]
@@ -143,8 +144,8 @@ module.exports.nodes =
             type : 'algoritmoSS',
             inputs: [
                 {
-                    id: 'modelo',
-                    label: 'modelo',
+                    id: 'entrada',
+                    label: 'entrada',
                 }
             ],
             parametros : [],
