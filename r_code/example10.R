@@ -4,24 +4,18 @@ library(ggplot2)
 require(RJSONIO)
 
 Sys.setenv("JAVA_HOME" = "/usr/local/jdk1.8.0_131")
-Sys.setenv(HADOOP_HOME="/usr/local/hadoop")
-Sys.setenv(SPARK_HOME="/usr/local/spark")
 
 
 test <- function (data) {
 
 	
 	resp = fromJSON(data)
-	Sys.setenv("JAVA_HOME" = "/usr/local/jdk1.8.0_131")
-	Sys.setenv(HADOOP_HOME="/usr/local/hadoop")
-	Sys.setenv(SPARK_HOME="/usr/local/spark")
 
 	sc <- spark_connect(master = "local")
 	print("hola2")
 	ruta.base = "hdfs://127.0.1.1:40010"
 
 	setwd("/home/vit/Escritorio/Restudio/")
-	resp = fromJSON(data)
 	json = toJSON(resp, pretty=TRUE)
 	write(json, "example10.json")
 
@@ -57,7 +51,9 @@ test <- function (data) {
 	    print("InicioArbol")
 	    print(i$properties)
 	    features = i$properties
-	    model_data <- tidy_data %>% ml_decision_tree (response="Species", features=features)
+		target = i$target
+		tidy_data <- tbl(sc,"spark_data_training")
+    	model_data <- tidy_data %>% ml_decision_tree (response=target, features=features)
 	    print("FinArbol")
 	  }
 
@@ -74,7 +70,7 @@ test <- function (data) {
 	  if(i$label == "visualizar"){
 	  	filename <- tempfile("plot", fileext = ".png")
 	    png(filename)
-	    p <- pred_data %>% inner_join(data.frame(prediction=0:2, lab=model_data$model.parameters$labels)) %>% ggplot(aes(PetalLength, PetalWidth, col=lab)) +geom_point()
+	    p <- pred_data %>% inner_join(data.frame(prediction=0:2, lab=model_data$model.parameters$labels)) %>% ggplot(aes_string( x = as.name(features[1]), y = as.name(features[2]),col=quote(lab))) +geom_point()
 	    print(p)
 	    dev.off()
 		spark_disconnect_all()

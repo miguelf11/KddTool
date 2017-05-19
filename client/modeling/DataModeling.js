@@ -5,6 +5,7 @@ Template.DataModeling.onCreated(function(){
         console.log(id);
         self.subscribe('single_project',id);
         Session.set('projectId', id);   
+        Session.set('data_project','');
     });
     toastr.options = { 
         "closeButton": false, 
@@ -29,6 +30,7 @@ Template.DataModeling.onRendered(function(){
     // Call to nodes.js file, where the nodes are defined with its features and params
     var nodeFile = require('./nodes');
     var nodes = nodeFile.nodes;
+
     $('.each-tab').each(function(){
         $(this).removeClass('active');
         $(this).addClass('disabled');
@@ -39,9 +41,13 @@ Template.DataModeling.onRendered(function(){
         .addClass('nodeEditor')
         .appendTo('.workspace')
         .nodeEditor({
-            nodes: nodes
-            
+            nodes: nodes    
         });
+        
+    var id = FlowRouter.getParam('id');
+    var project_address = Projects.findOne({_id:id}).address;
+    var datasetAddress = project_address + "/vista_minable/*";
+
 });
 
 Template.DataModeling.helpers({
@@ -56,10 +62,17 @@ Template.DataModeling.events({
     /* function to call R and execute function stack */
     'click .execute': function(e) {
         var numberOfParentChildren = $('.ui-droppable .dropped').length;
-        var arrayOfParams = []
+        var arrayOfParams = [];
         var i = 0;
         $('.ui-droppable .dropped').each(function() {
-            var data = $(this).data('node'); 
+            var data = $(this).data('node');
+            if (data.label == "datos") {
+                var id = FlowRouter.getParam('id');
+                var project_address = Projects.findOne({_id:id}).address;
+                var datasetAddress = project_address + "/vista_minable/0_0_0.parquet";
+                var datasetAddress = "/user/hadoop/datasets/iris1494697285980.csv";
+                data.parametros[0].value = datasetAddress;
+            }
             arrayOfParams[i] = data;
             i++;
         });
@@ -207,9 +220,15 @@ Template.DataModeling.events({
                     .append("<br><input id='submit-target' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Objetivo'>");
             }
 
+            var id = FlowRouter.getParam('id');
+            var project_address = Projects.findOne({_id:id}).address;
+            console.log(project_address);
+            var datasetAddress = project_address + "/vista_minable/*"
+            console.log(datasetAddress);
+
 
             // Call to server side method to execute drill query
-            Meteor.call('queryPrueba',function(err,res) {
+            Meteor.call('queryPrueba',datasetAddress,function(err,res) {
                 if(res.statusCode == 200) {
                     $(".row-loader").remove();
                     columns = res.data.columns;
@@ -467,7 +486,3 @@ Template.DataModeling.events({
         }
     },
 });
-
-// Luego de realizar cualquier tarea en esta etapa se debe modificar el stage 
-// de la coleccion proyecto y se debe colocar 'modelado' para que al volver a 
-// ingresar al proyecto lo redirija a la ultima etapa que realizó alguna tarea.
