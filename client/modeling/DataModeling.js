@@ -64,6 +64,8 @@ Template.DataModeling.events({
         var numberOfParentChildren = $('.ui-droppable .dropped').length;
         var arrayOfParams = [];
         var i = 0;
+        $(".loader-all").show();
+        $(".overlay").show();
         $('.ui-droppable .dropped').each(function() {
             var data = $(this).data('node');
             if (data.label == "datos") {
@@ -81,8 +83,12 @@ Template.DataModeling.events({
         Meteor.call('example10', arrayOfParams, function(error, result){
             if(error){
                 toastr["error"]("Error en ejecución", "Error");
+                $(".overlay").hide();
+                $(".loader-all").hide();
             } else {
                 out = result;
+                $(".loader-all").hide();
+                $(".overlay").hide();
 
             }
         });
@@ -206,7 +212,7 @@ Template.DataModeling.events({
                     .append("<br><input id='submit-char' type='submit' name='submit' class='btn btn-primary' value='Seleccionar Características'>");
 
             if (typeOfNode == 'algoritmoML') {
-                var titleTarget = "<tr class='new-charac'><td><h3>Características Target</h3><br></td></tr>";
+                var titleTarget = "<tr class='new-charac'><td><h3>Característica a Predecir</h3><br></td></tr>";
                 $(".attrs-table")
                     .append("<tr class='new-charac'><td><form id='form-target' class= 'form' action='' onsubmit='event.preventDefault();'></form></td></tr>");
                 $("#form-target")

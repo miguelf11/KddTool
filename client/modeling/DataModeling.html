@@ -1,5 +1,7 @@
 <template name='DataModeling'>
 	<div class='project-title uppercase'><h2>{{project.name}}: Modelado</h2></div>
+	<div class="overlay"></div>
+	<div class="loader-all"></div>
 	<div class="data-modeling-content padding-top-double">
 		<div class="row">
 			<div class="col-md-9 ">
@@ -60,7 +62,6 @@
 	                    <!-- {{#each results}} -->
 	                    <ul class="nav nav-tabs">
 	                        <li class="active" ><a data-toggle="tab" href="#opc1">Menu 1</a></li>
-	                        <li><a data-toggle="tab" href="#opc2">Menu 2</a></li>
 	                        <!-- <li><a data-toggle="tab" href="#opc3">{{this.nameResult}}</a></li> -->
 	                    </ul>
 	                    <div class="tab-content">
@@ -68,7 +69,6 @@
 								<!-- <img src="{{this.image}}"> -->
 								<img src="/img/test.png">
 							</div>
-							<div id="opc2" class="tab-pane fade"> opc2 </div>
 							<!-- <div id="opc3" class="tab-pane fade"> {{this.contentResult}} </div> -->
 	                    </div>
 	                    <!-- {{/each}} -->

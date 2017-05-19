@@ -30,7 +30,7 @@ test <- function (data) {
 	    print("chua")
 	  }
 
-	  if(i$label == "split"){
+	  if(i$label == "separar"){
 	    print("Iniciosplit")
 	    testing = i$parametros[[1]][2]
 	    training = i$parametros[[2]][2]
@@ -57,7 +57,7 @@ test <- function (data) {
 	    print("FinArbol")
 	  }
 
-	  if(i$label == "comparar"){
+	  if(i$label == "evaluar"){
 	    print("InicioComparar")
 	    test_data <- tbl(sc,"spark_data_test")
 	    pred_data <- sdf_predict(model_data,  test_data) %>%collect
